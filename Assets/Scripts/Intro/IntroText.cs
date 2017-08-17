@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IntroText : MonoBehaviour
 {
@@ -34,6 +35,9 @@ public class IntroText : MonoBehaviour
             
             else  //아니라면 다음 거 출력
             {
+                if (imgidx == 7)
+                    SceneManager.LoadScene(1);
+
                 if (dialogue.librayImg.gameObject.activeSelf == true) //도서관 씬 켜져있으면 끄기
                     dialogue.librayImg.gameObject.SetActive(false);
 
