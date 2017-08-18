@@ -9,6 +9,8 @@ public class UIBtn : MonoBehaviour
 
     public GameObject inventory;
 
+    public AudioSource clickSound;
+
 	void Start ()
     {
         btns = GetComponentsInChildren<Button>(true);
@@ -22,11 +24,13 @@ public class UIBtn : MonoBehaviour
     void Click()
     {
         inventory.SetActive(true);
+        clickSound.Play();
     }
 
     void Click2()
     {
         AudioListener.volume = 0.0f;
+        clickSound.Play();
         btns[1].gameObject.SetActive(false);
         btns[2].gameObject.SetActive(true);
     }
@@ -34,12 +38,14 @@ public class UIBtn : MonoBehaviour
     void Click3()
     {
         AudioListener.volume = 1.0f;
+        clickSound.Play();
         btns[1].gameObject.SetActive(true);
         btns[2].gameObject.SetActive(false);
     }
 
     void Click4()
     {
+        clickSound.Play();
         Debug.Log("4");
     }
 }

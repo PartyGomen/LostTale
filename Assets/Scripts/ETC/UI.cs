@@ -12,8 +12,12 @@ public class UI : MonoBehaviour
 
     bool isOn;
 
+    public AudioSource clickSound;
+
     public void OnUI()
     {
+        clickSound.Play();
+
         if (isOn)
             StartCoroutine(UIOff());
         else
