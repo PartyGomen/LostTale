@@ -14,12 +14,16 @@ public class Password : MonoBehaviour {
 
     PasswordObj passwordObj;
 
+    Player player;
+
 	void Start ()
     {
         one = 0;
         two = 0;
         three = 0;
         four = 0;
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	}
 	
 	void Update ()
@@ -42,6 +46,7 @@ public class Password : MonoBehaviour {
             passwordObj.GetComponent<BoxCollider2D>().enabled = false;
             control.SetActive(true);
             obj.SetActive(true);
+            player.saveZoneidx = 2;
         }
     }
 

@@ -11,7 +11,7 @@ public class UIBtn : MonoBehaviour
 
 	void Start ()
     {
-        btns = GetComponentsInChildren<Button>();
+        btns = GetComponentsInChildren<Button>(true);
        
         btns[0].onClick.AddListener(() => Click());
         btns[1].onClick.AddListener(() => Click2());
@@ -26,12 +26,16 @@ public class UIBtn : MonoBehaviour
 
     void Click2()
     {
-        Debug.Log("2");
+        AudioListener.volume = 0.0f;
+        btns[1].gameObject.SetActive(false);
+        btns[2].gameObject.SetActive(true);
     }
 
     void Click3()
     {
-        Debug.Log("3");
+        AudioListener.volume = 1.0f;
+        btns[1].gameObject.SetActive(true);
+        btns[2].gameObject.SetActive(false);
     }
 
     void Click4()

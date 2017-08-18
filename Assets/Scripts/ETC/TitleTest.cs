@@ -29,10 +29,10 @@ public class TitleTest : MonoBehaviour
 //	public Sprite BackGroundSprite;
 
     float xScale = 0;
-    float yScale = 0;
+    //float yScale = 0;
   //  float a = 1;
 
-    bool addAlpha = false;
+    //bool addAlpha = false;
 
     private void Start()
     {

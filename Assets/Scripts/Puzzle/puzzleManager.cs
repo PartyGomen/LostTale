@@ -11,12 +11,14 @@ public class puzzleManager : MonoBehaviour {
 	public static bool Stay4IsOn = false;
 	public static bool Stay5IsOn = false;
 
-	public static string[] Puzzle = new string[MaxPuzzle]; 
+	public static string[] Puzzle = new string[MaxPuzzle];
 
+    Player player;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();	
 	}
 	
 	// Update is called once per frame
@@ -28,6 +30,7 @@ public class puzzleManager : MonoBehaviour {
 				ShowPuzzle.puzzleClear = true;
 				ShowPuzzle.puzzleOn = false;
 				this.gameObject.SetActive (false);
+                player.saveZoneidx = 1;
 				//ShowPuzzle.puzzleClear = false;
 			} else {
 				Debug.Log ("Again");

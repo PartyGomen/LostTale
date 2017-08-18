@@ -23,7 +23,8 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public Animator anim;
     private Vector3 MySpriteOriginalScale;
-    public AudioSource groundaudio;
+    public AudioSource groundAudio;
+    public AudioSource jumpAudio;
 
     public Transform[] saveZone;
 
@@ -156,6 +157,7 @@ public class Player : MonoBehaviour
             JumpForceCount = 0.02f;
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f) + new Vector2(transform.up.x, transform.up.y) * jumppower;
             grounded = false;
+            jumpAudio.Play();
             //점프 두번
         }
     }
