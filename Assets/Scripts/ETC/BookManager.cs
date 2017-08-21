@@ -91,6 +91,7 @@ public class BookManager : MonoBehaviour {
 		Stage2.GetComponent<Button> ().interactable = false;
 		Stage3.GetComponent<Button> ().interactable = false;
 		ExitButton.GetComponent<Button>().interactable = false; // 종료 버튼 비활성화
+		GameObject.Find ("GalleryOpen").GetComponent<Image>().raycastTarget = false;
 		GameObject.Find ("GalleryOpen").GetComponent<Button>().interactable = false;  // 책에 갤러리 보이는 버튼 비활성화
 	}
 
@@ -99,6 +100,7 @@ public class BookManager : MonoBehaviour {
 		RightNext.SetActive (true);
 		LeftNext.SetActive (true);
 		ExitButton.GetComponent<Button>().interactable = true;
+		GameObject.Find ("GalleryOpen").GetComponent<Image>().raycastTarget = true;
 		GameObject.Find ("GalleryOpen").GetComponent<Button>().interactable = true;
 	}
 }

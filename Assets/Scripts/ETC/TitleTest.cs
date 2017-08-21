@@ -36,41 +36,18 @@ public class TitleTest : MonoBehaviour
 
     private void Start()
     {
-		Button[] btns = BackGround.GetComponentsInChildren<Button>();
-        btns[0].onClick.AddListener(() => PlayScene());
+		ExitButton.SetActive (true);
+		BlackBackGround.SetActive (true);
+		StartCoroutine(GrowPanel());
+		//SceneManager.LoadScene(0);
+	//	Button[] btns = BackGround.GetComponentsInChildren<Button>();
+     //   btns[0].onClick.AddListener(() => PlayScene());
     }
 
     void Update ()
-    {
-    /*    if (!addAlpha)
-        {
-
-            if(a <= 0.2)
-            {
-                addAlpha = true;
-            }
-        }
-        else if (addAlpha)
-        {
-            a += Time.deltaTime;
-
-            if (a >= 1)
-            {
-                addAlpha = false;
-            }
-        }*/
-
-		if(Input.GetMouseButtonDown(0) && TouchBan == false)
-        {
-			ExitButton.SetActive (true);
-			BlackBackGround.SetActive (true);
-			//BackGroundText.SetActive (false);
-            StartCoroutine(GrowPanel());
-   //         text.gameObject.SetActive(false);
-        }
-
-      //  text.color = new Color(0, 0, 0, a);
-    }
+	{
+		
+	}
 
     IEnumerator GrowPanel()
     {

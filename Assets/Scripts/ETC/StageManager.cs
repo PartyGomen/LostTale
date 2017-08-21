@@ -15,6 +15,7 @@ public class StageManager : MonoBehaviour {
 
 	void Start () {
 		CurrentPage = Book.GetComponent<Book> ().currentPage;
+		Stage1.onClick.AddListener (Scene1_1);
 		Debug.Log (CurrentPage);
 	}
 	
