@@ -23,6 +23,8 @@ public class BookManager : MonoBehaviour {
 
 	public GameObject ExitButton;
 
+	public AudioSource BookSkip;
+	public AudioSource BookGrid;
 
 	public GameObject Null;
 
@@ -103,4 +105,13 @@ public class BookManager : MonoBehaviour {
 		GameObject.Find ("GalleryOpen").GetComponent<Image>().raycastTarget = true;
 		GameObject.Find ("GalleryOpen").GetComponent<Button>().interactable = true;
 	}
+
+	public void PlayBookGridAudio(){
+		BookGrid.Play ();
+	}
+
+	public void PlayBookSkipAudio(){
+		BookSkip.Play ();
+	}
+
 }

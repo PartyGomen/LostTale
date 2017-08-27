@@ -15,7 +15,7 @@ public class ShowPuzzle : MonoBehaviour
 	public GameObject Null;
 	public Vector2 pos;
 
-	private bool TouchAble = true;
+	public static bool TouchAble = false;
 
 	void Update () {
 
