@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TouchArea : MonoBehaviour {
+	public GameObject Player;
+	private Vector2 distance;
 
-	void OnTriggerEnter2D(Collider2D other){
-		if (other.gameObject.CompareTag ("Player")) {
+	void Update () {
+		distance = new Vector2 (Mathf.Abs(Player.transform.position.x - this.transform.position.x), Mathf.Abs(Player.transform.position.y - this.transform.position.y));
+		if (distance.x <= 2 && distance.y <= 2) {
 			ShowPuzzle.TouchAble = true;
-		}
-	}
-
-	void OnTriggerExit2D(Collider2D other){
-		if (other.gameObject.CompareTag ("Player")) {
+		} else {
 			ShowPuzzle.TouchAble = false;
 		}
-
 	}
+
 }

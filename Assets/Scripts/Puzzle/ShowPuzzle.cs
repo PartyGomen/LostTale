@@ -52,8 +52,9 @@ public class ShowPuzzle : MonoBehaviour
 		RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0f);
 
 		if (hit.collider != null) {
-			//	Debug.Log (target.name);
+				
 			target = hit.collider.gameObject;
+			Debug.Log (target.name);
 		} else {
 			target = Null;
 		}
