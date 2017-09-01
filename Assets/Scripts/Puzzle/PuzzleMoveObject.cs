@@ -16,7 +16,7 @@ public class PuzzleMoveObject : MonoBehaviour {
 
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
 		if (this.gameObject.name.Equals("1")) {
 			Ani1.SetBool ("IsOut", false);

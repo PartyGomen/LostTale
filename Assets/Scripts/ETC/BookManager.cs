@@ -85,7 +85,7 @@ public class BookManager : MonoBehaviour {
 	}
 
 	public void	ShowGallery(){
-		Debug.Log ("ShowGallery");
+		//Debug.Log ("ShowGallery");
 		RightNext.SetActive (false); // 페이지 넘기는 이벤트 방지 
 		LeftNext.SetActive (false);
 		Gallery.SetActive (true); // 갤러리 이미지 보여줌

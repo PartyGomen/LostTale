@@ -16,7 +16,7 @@ public class StageManager : MonoBehaviour {
 	void Start () {
 		CurrentPage = Book.GetComponent<Book> ().currentPage;
 		Stage1.onClick.AddListener (Scene1_1);
-		Debug.Log (CurrentPage);
+		//Debug.Log (CurrentPage);
 	}
 	
 	// Update is called once per frame
@@ -30,7 +30,7 @@ public class StageManager : MonoBehaviour {
 	IEnumerator PageCheck(){
 		yield return new WaitForSeconds (0.3f);
 		CurrentPage = Book.GetComponent<Book> ().currentPage;
-		Debug.Log(CurrentPage);
+		//Debug.Log(CurrentPage);
 		if (CurrentPage == 0) {
 			Stage1.onClick.AddListener (Scene1_1);
 		} else if (CurrentPage == 2) {
