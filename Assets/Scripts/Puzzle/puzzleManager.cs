@@ -26,6 +26,7 @@ public class puzzleManager : MonoBehaviour {
 		if (Stay1IsOn == true && Stay2IsOn == true && Stay3IsOn == true && Stay4IsOn == true && Stay5IsOn == true) {
 			Debug.Log ("Check");
 			if (Puzzle [0].Equals("1") && Puzzle [1].Equals("2") && Puzzle [2].Equals("3") && Puzzle [3].Equals("4") && Puzzle [4].Equals("5")) {	
+				Inventory.GetPuzzle1 ();
 				StartCoroutine ("ChangeCamera");
 				ShowPuzzle.puzzleClear = true;
 				ShowPuzzle.puzzleOn = false;

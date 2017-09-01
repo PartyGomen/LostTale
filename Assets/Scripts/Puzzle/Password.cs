@@ -40,6 +40,7 @@ public class Password : MonoBehaviour {
     {
         if (one == answer[0] && two == answer[1] && three == answer[2] && four == answer[3])
         {
+			Inventory.GetPuzzle2 ();
             GameObject Go = GameObject.Find("PassWordPanel");
             Go.SetActive(false);
             passwordObj.GetComponent<SpriteRenderer>().sprite = passwordObj.sprites[1];

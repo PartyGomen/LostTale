@@ -18,4 +18,14 @@ public class Inventory : MonoBehaviour
     {
         go.SetActive(false);
     }
+
+	public static void GetPuzzle1(){
+		Debug.Log ("Puzzle 1 Clear");
+
+	}
+	public static void GetPuzzle2(){
+		Debug.Log ("Puzzle 2 Clear");
+
+	}
+
 }
