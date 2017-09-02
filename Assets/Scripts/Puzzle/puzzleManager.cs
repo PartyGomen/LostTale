@@ -13,6 +13,11 @@ public class puzzleManager : MonoBehaviour {
 
 	public static string[] Puzzle = new string[MaxPuzzle];
 
+	public GameObject CrapPuzzleTouchArea;
+	public GameObject PassWordPuzzleTouchArea;
+
+
+
     Player player;
 
 	// Use this for initialization
@@ -20,22 +25,11 @@ public class puzzleManager : MonoBehaviour {
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();	
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (Stay1IsOn == true && Stay2IsOn == true && Stay3IsOn == true && Stay4IsOn == true && Stay5IsOn == true) {
-			Debug.Log ("Check");
-			if (Puzzle [0].Equals("1") && Puzzle [1].Equals("2") && Puzzle [2].Equals("3") && Puzzle [3].Equals("4") && Puzzle [4].Equals("5")) {	
-				Inventory.GetPuzzle1 ();
-				StartCoroutine ("ChangeCamera");
-				ShowPuzzle.puzzleClear = true;
-				ShowPuzzle.puzzleOn = false;
-				this.gameObject.SetActive (false);
-                player.saveZoneidx = 1;
-				//ShowPuzzle.puzzleClear = false;
-			} else {
-				Debug.Log ("Again");
-			}
+			StartCoroutine (CheckPuzzle());
 		}
 	}
 
@@ -46,4 +40,25 @@ public class puzzleManager : MonoBehaviour {
 		ShowPuzzle.puzzleClear = false;
 		yield return null;
 	}
+
+
+	IEnumerator CheckPuzzle(){
+		Debug.Log ("Check");
+		yield return new WaitForSeconds (2.0f);
+		if (Puzzle [0].Equals ("1") && Puzzle [1].Equals ("2") && Puzzle [2].Equals ("3") && Puzzle [3].Equals ("4") && Puzzle [4].Equals ("5")) {	
+			Inventory.GetPuzzle1 ();
+			CrapPuzzleTouchArea.SetActive (false);
+			PassWordPuzzleTouchArea.SetActive (true);
+			StartCoroutine ("ChangeCamera");
+			ShowPuzzle.puzzleClear = true;
+			ShowPuzzle.puzzleOn = false;
+			this.gameObject.SetActive (false);
+			player.saveZoneidx = 1;
+			this.gameObject.GetComponent<puzzleManager> ().enabled = false;
+			//ShowPuzzle.puzzleClear = false;
+		} else {
+			Debug.Log ("Again");
+		}
+	}
+
 }
