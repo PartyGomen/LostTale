@@ -18,13 +18,15 @@ public class PelicanObj : MonoBehaviour
         if(coll.gameObject.name == "Pelican1")
         {
             pelmgr.Object1AddWeight(weight);
-            this.transform.SetParent(coll.transform);
+            this.gameObject.SetActive(false);
+            //this.transform.SetParent(coll.transform);
         }
 
         else if(coll.gameObject.name == "Pelican2")
         {
             pelmgr.Object2AddWeight(weight);
-            this.transform.SetParent(coll.transform);
+            this.gameObject.SetActive(false);
+            //this.transform.SetParent(coll.transform);
         }
     }
 

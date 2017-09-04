@@ -15,11 +15,15 @@ public class PelicanMgr : MonoBehaviour
 
     public GameObject go1;
     public GameObject go2;
+    GameObject[] fishes;
+    
 
 	void Start ()
     {
         startGo1Pos = go1.transform.position;
         startGo2Pos = go2.transform.position;
+
+        fishes = GameObject.FindGameObjectsWithTag("Fish");
     }
 	
 	void Update ()
@@ -106,5 +110,25 @@ public class PelicanMgr : MonoBehaviour
     {
         weight1 = 0;
         weight2 = 0;
+
+        for(int i = 0; i < fishes.Length; i++)
+        {
+            fishes[i].SetActive(true);
+
+            if(i == 0 || i == 1)
+            {
+                fishes[i].gameObject.transform.position = new Vector3(0, 0, 0);
+            }
+
+            else if(i == 2 || i == 3)
+            {
+                fishes[i].gameObject.transform.position = new Vector3(0, 0, 0);
+            }
+
+            else
+            {
+                fishes[i].gameObject.transform.position = new Vector3(0, 0, 0);
+            }
+        }
     }
 }
