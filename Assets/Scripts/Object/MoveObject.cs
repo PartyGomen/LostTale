@@ -43,10 +43,14 @@ public class MoveObject : MonoBehaviour {
 
                     if (0.2f < Mathf.Abs(startPos - endPos))
                     {
-                        if (!rockAudio.isPlaying)
+                        if(rockAudio)
                         {
-                            rockAudio.Play();
+                            if (!rockAudio.isPlaying)
+                            {
+                                rockAudio.Play();
+                            }
                         }
+
                         startPos = this.transform.position.x;
                     }
                 }

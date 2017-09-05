@@ -7,7 +7,7 @@ public class MovingObj : MonoBehaviour {
     public float rightmax;
     public float speed;
 
-    bool isright;
+    public bool isright;
 
     public float angle;
 
