@@ -6,18 +6,16 @@ public class Arrow : MonoBehaviour
 {
     Rigidbody2D rb2d;
 
+    public bool leftshot;
+
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-    }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            //StartCoroutine(RotateObj());
-            rb2d.AddForce(new Vector3(500, 0, 0));
-        }
+        if(leftshot)
+            rb2d.AddForce(new Vector3(-200, 50, 0));
+        else
+            rb2d.AddForce(new Vector3(200, 50, 0));
     }
 
     IEnumerator RotateObj()
@@ -27,5 +25,13 @@ public class Arrow : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         this.transform.rotation = Quaternion.Euler(0, 0, -45);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Ground"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

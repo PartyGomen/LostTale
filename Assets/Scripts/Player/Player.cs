@@ -186,6 +186,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && !isdead)
+        {
+            isdead = true;
+            anim.SetTrigger("Die");
+            StartCoroutine(PlayerDied());
+        }
+    }
+
     private void ResetPlayer()
     {
         isdead = false;

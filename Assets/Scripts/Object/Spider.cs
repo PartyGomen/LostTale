@@ -46,12 +46,12 @@ public class Spider : MonoBehaviour
 
             if(distance > 1f)
             {
-                rb2d.AddForce(new Vector3(300, 0, 0));
+                rb2d.AddForce(new Vector3(100, 0, 0));
             }
 
             else if(distance < 1f)
             {
-                rb2d.AddForce(new Vector3(-300, 0, 0));
+                rb2d.AddForce(new Vector3(-100, 0, 0));
             }
 
             clicked = false;
