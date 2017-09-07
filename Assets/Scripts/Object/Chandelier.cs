@@ -41,6 +41,7 @@ public class Chandelier : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        rb2d.bodyType = RigidbodyType2D.Static;
         CameraShake shake = Camera.main.GetComponent<CameraShake>();
         shake.ShakeCamera(0.1f, 0.2f);
         Destroy(this);
