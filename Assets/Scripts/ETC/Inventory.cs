@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+	public GameObject PuzzleImageShow;
     public static GameObject[] piece = new GameObject[9];
 
     public Image[] pieceImg = new Image[9];
@@ -27,5 +28,12 @@ public class Inventory : MonoBehaviour
 		Debug.Log ("Puzzle 2 Clear");
 
 	}
+
+	public void DetailPuzzle(int number){
+		if (number == 1) {
+			PuzzleImageShow.SetActive (true);
+		}
+	}
+
 
 }
