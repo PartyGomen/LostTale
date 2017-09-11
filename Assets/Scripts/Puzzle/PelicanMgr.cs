@@ -13,8 +13,6 @@ public class PelicanMgr : MonoBehaviour
     public int weight1;
     public int weight2;
 
-    float z;
-
     public GameObject go1;
     public GameObject go2;
     public GameObject siso;
@@ -69,9 +67,9 @@ public class PelicanMgr : MonoBehaviour
             go2.transform.position = Vector3.Lerp(go2.transform.position, startGo2Pos, 1 * Time.deltaTime);
             siso.transform.rotation = Quaternion.Lerp(siso.transform.rotation, Quaternion.Euler(0,0,0), 1 * Time.deltaTime);
 
-            float distance = go1.transform.position.y - go2.transform.position.y;
+            float distance = Mathf.Abs(go1.transform.position.y - go2.transform.position.y);
             
-            if(distance < 0.2f && (weight1 + weight2 == 16))
+            if(distance < 0.1f && (weight1 + weight2 == 16))
             {
                 Debug.Log("클리어");
             }
