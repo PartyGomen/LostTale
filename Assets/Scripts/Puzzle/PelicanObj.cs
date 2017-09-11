@@ -8,10 +8,38 @@ public class PelicanObj : MonoBehaviour
 
     PelicanMgr pelmgr;
 
+    RaycastHit2D hit;
+
+    Vector3 pos;
+
 	void Start ()
     {
         pelmgr = GameObject.Find("Pel").GetComponent<PelicanMgr>();
 	}
+
+    private void Update()
+    {
+        if(Input.GetMouseButton(0))
+        {
+            pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            hit = Physics2D.Raycast(pos, Vector2.zero, Mathf.Infinity);
+
+            if(hit)
+            {
+                if(hit.collider.gameObject == this.gameObject)
+                {
+                    pos.z = 0;
+                    this.transform.position = pos;
+                }
+            }
+        }
+    }
+
+    void ActiveFalse()
+    {
+        this.gameObject.SetActive(false);
+    }
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
@@ -19,29 +47,12 @@ public class PelicanObj : MonoBehaviour
         {
             pelmgr.Object1AddWeight(weight);
             this.gameObject.SetActive(false);
-            //this.transform.SetParent(coll.transform);
         }
 
         else if(coll.gameObject.name == "Pelican2")
         {
             pelmgr.Object2AddWeight(weight);
             this.gameObject.SetActive(false);
-            //this.transform.SetParent(coll.transform);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D coll)
-    {
-        if (coll.gameObject.name == "Pelican1")
-        {
-            pelmgr.Object1SubWeight(weight);
-            this.transform.SetParent(null);
-        }
-
-        else if (coll.gameObject.name == "Pelican2")
-        {
-            pelmgr.Object2SubWeight(weight);
-            this.transform.SetParent(null);
         }
     }
 }

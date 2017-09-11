@@ -13,8 +13,11 @@ public class PelicanMgr : MonoBehaviour
     public int weight1;
     public int weight2;
 
+    float z;
+
     public GameObject go1;
     public GameObject go2;
+    public GameObject siso;
     GameObject[] fishes;
     
 
@@ -28,7 +31,7 @@ public class PelicanMgr : MonoBehaviour
 	
 	void Update ()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -36,10 +39,9 @@ public class PelicanMgr : MonoBehaviour
 
             if(hit == true)
             {
-                if (hit.collider.tag == "Fish")
+                if (hit.collider.tag == "Pelican")
                 {
-                    pos.z = 0;
-                    hit.collider.transform.position = pos;
+                    ResetWeight();
                 }
             }
         }
@@ -49,41 +51,31 @@ public class PelicanMgr : MonoBehaviour
     {
         if (weight2 > weight1)
         {
-            go1.transform.Translate(Vector2.up * 1 * Time.deltaTime);
-            go2.transform.Translate(Vector2.down * 1 * Time.deltaTime);
+            go1.transform.position = Vector3.Lerp(go1.transform.position, new Vector3(25, -25.5f, 0), 1 * Time.deltaTime);
+            go2.transform.position = Vector3.Lerp(go2.transform.position, new Vector3(35, -29.5f, 0), 1 * Time.deltaTime);
+            siso.transform.rotation = Quaternion.Lerp(siso.transform.rotation, Quaternion.Euler(0, 0, -20), 1 * Time.deltaTime);
         }
 
         else if (weight1 > weight2)
         {
-            go2.transform.Translate(Vector2.up * 1 * Time.deltaTime);
-            go1.transform.Translate(Vector2.down * 1 * Time.deltaTime);
+            go1.transform.position = Vector3.Lerp(go1.transform.position, new Vector3(25, -29.5f, 0), 1 * Time.deltaTime);
+            go2.transform.position = Vector3.Lerp(go2.transform.position, new Vector3(35, -25.5f, 0), 1 * Time.deltaTime);
+            siso.transform.rotation = Quaternion.Lerp(siso.transform.rotation, Quaternion.Euler(0, 0, 20), 1 * Time.deltaTime);
         }
 
         else
         {
-            Vector3 lerpPos = Vector3.Lerp(go1.transform.position, startGo1Pos, 1 * Time.deltaTime);
-            Vector3 lerpPos2 = Vector3.Lerp(go2.transform.position, startGo2Pos, 1 * Time.deltaTime);
-
-            go1.transform.position = lerpPos;
-            go2.transform.position = lerpPos2;
+            go1.transform.position = Vector3.Lerp(go1.transform.position, startGo1Pos, 1 * Time.deltaTime);
+            go2.transform.position = Vector3.Lerp(go2.transform.position, startGo2Pos, 1 * Time.deltaTime);
+            siso.transform.rotation = Quaternion.Lerp(siso.transform.rotation, Quaternion.Euler(0,0,0), 1 * Time.deltaTime);
 
             float distance = go1.transform.position.y - go2.transform.position.y;
             
-            if(distance < 0.01f && (weight1 + weight2 == 16))
+            if(distance < 0.2f && (weight1 + weight2 == 16))
             {
                 Debug.Log("클리어");
             }
         }
-
-        go1Pos = go1.transform.position;
-        go1Pos.y = Mathf.Clamp(go1Pos.y, 16.0f, 20.0f);
-
-
-        go2Pos = go2.transform.position;
-        go2Pos.y = Mathf.Clamp(go2Pos.y, 16.0f, 20.0f);
-
-        go1.transform.position = new Vector3(go1Pos.x, go1Pos.y, go1Pos.z);
-        go2.transform.position = new Vector3(go2Pos.x, go2Pos.y, go2Pos.z);
     }
 
     public void Object1AddWeight(int i)
@@ -94,16 +86,6 @@ public class PelicanMgr : MonoBehaviour
     public void Object2AddWeight(int i)
     {
         weight2 += i;
-    }
-
-    public void Object1SubWeight(int i)
-    {
-        weight1 -= i;
-    }
-
-    public void Object2SubWeight(int i)
-    {
-        weight2 -= i;
     }
 
     void ResetWeight()
@@ -117,17 +99,17 @@ public class PelicanMgr : MonoBehaviour
 
             if(i == 0 || i == 1)
             {
-                fishes[i].gameObject.transform.position = new Vector3(0, 0, 0);
+                fishes[i].gameObject.transform.position = new Vector3(25.5f, -34.5f, 0);
             }
 
             else if(i == 2 || i == 3)
             {
-                fishes[i].gameObject.transform.position = new Vector3(0, 0, 0);
+                fishes[i].gameObject.transform.position = new Vector3(34.5f, -34.5f, 0);
             }
 
             else
             {
-                fishes[i].gameObject.transform.position = new Vector3(0, 0, 0);
+                fishes[i].gameObject.transform.position = new Vector3(29.5f, -34.5f, 0);
             }
         }
     }

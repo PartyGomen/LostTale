@@ -27,8 +27,8 @@ public class Dialogue : MonoBehaviour
     public GameObject fairyPanel;   //3컷 동화 주인공 담는 파넬
 
     public RectTransform librayImg; //도서관 씬 이미지
-    Vector3 startPosition = new Vector3(0, 437, 0); //도서관 씬 처음 위치
-    Vector3 endPosition = new Vector3(0, -437, 0);  //도서관 씬 마지막 위치
+    Vector3 startPosition = new Vector3(0, 490, 0); //도서관 씬 처음 위치
+    Vector3 endPosition = new Vector3(0, -290, 0);  //도서관 씬 마지막 위치
 
     public bool isTyping;   //타이핑 중인가?
 
