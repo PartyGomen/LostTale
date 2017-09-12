@@ -45,12 +45,16 @@ public class PelicanObj : MonoBehaviour
     {
         if(coll.gameObject.name == "Pelican1")
         {
+            Animator anim = coll.gameObject.GetComponent<Animator>();
+            anim.SetTrigger("Eat");
             pelmgr.Object1AddWeight(weight);
             this.gameObject.SetActive(false);
         }
 
         else if(coll.gameObject.name == "Pelican2")
         {
+            Animator anim = coll.gameObject.GetComponent<Animator>();
+            anim.SetTrigger("Eat");
             pelmgr.Object2AddWeight(weight);
             this.gameObject.SetActive(false);
         }

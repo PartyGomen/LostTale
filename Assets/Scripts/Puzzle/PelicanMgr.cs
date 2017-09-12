@@ -39,6 +39,7 @@ public class PelicanMgr : MonoBehaviour
             {
                 if (hit.collider.tag == "Pelican")
                 {
+                    Spit();
                     ResetWeight();
                 }
             }
@@ -109,6 +110,22 @@ public class PelicanMgr : MonoBehaviour
             {
                 fishes[i].gameObject.transform.position = new Vector3(29.5f, -34.5f, 0);
             }
+        }
+    }
+
+    void Spit()
+    {
+        GameObject[] pelicans = GameObject.FindGameObjectsWithTag("Pelican");
+        
+        for(int i = 0; i < pelicans.Length; i++)
+        {
+            Animator anim = pelicans[i].GetComponent<Animator>();
+
+            if (weight2 > 0 && i == 0)
+                anim.SetTrigger("Eat");
+
+            else if (weight1 > 0 && i == 1)
+                anim.SetTrigger("Eat");
         }
     }
 }
