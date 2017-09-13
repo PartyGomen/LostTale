@@ -48,7 +48,6 @@ public class PasswordObj : MonoBehaviour
 		if (hit.collider != null) {
 
 			target = hit.collider.gameObject;
-			Debug.Log (target.name);
 		} else {
 			target = Null;
 		}

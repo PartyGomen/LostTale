@@ -74,6 +74,7 @@ public class CameraFollow : MonoBehaviour
     public void CheckPuzzle()
     {
         isPuzzle = true;
+        control.SetActive(false);
 
         for(int i = 0; i < goPuzzele.Length; i++)
         {
@@ -91,5 +92,7 @@ public class CameraFollow : MonoBehaviour
         Transform tr = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
         this.transform.position = new Vector3(tr.position.x, tr.position.y, -10);
+
+        control.SetActive(true);
     }
 }

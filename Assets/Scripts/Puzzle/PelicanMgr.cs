@@ -70,7 +70,7 @@ public class PelicanMgr : MonoBehaviour
 
             float distance = Mathf.Abs(go1.transform.position.y - go2.transform.position.y);
             
-            if(distance < 0.1f && (weight1 + weight2 == 16))
+            if(distance < 0.1f && (weight1 + weight2 == 12))
             {
                 Debug.Log("클리어");
             }
@@ -101,7 +101,7 @@ public class PelicanMgr : MonoBehaviour
                 fishes[i].gameObject.transform.position = new Vector3(25.5f, -34.5f, 0);
             }
 
-            else if(i == 2 || i == 3)
+            else if(i == 2)
             {
                 fishes[i].gameObject.transform.position = new Vector3(34.5f, -34.5f, 0);
             }
