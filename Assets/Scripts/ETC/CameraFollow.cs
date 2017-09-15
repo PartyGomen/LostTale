@@ -7,6 +7,7 @@ public class CameraFollow : MonoBehaviour
 
     public GameObject followTargetOBJ;
     public GameObject control;
+    public GameObject backBtn;
 
     public float fadeTime;
     public float followSpeed;
@@ -75,8 +76,9 @@ public class CameraFollow : MonoBehaviour
     {
         isPuzzle = true;
         control.SetActive(false);
+        backBtn.SetActive(true);
 
-        for(int i = 0; i < goPuzzele.Length; i++)
+        for (int i = 0; i < goPuzzele.Length; i++)
         {
             if(goPuzzele[i] == true)
             {
@@ -94,5 +96,6 @@ public class CameraFollow : MonoBehaviour
         this.transform.position = new Vector3(tr.position.x, tr.position.y, -10);
 
         control.SetActive(true);
+        backBtn.SetActive(false);
     }
 }

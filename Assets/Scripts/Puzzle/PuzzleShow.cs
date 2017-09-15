@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TidePuzzleShow : MonoBehaviour
+public class PuzzleShow : MonoBehaviour
 {
-    TideManager tideMgr;
-    public GameObject tideBtn;
+    public int puzzleIdx;
 
     RaycastHit2D hit;
 
@@ -17,39 +16,35 @@ public class TidePuzzleShow : MonoBehaviour
 
     GameObject target;
 
-	void Start ()
+    void Start()
     {
         cam = Camera.main.GetComponent<CameraFollow>();
         target = GameObject.FindGameObjectWithTag("Player");
-        tideMgr = GameObject.Find("TideManager").GetComponent<TideManager>();
-
     }
-	
-	void Update ()
+
+    void Update()
     {
         distance = Vector3.Distance(target.transform.position, this.gameObject.transform.position);
 
-	    if(Input.GetMouseButtonDown(0) && distance < 6.5)
+        if (Input.GetMouseButtonDown(0) && distance < 6.5)
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             hit = Physics2D.Raycast(pos, Vector2.zero, Mathf.Infinity);
 
-            if(hit)
+            if (hit)
             {
-                if(hit.collider.gameObject == this.gameObject)
+                if (hit.collider.gameObject == this.gameObject)
                 {
                     for (int i = 0; i < cam.goPuzzele.Length; i++)
                     {
                         cam.goPuzzele[i] = false;
                     }
 
-                    cam.goPuzzele[0] = true;
+                    cam.goPuzzele[puzzleIdx] = true;
                     cam.CheckPuzzle();
-                    tideBtn.SetActive(true);
-                    tideMgr.StopAllCoroutines();
                 }
             }
         }
-	}
+    }
 }

@@ -5,7 +5,9 @@ using UnityEngine;
 public class TideManager : MonoBehaviour
 {
     public GameObject star;
-    public GameObject moon;
+    public GameObject moonObj;
+
+    public Moon moon;
 
     Transform[] spots;
 
@@ -18,7 +20,7 @@ public class TideManager : MonoBehaviour
         starspot = Random.Range(1, 9);
 
         spots = GetComponentsInChildren<Transform>();
-        tide = GameObject.Find("Tide").GetComponent<Tide>();
+        tide = GameObject.Find("TideBtn").GetComponent<Tide>();
 
         star.transform.position = spots[starspot].position;
 
@@ -31,7 +33,7 @@ public class TideManager : MonoBehaviour
 
             int[] rot = new int[6] { -45, -90, -135, 135, 90, 45 };
 
-            moon.transform.eulerAngles = new Vector3(0,0,rot[Random.Range(0, rot.Length)]);
+            moonObj.transform.eulerAngles = new Vector3(0,0,rot[Random.Range(0, rot.Length)]);
         }
 
         else if(starspot == 2 || starspot == 6)
@@ -43,7 +45,7 @@ public class TideManager : MonoBehaviour
 
             int[] rot = new int[6] { 0, -90, -135, -180, 90, 45 };
 
-            moon.transform.eulerAngles = new Vector3(0, 0, rot[Random.Range(0, rot.Length)]);
+            moonObj.transform.eulerAngles = new Vector3(0, 0, rot[Random.Range(0, rot.Length)]);
         }
 
         else if(starspot == 3 || starspot == 7)
@@ -55,7 +57,7 @@ public class TideManager : MonoBehaviour
 
             int[] rot = new int[6] { 0, -45, -135, -180, 135, 45 };
 
-            moon.transform.eulerAngles = new Vector3(0, 0, rot[Random.Range(0, rot.Length)]);
+            moonObj.transform.eulerAngles = new Vector3(0, 0, rot[Random.Range(0, rot.Length)]);
         }
 
         else if(starspot == 4 || starspot == 8)
@@ -67,10 +69,41 @@ public class TideManager : MonoBehaviour
 
             int[] rot = new int[6] { 0, -45, -90, -180, 135, 90 };
 
-            moon.transform.eulerAngles = new Vector3(0, 0, rot[Random.Range(0, rot.Length)]);
+            moonObj.transform.eulerAngles = new Vector3(0, 0, rot[Random.Range(0, rot.Length)]);
         }
 
         tide.z = (int)moon.transform.eulerAngles.z;
         tide.gameObject.SetActive(false);
 	}
+
+    IEnumerator FirstWaterPosChange()
+    {
+        while (0.01f <= Mathf.Abs(moon.waterObj[0].transform.position.y - moon.waterYPos[0]))
+        {
+            yield return null;
+
+            moon.waterObj[0].transform.position = Vector3.Lerp(moon.waterObj[0].transform.position, new Vector2(moon.waterObj[0].transform.position.x, moon.waterYPos[0]), 0.7f * Time.deltaTime);
+        }
+    }
+
+    IEnumerator SecondWaterPosChange()
+    {
+        while (0.01f <= Mathf.Abs(moon.waterObj[1].transform.position.y - moon.waterYPos[1]))
+        {
+            yield return null;
+
+            moon.waterObj[1].transform.position = Vector3.Lerp(moon.waterObj[1].transform.position, new Vector2(moon.waterObj[1].transform.position.x, moon.waterYPos[1]), 0.7f * Time.deltaTime);
+        }
+    }
+
+    public void WaterChange()
+    {
+        if (Camera.main.GetComponent<CameraFollow>().goPuzzele[0] == true)
+        {
+            StartCoroutine(FirstWaterPosChange());
+            StartCoroutine(SecondWaterPosChange());
+
+            GameObject.Find("TideBtn").SetActive(false);
+        }
+    }
 }

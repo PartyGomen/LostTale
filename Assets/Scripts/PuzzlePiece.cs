@@ -2,31 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathTest : MonoBehaviour
+public class PuzzlePiece : MonoBehaviour
 {
-    //   public GameObject[] pos;
-    //   Vector3 thispos;
-
-    //   float distance;
-    //   float speed = 1.0f;
-
-    //   int idx;
-
-    //void Update ()
-    //   {
-    //       distance = Vector3.Distance(this.transform.position, pos[idx].transform.position);
-
-    //       if (distance < 1f && idx < pos.Length - 1)
-    //       {
-    //           idx++;
-    //           speed += 0.5f;
-    //       }
-
-    //       thispos = Vector3.Lerp(this.transform.position, pos[idx].transform.position, speed * Time.deltaTime);
-
-    //       this.transform.position = thispos;
-    //}
-
     private float RotateSpeed = 5f;
     private float Radius = 0.5f;
 
