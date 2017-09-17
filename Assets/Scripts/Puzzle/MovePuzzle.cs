@@ -1,11 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovePuzzle : MonoBehaviour {
+	public GameObject illustratorPanel;
+	private bool illustratorOn = false;
+
 	public GameObject Null;
 	private GameObject target = null;
+
 	public Vector2 pos;
+
+	public Vector2 DownPos;
+	public Vector2 UpPos;
+	public float Distance;
+
+	public Text text;
 
 	public  GameObject Puzzle1;
 	public  GameObject Puzzle2;
@@ -27,8 +38,55 @@ public class MovePuzzle : MonoBehaviour {
 	public bool DragOn8 = false;
 	public bool DragOn9 = false;
 
+	public Sprite[] illustratorImage;
+
 
 	void FixedUpdate () {
+		if (Input.GetMouseButtonDown(0)) {
+			DownPos = pos;
+			Debug.Log (DownPos);
+		}
+
+		if (Input.GetMouseButtonUp(0)) {
+			UpPos = pos;
+			Distance = Vector2.Distance (DownPos, UpPos);
+			text.text = (""+Distance);
+			if (Distance <= 0.4) {
+				if (target.name == "Puzzle1") {
+					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [0];
+					illustratorPanel.SetActive (true);
+					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+				}else if (target.name == "Puzzle2"){
+					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [1];
+					illustratorPanel.SetActive (true);
+					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+				}else if (target.name == "Puzzle3"){
+					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [2];
+					illustratorPanel.SetActive (true);
+					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+				}else if (target.name == "Puzzle4"){
+					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [3];
+					illustratorPanel.SetActive (true);
+					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+				}else if (target.name == "Puzzle5"){
+					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [4];
+					illustratorPanel.SetActive (true);
+					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+				}else if (target.name == "Puzzle6"){
+					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [5];
+					illustratorPanel.SetActive (true);
+					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+				}else if (target.name == "Puzzle7"){
+					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [6];
+					illustratorPanel.SetActive (true);
+					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+				}else if (target.name == "Puzzle8"){
+				//	illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [7];
+				}else if (target.name == "Puzzle9"){
+				//	illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [8];
+				}
+			}
+		}
 
 
 		if (Input.GetMouseButton (0)) {
@@ -67,7 +125,7 @@ public class MovePuzzle : MonoBehaviour {
 				DragOn8 = true;
 				DragOn9 = true;
 			}else if(target.name == Puzzle4.name && DragOn4 == false){				
-				Puzzle4.transform.position = pos;
+				Puzzle4.transform.position = pos;	
 				DragOn1 = true;
 				DragOn2 = true;
 				DragOn3 = true;
@@ -164,4 +222,11 @@ public class MovePuzzle : MonoBehaviour {
 			target = Null;
 		}
 	}
+
+	public void CloseillustratorPanel(){
+		this.gameObject.GetComponent<MovePuzzle> ().enabled = true;
+		illustratorPanel.SetActive (false);
+
+	}
+
 }

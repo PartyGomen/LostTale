@@ -21,18 +21,9 @@ public class PuzzleEndManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		/*Debug.Log (PuzzleOn1);
-		Debug.Log (PuzzleOn2);
-		Debug.Log (PuzzleOn3);
-		Debug.Log (PuzzleOn4);
-		Debug.Log (PuzzleOn5);*/
-
 		if(PuzzleOn1 == true && PuzzleOn2 == true && PuzzleOn3 == true && PuzzleOn4 == true && PuzzleOn5 == true){
-
 			StartCoroutine (ClearEndPuzzle());
 		}
-			
 	}
 
 
@@ -41,7 +32,8 @@ public class PuzzleEndManager : MonoBehaviour {
 
 
 	IEnumerator ClearEndPuzzle(){
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (2.5f);
+		Debug.Log ("코루틴중");
 		if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" && PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle5") {
 			Debug.Log ("진앤딩");
 		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle6" && PuzzleEnd[4] == "Puzzle7") {
@@ -69,12 +61,17 @@ public class PuzzleEndManager : MonoBehaviour {
 				Hint = false;
 				this.gameObject.GetComponent<MovePuzzle> ().enabled = true;
 				HintPanel.SetActive (false);
-				StopCoroutine (ClearEndPuzzle());
+				StopAllCoroutines ();
 			}
 		}
 	}
 		
 	public void HintOn(){
 		Hint = true;
+	}
+
+	public void ShowPanel(){
+		HintPanel.SetActive (true);
+
 	}
 }
