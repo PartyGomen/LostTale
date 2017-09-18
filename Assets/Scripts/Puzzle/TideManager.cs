@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class TideManager : MonoBehaviour
 {
-    public GameObject star;
-    public GameObject moonObj;
+    public GameObject star; //별 오브젝트
+    public GameObject moonObj; //달 오브젝트
+    public GameObject moonParent; //달 부모 오브젝트
 
     public Moon moon;
 
-    Transform[] spots;
+    Transform[] spots;  //별 위치 + 달 위치
 
     public Tide tide;
 
     public int starspot;
+    int z;
 
     void Start ()
     {
@@ -72,6 +74,7 @@ public class TideManager : MonoBehaviour
             moonObj.transform.eulerAngles = new Vector3(0, 0, rot[Random.Range(0, rot.Length)]);
         }
 
+        z = (int)moon.transform.eulerAngles.z;
         tide.z = (int)moon.transform.eulerAngles.z;
         tide.gameObject.SetActive(false);
 	}

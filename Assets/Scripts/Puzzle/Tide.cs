@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class Tide : MonoBehaviour
 {
-    Vector3 startPos;
-    Vector3 endPos;
-    Vector3 pos;
-
-    float xDistance;
-    float yDistnace;
-
     public int z;
 
     public GameObject moon;
