@@ -15,6 +15,7 @@ public class ShowPuzzle : MonoBehaviour
 	public GameObject Null;
 	public Vector2 pos;
 
+	CameraFollow cam;
 	public static bool TouchAble = false;
 
 	void Update () {
@@ -23,11 +24,14 @@ public class ShowPuzzle : MonoBehaviour
 		if (Input.GetMouseButtonDown (0) && TouchAble == true) {
 			CastRay ();
 			if (target.name == "CrabpuzzleShow") {
-				Control.SetActive(false);
-				puzzleOn = true;
-				this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-				this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-				Bridge.SetActive (true);
+				cam = Camera.main.GetComponent<CameraFollow>();	
+				cam.goPuzzele[0] = true;
+				cam.CheckPuzzle();
+				/*Control.SetActive(false);
+				puzzleOn = true;*/
+				//this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+				//this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+				//Bridge.SetActive (true);
 			}
 		}
 	}

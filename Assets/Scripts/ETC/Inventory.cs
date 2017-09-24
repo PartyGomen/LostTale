@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour
     public void OffInven()
     {
         go.SetActive(false);
+		PuzzleImageShow.SetActive (false);
     }
 
 	public static void GetPuzzle1(){

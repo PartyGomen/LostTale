@@ -16,7 +16,6 @@ public class MovePuzzle : MonoBehaviour {
 	public Vector2 UpPos;
 	public float Distance;
 
-	public Text text;
 
 	public  GameObject Puzzle1;
 	public  GameObject Puzzle2;
@@ -50,7 +49,7 @@ public class MovePuzzle : MonoBehaviour {
 		if (Input.GetMouseButtonUp(0)) {
 			UpPos = pos;
 			Distance = Vector2.Distance (DownPos, UpPos);
-			text.text = (""+Distance);
+
 			if (Distance <= 0.4) {
 				if (target.name == "Puzzle1") {
 					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [0];
@@ -81,9 +80,13 @@ public class MovePuzzle : MonoBehaviour {
 					illustratorPanel.SetActive (true);
 					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
 				}else if (target.name == "Puzzle8"){
-				//	illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [7];
+					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [7];
+					illustratorPanel.SetActive (true);
+					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
 				}else if (target.name == "Puzzle9"){
-				//	illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [8];
+					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [8];
+					illustratorPanel.SetActive (true);
+					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
 				}
 			}
 		}

@@ -57,17 +57,17 @@ public class CameraFollow : MonoBehaviour
             }
             else if (ShowPuzzle.puzzleOn == true)
             {
-                this.transform.position = new Vector3(-27.73f, 0f, -10);
+              //  this.transform.position = new Vector3(-27.73f, 0f, -10);
             }
 
             if (ShowPuzzle.puzzleClear == true)
             {
-                Transform tr = GameObject.FindWithTag("Player").GetComponent<Transform>();
+              /*  Transform tr = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
                 this.transform.position = new Vector3(tr.position.x, tr.position.y, -10);
                 control.SetActive(true);
                 ShowPuzzle.puzzleOn = false;
-                ShowPuzzle.puzzleClear = false;
+                ShowPuzzle.puzzleClear = false;*/
             }
         }
     }

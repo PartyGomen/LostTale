@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class PuzzleMoveObject : MonoBehaviour {
 
+	public GameObject Crab1;
+	public GameObject Crab2;
+	public GameObject Crab3;
+	public GameObject Crab4;
+	public GameObject Crab5;
+
+
+
 	private GameObject target = null;
 	public Vector2 pos;
 
@@ -14,11 +22,33 @@ public class PuzzleMoveObject : MonoBehaviour {
 	public Animator Ani5;
 	//private string name = null;
 
+	public bool DragOn1 = true;
+	public bool DragOn2 = true;
+	public bool DragOn3 = true;
+	public bool DragOn4 = true;
+	public bool DragOn5 = true;
+
+
+
+	public GameObject Null;
 
 	// Update is called once per frame
 	void FixedUpdate () {
 
-		if (this.gameObject.name.Equals("1")) {
+		if (Input.GetMouseButtonUp (0)) {
+			Ani1.SetBool ("IsOut", false);
+			Ani2.SetBool ("IsOut", false);
+			Ani3.SetBool ("IsOut", false);
+			Ani4.SetBool ("IsOut", false);
+			Ani5.SetBool ("IsOut", false);
+			DragOn1 = true;
+			DragOn2 = true;
+			DragOn3 = true;
+			DragOn4 = true;
+			DragOn5 = true;
+		}
+
+		/*if (Input.GetMouseButtonUp (0)) {
 			Ani1.SetBool ("IsOut", false);
 		}else if(this.gameObject.name.Equals("2")){
 			Ani2.SetBool ("IsOut", false);
@@ -28,30 +58,47 @@ public class PuzzleMoveObject : MonoBehaviour {
 			Ani4.SetBool ("IsOut", false);
 		}else if(this.gameObject.name.Equals("5")){
 			Ani5.SetBool ("IsOut", false);
-		}
+		}*/
 
 		if (Input.GetMouseButton (0)) {
 			CastRay ();	
-			if(this.gameObject.name == "1" && target == this.gameObject) {
+			if(target.name== "1" && DragOn1 == true) {
 				Ani1.SetBool ("IsOut", true);
-				this.gameObject.transform.position = pos;
-			}else if(this.gameObject.name == "2" && target == this.gameObject){
+				Crab1.transform.position = pos;
+				DragOn2 = false;
+				DragOn3 = false;
+				DragOn4 = false;
+				DragOn5 = false;
+			}else if(target.name == "2" && DragOn2 == true){
 				Ani2.SetBool ("IsOut", true);
-				this.gameObject.transform.position = pos;
-			}else if(this.gameObject.name == "3" && target == this.gameObject){
+				Crab2.transform.position = pos;
+				DragOn1 = false;
+				DragOn3 = false;
+				DragOn4 = false;
+				DragOn5 = false;
+			}else if(target.name == "3" && DragOn3 == true){
 				Ani3.SetBool ("IsOut", true);
-				this.gameObject.transform.position = pos;
-			}else if(this.gameObject.name == "4" && target == this.gameObject){
+				Crab3.transform.position = pos;
+				DragOn1 = false;
+				DragOn2 = false;
+				DragOn4 = false;
+				DragOn5 = false;
+			}else if(target.name == "4" && DragOn4 == true){
 				Ani4.SetBool ("IsOut", true);
-				this.gameObject.transform.position = pos;
-			}else if(this.gameObject.name == "5" && target == this.gameObject){
+				Crab4.transform.position = pos;
+				DragOn1 = false;
+				DragOn2 = false;
+				DragOn3 = false;
+				DragOn5 = false;
+			}else if(target.name == "5" && DragOn5 == true){
 				Ani5.SetBool ("IsOut", true);
-				this.gameObject.transform.position = pos;
+				Crab5.transform.position = pos;
+				DragOn1 = false;
+				DragOn2 = false;
+				DragOn3 = false;
+				DragOn4 = false;
 			}
-
 		}
-
-		
 	}
 		
 	void CastRay(){
@@ -60,9 +107,11 @@ public class PuzzleMoveObject : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Raycast (pos, Vector2.zero, 0f);
 
 		if (hit.collider != null) {
+
 			target = hit.collider.gameObject;
-			//name = hit.collider.gameObject.name;
-			//Debug.Log (name);
+			Debug.Log (target.name);
+		} else {
+			target = Null;
 		}
 	}
 }

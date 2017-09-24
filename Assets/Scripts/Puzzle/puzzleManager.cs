@@ -15,14 +15,16 @@ public class puzzleManager : MonoBehaviour {
 
 	public GameObject CrapPuzzleTouchArea;
 	public GameObject PassWordPuzzleTouchArea;
+	public GameObject Bridge;
 
-
+	CameraFollow cam;
 
     Player player;
 
 	// Use this for initialization
 	void Start ()
     {
+		cam = Camera.main.GetComponent<CameraFollow>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();	
 	}
 
@@ -46,6 +48,8 @@ public class puzzleManager : MonoBehaviour {
 		Debug.Log ("Check");
 		yield return new WaitForSeconds (2.0f);
 		if (Puzzle [0].Equals ("1") && Puzzle [1].Equals ("2") && Puzzle [2].Equals ("3") && Puzzle [3].Equals ("4") && Puzzle [4].Equals ("5")) {	
+			cam.CheckPlayer ();
+			Bridge.SetActive (true);
 			Inventory.GetPuzzle1 ();
 			CrapPuzzleTouchArea.SetActive (false);
 			PassWordPuzzleTouchArea.SetActive (true);

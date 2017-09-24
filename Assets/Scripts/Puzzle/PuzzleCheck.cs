@@ -12,7 +12,6 @@ public class PuzzleCheck : MonoBehaviour {
 				puzzleManager.Puzzle [0] = other.gameObject.name;	
 				puzzleManager.Stay1IsOn = true;
 			}else if (this.gameObject.name == "Stay2" && puzzleManager.Stay2IsOn == false) {
-				
 				puzzleManager.Puzzle [1] = other.gameObject.name;
 				puzzleManager.Stay2IsOn = true;
 			} else if (this.gameObject.name == "Stay3" && puzzleManager.Stay3IsOn == false) {
