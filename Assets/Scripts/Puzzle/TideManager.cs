@@ -15,7 +15,6 @@ public class TideManager : MonoBehaviour
     public Tide tide;
 
     public int starspot;
-    int z;
 
     void Start ()
     {
@@ -74,7 +73,6 @@ public class TideManager : MonoBehaviour
             moonObj.transform.eulerAngles = new Vector3(0, 0, rot[Random.Range(0, rot.Length)]);
         }
 
-        z = (int)moon.transform.eulerAngles.z;
         tide.z = (int)moon.transform.eulerAngles.z;
         tide.gameObject.SetActive(false);
 	}
