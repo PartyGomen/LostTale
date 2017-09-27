@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public Animator anim;
     private Vector3 MySpriteOriginalScale;
-    public AudioSource groundAudio;
+    //public AudioSource groundAudio;
     public AudioSource jumpAudio;
 
     public Transform[] saveZone;

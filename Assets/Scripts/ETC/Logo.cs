@@ -9,6 +9,7 @@ public class Logo : MonoBehaviour
     Image img;
 
     bool alphaOn;
+    bool isNext;
 
     float t = 0.0f;
 
@@ -16,6 +17,12 @@ public class Logo : MonoBehaviour
     {
         img = GetComponent<Image>();
         SubAlpha();
+        Invoke("NextTrue", 1f);
+    }
+
+    void NextTrue()
+    {
+        isNext = true;
     }
 
 	void Update ()
@@ -38,7 +45,7 @@ public class Logo : MonoBehaviour
             SubAlpha();
         }
 
-	    if(Input.GetMouseButtonDown(0))
+	    if(Input.GetMouseButtonDown(0) && isNext == true)
         {
             SceneManager.LoadScene(1);
         }	

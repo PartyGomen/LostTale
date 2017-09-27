@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIBtn : MonoBehaviour
 {
@@ -46,6 +47,6 @@ public class UIBtn : MonoBehaviour
     void Click4()
     {
         clickSound.Play();
-        Debug.Log("4");
+        SceneManager.LoadScene(2);
     }
 }

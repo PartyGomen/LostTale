@@ -8,23 +8,27 @@ public class StageManager : MonoBehaviour {
 	public GameObject Book;
 	public GameObject Stagemanager;
 	public Button Stage1;
+    public Button[] stages = new Button[3];
 	private int CurrentPage;
-	private bool isOk;
+
+    private bool isOk; //이거 사용하지 않는 변수
 	// Use this for initialization
 
 
 	void Start () {
 		CurrentPage = Book.GetComponent<Book> ().currentPage;
-		Stage1.onClick.AddListener (Scene1_1);
-		//Debug.Log (CurrentPage);
-	}
+        Invoke("StageCheck", 0.3f);
+        //Stage1.onClick.AddListener (Scene1_1);
+        //Debug.Log (CurrentPage);
+    }
 	
 	// Update is called once per frame
 
 
 	public void CheckPage(){
 		CurrentPage = Book.GetComponent<Book> ().currentPage;
-		StartCoroutine (PageCheck());
+		//StartCoroutine (PageCheck());
+        Invoke("StageCheck", 0.3f);
 	}
 
 	IEnumerator PageCheck(){
@@ -38,6 +42,23 @@ public class StageManager : MonoBehaviour {
 		}
 	}
 
+    void StageCheck()
+    {
+        CurrentPage = Book.GetComponent<Book>().currentPage;
+
+        if(CurrentPage == 0)
+        {
+            stages[0].onClick.AddListener(delegate { LoadStage(3); });
+            stages[1].onClick.AddListener(delegate { LoadStage(4); });
+            stages[2].onClick.AddListener(delegate { LoadStage(5); });
+
+            //for (int i = 0; i < 3; i++)
+            //{               
+            //    stages[i].onClick.AddListener(delegate { LoadStage(idx[0]); });
+            //}
+        }
+    }
+
 	public void Scene1_1(){
 		SceneManager.LoadScene ("Scene1-1");
 
@@ -47,6 +68,9 @@ public class StageManager : MonoBehaviour {
 		SceneManager.LoadScene ("Scene1-2");
 	}
 
-
+    void LoadStage(int idx)
+    {
+        SceneManager.LoadScene(idx);
+    }
 
 }
