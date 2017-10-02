@@ -58,7 +58,7 @@ public class ShowPuzzle : MonoBehaviour
 		if (hit.collider != null) {
 				
 			target = hit.collider.gameObject;
-			Debug.Log (target.name);
+			//Debug.Log (target.name);
 		} else {
 			target = Null;
 		}
