@@ -59,7 +59,7 @@ public class TitleTest : MonoBehaviour
 			BackGround.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
 			ExitButton.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
 			yield return new WaitForSeconds(0.001f);
-			xScale += 0.015f;
+			xScale += 0.02f;
         }
 		//Book.SetActive (true);
 		AppearBook = true;
@@ -75,7 +75,7 @@ public class TitleTest : MonoBehaviour
 			RightPage.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
 			LeftPage.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
 			yield return new WaitForSeconds(0.001f);
-			xScale += 0.02f;
+			xScale += 0.03f;
 		} 
 		xScale = 0;
 		StartCoroutine(FadeOutBookMark());
@@ -88,7 +88,7 @@ public class TitleTest : MonoBehaviour
 			Stage2.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
 			Stage3.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
 			yield return new WaitForSeconds(0.001f);
-			xScale += 0.02f;
+			xScale += 0.03f;
 		} 
 		ExitButton.GetComponent<Button> ().interactable = true;
 		Book.GetComponent<Book> ().enabled = true;  // Swipe 활성
