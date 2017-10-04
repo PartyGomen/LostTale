@@ -9,7 +9,9 @@ public class UIBtn : MonoBehaviour
     Button[] btns = new Button[4];
 
     public GameObject inventory;
-
+	public GameObject InventoryShadowUp;
+	public GameObject InventoryShadowDown;
+	public GameObject MobileControl;
     public AudioSource clickSound;
 
 	void Start ()
@@ -24,7 +26,10 @@ public class UIBtn : MonoBehaviour
 
     void Click()
     {
+		InventoryShadowUp.SetActive(true);
+		InventoryShadowDown.SetActive(true);
         inventory.SetActive(true);
+		MobileControl.SetActive (false);
         clickSound.Play();
     }
 

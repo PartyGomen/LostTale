@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MovePuzzle : MonoBehaviour {
+public class EndingMovePuzzle : MonoBehaviour {
 	public GameObject illustratorPanel;
-	private bool illustratorOn = false;
 
 	public GameObject Null;
 	private GameObject target = null;
@@ -54,39 +53,39 @@ public class MovePuzzle : MonoBehaviour {
 				if (target.name == "Puzzle1") {
 					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [0];
 					illustratorPanel.SetActive (true);
-					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+					this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = false;
 				}else if (target.name == "Puzzle2"){
 					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [1];
 					illustratorPanel.SetActive (true);
-					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+					this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = false;
 				}else if (target.name == "Puzzle3"){
 					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [2];
 					illustratorPanel.SetActive (true);
-					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+					this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = false;
 				}else if (target.name == "Puzzle4"){
 					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [3];
 					illustratorPanel.SetActive (true);
-					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+					this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = false;
 				}else if (target.name == "Puzzle5"){
 					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [4];
 					illustratorPanel.SetActive (true);
-					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+					this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = false;
 				}else if (target.name == "Puzzle6"){
 					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [5];
 					illustratorPanel.SetActive (true);
-					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+					this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = false;
 				}else if (target.name == "Puzzle7"){
 					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [6];
 					illustratorPanel.SetActive (true);
-					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+					this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = false;
 				}else if (target.name == "Puzzle8"){
 					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [7];
 					illustratorPanel.SetActive (true);
-					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+					this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = false;
 				}else if (target.name == "Puzzle9"){
 					illustratorPanel.GetComponent<Image> ().sprite = illustratorImage [8];
 					illustratorPanel.SetActive (true);
-					this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+					this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = false;
 				}
 			}
 		}
@@ -227,7 +226,7 @@ public class MovePuzzle : MonoBehaviour {
 	}
 
 	public void CloseillustratorPanel(){
-		this.gameObject.GetComponent<MovePuzzle> ().enabled = true;
+		this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = true;
 		illustratorPanel.SetActive (false);
 
 	}

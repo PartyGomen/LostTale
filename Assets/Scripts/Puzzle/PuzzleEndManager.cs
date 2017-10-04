@@ -44,7 +44,7 @@ public class PuzzleEndManager : MonoBehaviour {
 			Debug.Log ("특전앤딩");
 		} else {	
 			HintPanel.SetActive (true);
-			this.gameObject.GetComponent<MovePuzzle> ().enabled = false;
+			this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = false;
 			//StopMovePuzzle ();
 			if (Hint == true) {
 				yield return new WaitForSeconds (0.5f);
@@ -59,7 +59,7 @@ public class PuzzleEndManager : MonoBehaviour {
 				GameObject.Find ("Puzzle9").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1544, -935, 0);
 				Debug.Log ("응 아니야 힌트");
 				Hint = false;
-				this.gameObject.GetComponent<MovePuzzle> ().enabled = true;
+				this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = true;
 				HintPanel.SetActive (false);
 				StopAllCoroutines ();
 			}

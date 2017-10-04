@@ -49,6 +49,10 @@ public class puzzleManager : MonoBehaviour {
 		yield return new WaitForSeconds (2.0f);
 		if (Puzzle [0].Equals ("1") && Puzzle [1].Equals ("2") && Puzzle [2].Equals ("3") && Puzzle [3].Equals ("4") && Puzzle [4].Equals ("5")) {	
 			cam.CheckPlayer ();
+			Inventory.PuzzleGet [0] = true;
+			for (int i = 0; i < 9; i++) {
+				Debug.Log (Inventory.PuzzleGet [i]);
+			}
 			Bridge.SetActive (true);
 			Inventory.GetPuzzle1 ();
 			CrapPuzzleTouchArea.SetActive (false);
