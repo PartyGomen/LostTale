@@ -31,6 +31,7 @@ public class UIBtn : MonoBehaviour
         inventory.SetActive(true);
 		MobileControl.SetActive (false);
         clickSound.Play();
+		//Inventory.CheckInventory ();
     }
 
     void Click2()

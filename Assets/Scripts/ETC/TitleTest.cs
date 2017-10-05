@@ -24,8 +24,8 @@ public class TitleTest : MonoBehaviour
 	public GameObject Stage2;
 	public GameObject Stage3;
 
-	private bool TouchBan = false;
-	private bool AppearBook = false;
+//	private bool TouchBan = false;
+//	private bool AppearBook = false;
 //	public Sprite BackGroundSprite;
 
     float xScale = 0;
@@ -51,7 +51,7 @@ public class TitleTest : MonoBehaviour
 
     IEnumerator GrowPanel()
     {
-		TouchBan = true;
+//		TouchBan = true;
 		while(xScale < 2)
 		{
 		//	Book.GetComponent<SpriteRenderer> ().color =  new Color(1, 1, 1, yScale);
@@ -62,7 +62,7 @@ public class TitleTest : MonoBehaviour
 			xScale += 0.02f;
         }
 		//Book.SetActive (true);
-		AppearBook = true;
+		//AppearBook = true;
 		xScale = 0;
 		StartCoroutine(FadeOutContents());
 	//	BackGround.GetComponent<Image> ().sprite = BackGroundSprite;
