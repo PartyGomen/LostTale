@@ -41,7 +41,7 @@ public class CameraFollow : MonoBehaviour
             yield return null;
         }
 
-        Destroy(screeneffect);
+        //Destroy(screeneffect);
         control.SetActive(true);
     }
 
