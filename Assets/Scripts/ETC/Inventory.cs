@@ -24,22 +24,7 @@ public class Inventory : MonoBehaviour
 	private int count = 0;
 
 	void Start(){
-	/*	for (int i = 0; i < PuzzleGet.Length; i++) {
-			if (PuzzleGet [i] == true) {
-				piece [count].SetActive (true);
-				piece [count].GetComponent<Image> ().sprite = InventoryPuzzleDetail [i];
-				PuzzleGetNumber [count] = i;
-				count++;
-			}
-		}
-			for(int j = count ; j < 9 ; j++){
-				piece [j].SetActive (false);
-			}
-		count = 0;
 
-		for (int i = 0; i < PuzzleGet.Length; i++) {
-			Debug.Log (PuzzleGetNumber [i]);
-		}*/
 	}
 
 

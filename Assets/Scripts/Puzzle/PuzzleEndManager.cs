@@ -72,6 +72,5 @@ public class PuzzleEndManager : MonoBehaviour {
 
 	public void ShowPanel(){
 		HintPanel.SetActive (true);
-
 	}
 }
