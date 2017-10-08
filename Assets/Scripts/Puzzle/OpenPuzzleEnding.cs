@@ -20,10 +20,8 @@ public class OpenPuzzleEnding : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//Distance = Vector2.Distance (this.transform.position, Player.transform.position);
-		//Debug.Log (Distance);	
 
-		if (Input.GetMouseButton (0)) //&& Distance <= 2.0f)
+		if (Input.GetMouseButton (0))
         {
             Distance = Vector2.Distance(this.transform.position, Player.transform.position);
 
