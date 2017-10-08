@@ -14,6 +14,7 @@ public class TidePuzzleShow : MonoBehaviour
     CameraFollow cam;
 
     float distance;
+    public float playerDistance;
 
     GameObject target;
 
@@ -29,7 +30,7 @@ public class TidePuzzleShow : MonoBehaviour
     {
         distance = Vector3.Distance(target.transform.position, this.gameObject.transform.position);
 
-	    if(Input.GetMouseButtonDown(0) && distance < 6.5)
+	    if(Input.GetMouseButtonDown(0) && distance < playerDistance)
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
