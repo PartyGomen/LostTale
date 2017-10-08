@@ -20,15 +20,22 @@ public class OpenPuzzleEnding : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Distance = Vector2.Distance (this.transform.position, Player.transform.position);
-		Debug.Log (Distance);	
+		//Distance = Vector2.Distance (this.transform.position, Player.transform.position);
+		//Debug.Log (Distance);	
 
-		if (Input.GetMouseButton (0) && Distance <= 2.0f) {
-			CastRay ();	
-			if (target.name == "PuzzleEnd") {
-				PuzzleEnd.SetActive (true);
-				MoblieControl.SetActive (false);
-			}
+		if (Input.GetMouseButton (0)) //&& Distance <= 2.0f)
+        {
+            Distance = Vector2.Distance(this.transform.position, Player.transform.position);
+
+            if(Distance <= 2.0f)
+            {
+                CastRay();
+                if (target.name == "PuzzleEnd")
+                {
+                    PuzzleEnd.SetActive(true);
+                    MoblieControl.SetActive(false);
+                }
+            }
 		}
 
 

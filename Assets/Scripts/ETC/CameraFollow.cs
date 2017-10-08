@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class CameraFollow : MonoBehaviour
 
     public Vector3[] puzzlePos;
 
+    public Image panel;
+
     private void Start()
     {
         control.SetActive(false);
@@ -26,6 +29,23 @@ public class CameraFollow : MonoBehaviour
         screeneffect = GetComponent<ScreenTransitionImageEffect>();
 
         StartCoroutine(ScreenEffectStart());
+        StartCoroutine(Fade());
+    }
+
+    IEnumerator Fade()
+    {
+        float t = 1.0f;
+
+        while (t >= 0)
+        {
+            t -= (Time.deltaTime / fadeTime);
+
+            panel.color = new Color(0, 0, 0, t);
+
+            yield return null;
+        }
+
+        panel.gameObject.SetActive(false);
     }
 
     IEnumerator ScreenEffectStart()
