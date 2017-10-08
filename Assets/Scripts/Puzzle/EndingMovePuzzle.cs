@@ -15,6 +15,8 @@ public class EndingMovePuzzle : MonoBehaviour {
 	public Vector2 UpPos;
 	public float Distance;
 
+    public GameObject[] puzzles = new GameObject[9];
+    public bool[] drags = new bool[9];
 
 	public  GameObject Puzzle1;
 	public  GameObject Puzzle2;
@@ -104,6 +106,9 @@ public class EndingMovePuzzle : MonoBehaviour {
 				DragOn7 = true;
 				DragOn8 = true;
 				DragOn9 = true;
+
+                DragCheck(0, true);
+
 			}else if(target.name == Puzzle2.name && DragOn2 == false){				
 				Puzzle2.transform.position = pos;
 				DragOn1 = true;
@@ -115,7 +120,11 @@ public class EndingMovePuzzle : MonoBehaviour {
 				DragOn7 = true;
 				DragOn8 = true;
 				DragOn9 = true;
-			}else if(target.name == Puzzle3.name && DragOn3 == false){				
+
+                DragCheck(1, true);
+
+            }
+            else if(target.name == Puzzle3.name && DragOn3 == false){				
 				Puzzle3.transform.position = pos;
 				DragOn1 = true;
 				DragOn2 = true;
@@ -126,7 +135,11 @@ public class EndingMovePuzzle : MonoBehaviour {
 				DragOn7 = true;
 				DragOn8 = true;
 				DragOn9 = true;
-			}else if(target.name == Puzzle4.name && DragOn4 == false){				
+
+                DragCheck(2, true);
+
+            }
+            else if(target.name == Puzzle4.name && DragOn4 == false){				
 				Puzzle4.transform.position = pos;	
 				DragOn1 = true;
 				DragOn2 = true;
@@ -137,7 +150,11 @@ public class EndingMovePuzzle : MonoBehaviour {
 				DragOn7 = true;
 				DragOn8 = true;
 				DragOn9 = true;
-			}else if(target.name == Puzzle5.name && DragOn5 == false){				
+
+                DragCheck(3, true);
+
+            }
+            else if(target.name == Puzzle5.name && DragOn5 == false){				
 				Puzzle5.transform.position = pos;
 				DragOn1 = true;
 				DragOn2 = true;
@@ -148,7 +165,11 @@ public class EndingMovePuzzle : MonoBehaviour {
 				DragOn7 = true;
 				DragOn8 = true;
 				DragOn9 = true;
-			}else if(target.name == Puzzle6.name && DragOn6 == false){				
+
+                DragCheck(4, true);
+
+            }
+            else if(target.name == Puzzle6.name && DragOn6 == false){				
 				Puzzle6.transform.position = pos;
 				DragOn1 = true;
 				DragOn2 = true;
@@ -159,7 +180,11 @@ public class EndingMovePuzzle : MonoBehaviour {
 				DragOn7 = true;
 				DragOn8 = true;
 				DragOn9 = true;
-			}else if(target.name == Puzzle7.name && DragOn7 == false){				
+
+                DragCheck(5, true);
+
+            }
+            else if(target.name == Puzzle7.name && DragOn7 == false){				
 				Puzzle7.transform.position = pos;
 				DragOn1 = true;
 				DragOn2 = true;
@@ -170,7 +195,11 @@ public class EndingMovePuzzle : MonoBehaviour {
 				DragOn7 = false;
 				DragOn8 = true;
 				DragOn9 = true;
-			}else if(target.name == Puzzle8.name && DragOn8 == false){				
+
+                DragCheck(6, true);
+
+            }
+            else if(target.name == Puzzle8.name && DragOn8 == false){				
 				Puzzle8.transform.position = pos;
 				DragOn1 = true;
 				DragOn2 = true;
@@ -181,7 +210,11 @@ public class EndingMovePuzzle : MonoBehaviour {
 				DragOn7 = true;
 				DragOn8 = false;
 				DragOn9 = true;
-			}else if(target.name == Puzzle9.name && DragOn9 == false){				
+
+                DragCheck(7, true);
+
+            }
+            else if(target.name == Puzzle9.name && DragOn9 == false){				
 				Puzzle9.transform.position = pos;
 				DragOn1 = true;
 				DragOn2 = true;
@@ -192,7 +225,10 @@ public class EndingMovePuzzle : MonoBehaviour {
 				DragOn7 = true;
 				DragOn8 = true;
 				DragOn9 = false;
-			}
+
+                DragCheck(8, true);
+
+            }
 
 		}
 		if(Input.GetMouseButtonUp(0)){
@@ -205,6 +241,8 @@ public class EndingMovePuzzle : MonoBehaviour {
 			DragOn7 = false;
 			DragOn8 = false;
 			DragOn9 = false;
+
+            DragCheck(9, false);
 		}
 
 
@@ -230,5 +268,21 @@ public class EndingMovePuzzle : MonoBehaviour {
 		illustratorPanel.SetActive (false);
 
 	}
+
+    void DragCheck(int idx, bool puzzlepos)
+    {
+        if(puzzlepos)
+            puzzles[idx].transform.position = pos;
+
+        for(int i = 0; i < drags.Length; i++)
+        {
+            if(i == idx)
+            {
+                drags[i] = true;
+            }
+
+            drags[i] = false;
+        }
+    }
 
 }

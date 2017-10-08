@@ -12,6 +12,7 @@ public class UIBtn : MonoBehaviour
 	public GameObject InventoryShadowUp;
 	public GameObject InventoryShadowDown;
 	public GameObject MobileControl;
+    public GameObject exitPanel;
     public AudioSource clickSound;
 
 	void Start ()
@@ -30,14 +31,14 @@ public class UIBtn : MonoBehaviour
 		InventoryShadowDown.SetActive(true);
         inventory.SetActive(true);
 		MobileControl.SetActive (false);
-        clickSound.Play();
+        SoundPlay();
 		//Inventory.CheckInventory ();
     }
 
     void Click2()
     {
         AudioListener.volume = 0.0f;
-        clickSound.Play();
+        SoundPlay();
         btns[1].gameObject.SetActive(false);
         btns[2].gameObject.SetActive(true);
     }
@@ -45,14 +46,25 @@ public class UIBtn : MonoBehaviour
     void Click3()
     {
         AudioListener.volume = 1.0f;
-        clickSound.Play();
+        SoundPlay();
         btns[1].gameObject.SetActive(true);
         btns[2].gameObject.SetActive(false);
     }
 
     void Click4()
     {
-        clickSound.Play();
+        SoundPlay();
+        exitPanel.SetActive(true);
+    }
+
+    public void BackToTitleScene()
+    {
+        SoundPlay();
         SceneManager.LoadScene(2);
+    }
+
+    public void SoundPlay()
+    {
+        clickSound.Play();
     }
 }
