@@ -7,6 +7,7 @@ public class PuzzleEndManager : MonoBehaviour {
 	const int MaxPuzzle = 5;
 
 	public GameObject HintPanel;
+	public GameObject ClearBackGround;
 
 	private bool Hint = false;
 	public static bool PuzzleOn1 = false;
