@@ -10,16 +10,30 @@ public class PelicanObj : MonoBehaviour
 
     RaycastHit2D hit;
 
+    Vector3 startPos;
     Vector3 pos;
+    Vector3 offset;
+
+    bool isDragging;
+
+    enum STEP
+    {
+        IDLE,
+        DRAGGING,
+        FINISHED
+    };
+
+    private STEP step = STEP.IDLE;
 
 	void Start ()
     {
         pelmgr = GameObject.Find("Pel").GetComponent<PelicanMgr>();
+        startPos = this.transform.position;
 	}
 
     private void Update()
     {
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButtonDown(0))
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -29,10 +43,55 @@ public class PelicanObj : MonoBehaviour
             {
                 if(hit.collider.gameObject == this.gameObject)
                 {
-                    pos.z = 0;
-                    this.transform.position = pos;
+                    isDragging = true;
+                    offset = this.transform.position - pos;
                 }
             }
+        }
+
+        if(Input.GetMouseButton(0))
+        {
+            pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+
+        if(Input.GetMouseButtonUp(0))
+        {
+            isDragging = false;
+        }
+
+        switch (step)
+        {
+            case STEP.IDLE:
+                {
+                    if (isDragging)
+                        step = STEP.DRAGGING;
+                }
+                break;
+
+            case STEP.DRAGGING:
+                {
+                    if(isDragging)
+                    {
+                        pos.z = 0;
+                        offset.z = 0;
+                        this.transform.position = pos + offset;
+                    }
+
+                    else
+                    {
+                        step = STEP.IDLE;
+                    }
+                }
+                break;
+
+            case STEP.FINISHED:
+                {
+                    isDragging = false;
+                    step = STEP.IDLE;
+                    this.transform.position = startPos;
+                    this.gameObject.SetActive(false);
+                }
+                break;
         }
     }
 
@@ -48,15 +107,15 @@ public class PelicanObj : MonoBehaviour
             Animator anim = coll.gameObject.GetComponent<Animator>();
             anim.SetTrigger("Eat");
             pelmgr.Object1AddWeight(weight);
-            this.gameObject.SetActive(false);
+            step = STEP.FINISHED;
         }
 
         else if(coll.gameObject.name == "Pelican2")
         {
             Animator anim = coll.gameObject.GetComponent<Animator>();
             anim.SetTrigger("Eat");
-            pelmgr.Object2AddWeight(weight);
-            this.gameObject.SetActive(false);
+            pelmgr.Object2AddWeight(weight);;
+            step = STEP.FINISHED;
         }
     }
 }

@@ -92,24 +92,9 @@ public class PelicanMgr : MonoBehaviour
         weight1 = 0;
         weight2 = 0;
 
-        for(int i = 0; i < fishes.Length; i++)
+        for (int i = 0; i < fishes.Length; i++)
         {
             fishes[i].SetActive(true);
-
-            if(i == 0 || i == 1)
-            {
-                fishes[i].gameObject.transform.position = new Vector3(25.5f, -34.5f, 0);
-            }
-
-            else if(i == 2)
-            {
-                fishes[i].gameObject.transform.position = new Vector3(34.5f, -34.5f, 0);
-            }
-
-            else
-            {
-                fishes[i].gameObject.transform.position = new Vector3(29.5f, -34.5f, 0);
-            }
         }
     }
 
@@ -117,15 +102,16 @@ public class PelicanMgr : MonoBehaviour
     {
         GameObject[] pelicans = GameObject.FindGameObjectsWithTag("Pelican");
         
-        for(int i = 0; i < pelicans.Length; i++)
+        if(weight2 > 0)
         {
-            Animator anim = pelicans[i].GetComponent<Animator>();
+            Animator anim = pelicans[0].GetComponent<Animator>();
+            anim.SetTrigger("Eat");
+        }
 
-            if (weight2 > 0 && i == 0)
-                anim.SetTrigger("Eat");
-
-            else if (weight1 > 0 && i == 1)
-                anim.SetTrigger("Eat");
+        if(weight1 > 0)
+        {
+            Animator anim = pelicans[1].GetComponent<Animator>();
+            anim.SetTrigger("Eat");
         }
     }
 }

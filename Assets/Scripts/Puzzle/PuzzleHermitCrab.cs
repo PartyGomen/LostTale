@@ -22,6 +22,7 @@ public class PuzzleHermitCrab : MonoBehaviour
     Animator anim;
 
     Vector3 mousePos;
+    Vector3 offset;
 
     public GameObject finishedPos;
 
@@ -49,6 +50,7 @@ public class PuzzleHermitCrab : MonoBehaviour
                 {
                     isDragging = true;
                     anim.SetBool("IsOut", true);
+                    offset = transform.position - mousePos;
                 }
             }
         }
@@ -81,7 +83,8 @@ public class PuzzleHermitCrab : MonoBehaviour
                     if(isDragging)
                     {
                         mousePos.z = 0f;
-                        this.transform.position = mousePos;
+                        offset.z = 0f;
+                        this.transform.position = mousePos + offset;
                     }
 
                     else

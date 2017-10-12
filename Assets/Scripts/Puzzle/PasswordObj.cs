@@ -13,9 +13,20 @@ public class PasswordObj : MonoBehaviour
 	public GameObject Null;
 	public Vector2 pos;
 
+    GameObject player;
 
-	void Update () {
-		if (Input.GetMouseButtonDown (0) && ShowPuzzle.TouchAble == true) {
+    float distance;
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    void Update ()
+    {
+        distance = Vector3.Distance(player.transform.position, this.gameObject.transform.position);
+
+        if (Input.GetMouseButtonDown (0) && distance < 6.5) {
 			CastRay ();
 			if (target.name == "PassWordObj") {
 				Panel.SetActive(true);
