@@ -7,17 +7,20 @@ public class CoconutTree : MonoBehaviour
 {
     Vector3 objPos;
     Vector3 pos;
+    Vector3 offset;
 
     public float minY;
     public float maxY;
 
+    bool isDragging;
 	
 	// Update is called once per frame
 	void Update ()
     {
         if (!IsPointerOverUIObject())
         {
-            if (Input.GetMouseButton(0))
+
+            if (Input.GetMouseButtonDown(0))
             {
                 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -27,16 +30,27 @@ public class CoconutTree : MonoBehaviour
                 {
                     if (hit.collider.gameObject == this.gameObject)
                     {
-                        objPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        offset = this.transform.position - pos;
 
-                        objPos.x = this.transform.position.x;
-                        objPos.y = Mathf.Clamp(objPos.y, minY, maxY);
-                        objPos.z = 0;
-
-                        this.transform.position = objPos;
+                        isDragging = true;
                     }
                 }
             }
+
+            if (Input.GetMouseButton(0) && isDragging == true)
+            {
+                objPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                
+                objPos.x = this.transform.position.x;
+                objPos.y += offset.y;
+                objPos.y = Mathf.Clamp(objPos.y, minY, maxY);
+                objPos.z = 0;
+
+                this.transform.position = objPos;
+            }
+
+            if (Input.GetMouseButtonUp(0))
+                isDragging = false;
         }
     }
 
