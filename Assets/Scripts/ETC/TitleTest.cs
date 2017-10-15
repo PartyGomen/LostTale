@@ -59,7 +59,7 @@ public class TitleTest : MonoBehaviour
 			BackGround.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
 			ExitButton.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
 			yield return new WaitForSeconds(0.001f);
-			xScale += 0.02f;
+			xScale += 0.03f;
         }
 		//Book.SetActive (true);
 		//AppearBook = true;
@@ -75,7 +75,7 @@ public class TitleTest : MonoBehaviour
 			RightPage.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
 			LeftPage.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
 			yield return new WaitForSeconds(0.001f);
-			xScale += 0.03f;
+			xScale += 0.05f;
 		} 
 		xScale = 0;
 		StartCoroutine(FadeOutBookMark());
