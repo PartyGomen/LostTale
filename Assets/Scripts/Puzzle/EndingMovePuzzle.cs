@@ -276,12 +276,11 @@ public class EndingMovePuzzle : MonoBehaviour {
 
         for(int i = 0; i < drags.Length; i++)
         {
-            if(i == idx)
-            {
-                drags[i] = true;
-            }
-
             drags[i] = false;
+			if(i == idx)
+			{
+				drags[i] = true;
+			}
         }
     }
 

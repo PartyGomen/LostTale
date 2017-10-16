@@ -19,29 +19,28 @@ public class PuzzleEndManager : MonoBehaviour {
 
 	public static string[] PuzzleEnd = new string[MaxPuzzle];
 	// Use this for initialization
-	
+
+	private float count;
+
 	// Update is called once per frame
 	void Update () {
 		if(PuzzleOn1 == true && PuzzleOn2 == true && PuzzleOn3 == true && PuzzleOn4 == true && PuzzleOn5 == true){
 			StartCoroutine (ClearEndPuzzle());
 		}
 	}
-
-
-
-
-
-
+		
 	IEnumerator ClearEndPuzzle(){
 		yield return new WaitForSeconds (2.5f);
 		Debug.Log ("코루틴중");
-		if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" && PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle5") {
+		if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" && PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle5" && GalleryManager.TrueEnding == false) {
 			Debug.Log ("진앤딩");
-		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle6" && PuzzleEnd[4] == "Puzzle7") {
+			StartCoroutine (FadeOutClearBackGround());
+
+		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle6" && PuzzleEnd[4] == "Puzzle7" && GalleryManager.HappyEnding == false) {
 			Debug.Log ("해피앤딩");
-		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle8") {
+		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle8" && GalleryManager.SadEnding == false) {
 			Debug.Log ("새드앤딩");
-		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle9") {
+		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle9" && GalleryManager.ExceptEnding == false) {
 			Debug.Log ("특전앤딩");
 		} else {	
 			HintPanel.SetActive (true);
@@ -66,6 +65,19 @@ public class PuzzleEndManager : MonoBehaviour {
 			}
 		}
 	}
+	IEnumerator FadeOutClearBackGround()
+	{
+		ClearBackGround.SetActive (true);
+		while (count < 2) {  // 책 내용물  Fade Out 시킴 
+			ClearBackGround.GetComponent<Image>().color = new Color(255, 255, 255, count);
+			yield return new WaitForSeconds(0.001f);
+			count += 0.02f;
+		} 
+		count = 0;
+		StopAllCoroutines ();
+	}
+
+
 		
 	public void HintOn(){
 		Hint = true;
