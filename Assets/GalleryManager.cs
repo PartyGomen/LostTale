@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GalleryManager : MonoBehaviour {
 
-	public static bool HappyEnding = false;
+	public static bool HappyEnding = true;
 	public static bool SadEnding = false;
 	public static bool TrueEnding = false;
 	public static bool ExceptEnding = false;

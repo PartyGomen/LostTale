@@ -47,31 +47,26 @@ public class PuzzleEndCheck : MonoBehaviour {
 		if (other.gameObject.tag == "MoveObject") {
 			if (this.gameObject.name == "PuzzleFix1" && PuzzleEndManager.PuzzleOn1 == true) {
 				PuzzleEndManager.PuzzleEnd [0] = "";
-				Debug.Log (PuzzleEndManager.PuzzleEnd [0]);
 				PuzzleInk [0].SetActive (false);
 				PuzzleEndManager.PuzzleOn1 = false;
 			}
 			if (this.gameObject.name == "PuzzleFix2" && PuzzleEndManager.PuzzleOn2 == true) {
 				PuzzleEndManager.PuzzleEnd [1] = "";
-				Debug.Log (PuzzleEndManager.PuzzleEnd [1]);
 				PuzzleInk [1].SetActive (false);
 				PuzzleEndManager.PuzzleOn2 = false;
 			}
 			if (this.gameObject.name == "PuzzleFix3" && PuzzleEndManager.PuzzleOn3 == true) {
 				PuzzleEndManager.PuzzleEnd [2] = "";
-				Debug.Log (PuzzleEndManager.PuzzleEnd [2]);
 				PuzzleInk [2].SetActive (false);
 				PuzzleEndManager.PuzzleOn3 = false;
 			}
 			if (this.gameObject.name == "PuzzleFix4" && PuzzleEndManager.PuzzleOn4 == true) {
 				PuzzleEndManager.PuzzleEnd [3] = "";
-				Debug.Log (PuzzleEndManager.PuzzleEnd [3]);
 				PuzzleInk [3].SetActive (false);
 				PuzzleEndManager.PuzzleOn4 = false;
 			}
 			if (this.gameObject.name == "PuzzleFix5" && PuzzleEndManager.PuzzleOn5 == true) {
 				PuzzleEndManager.PuzzleEnd [4] = "";
-				Debug.Log (PuzzleEndManager.PuzzleEnd [4]);
 				PuzzleInk [4].SetActive (false);
 				PuzzleEndManager.PuzzleOn5 = false;
 			}

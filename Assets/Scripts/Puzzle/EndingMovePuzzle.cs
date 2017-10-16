@@ -10,23 +10,16 @@ public class EndingMovePuzzle : MonoBehaviour {
 	private GameObject target = null;
 
 	public Vector2 pos;
+	public Vector2 firstpos;
+	public Vector2 offset;
 
 	public Vector2 DownPos;
 	public Vector2 UpPos;
-	public float Distance;
+	public float Distance;	
 
     public GameObject[] puzzles = new GameObject[9];
     public bool[] drags = new bool[9];
 
-	public  GameObject Puzzle1;
-	public  GameObject Puzzle2;
-	public  GameObject Puzzle3;
-	public  GameObject Puzzle4;
-	public  GameObject Puzzle5;
-	public  GameObject Puzzle6;
-	public  GameObject Puzzle7;
-	public  GameObject Puzzle8;
-	public  GameObject Puzzle9;
 
 	public bool DragOn1 = false;
 	public bool DragOn2 = false;
@@ -43,13 +36,18 @@ public class EndingMovePuzzle : MonoBehaviour {
 
 	void FixedUpdate () {
 		if (Input.GetMouseButtonDown(0)) {
+			CastRay ();	
+			offset = new Vector2 (target.transform.position.x - pos.x, target.transform.position.y - pos.y);
 			DownPos = pos;
-			Debug.Log (DownPos);
 		}
 
 		if (Input.GetMouseButtonUp(0)) {
 			UpPos = pos;
 			Distance = Vector2.Distance (DownPos, UpPos);
+
+			for (int i = 0; i < drags.Length; i++) {
+				drags [i] = false;
+			}
 
 			if (Distance <= 0.4) {
 				if (target.name == "Puzzle1") {
@@ -95,157 +93,34 @@ public class EndingMovePuzzle : MonoBehaviour {
 
 		if (Input.GetMouseButton (0)) {
 			CastRay ();	
-			if(target.name == Puzzle1.name && DragOn1 == false) {
-				Puzzle1.transform.position = pos;
-				DragOn1 = false;
-				DragOn2 = true;
-				DragOn3 = true;
-				DragOn4 = true;
-				DragOn5 = true;
-				DragOn6 = true;
-				DragOn7 = true;
-				DragOn8 = true;
-				DragOn9 = true;
-
+			if(target.name == "Puzzle1" && drags[0] == false) {
                 DragCheck(0, true);
-
-			}else if(target.name == Puzzle2.name && DragOn2 == false){				
-				Puzzle2.transform.position = pos;
-				DragOn1 = true;
-				DragOn2 = false;
-				DragOn3 = true;
-				DragOn4 = true;
-				DragOn5 = true;
-				DragOn6 = true;
-				DragOn7 = true;
-				DragOn8 = true;
-				DragOn9 = true;
-
+			}else if(target.name == "Puzzle2" && drags[1] == false){				
                 DragCheck(1, true);
-
             }
-            else if(target.name == Puzzle3.name && DragOn3 == false){				
-				Puzzle3.transform.position = pos;
-				DragOn1 = true;
-				DragOn2 = true;
-				DragOn3 = false;
-				DragOn4 = true;
-				DragOn5 = true;
-				DragOn6 = true;
-				DragOn7 = true;
-				DragOn8 = true;
-				DragOn9 = true;
-
+			else if(target.name == "Puzzle3" && drags[2] == false){				
                 DragCheck(2, true);
-
             }
-            else if(target.name == Puzzle4.name && DragOn4 == false){				
-				Puzzle4.transform.position = pos;	
-				DragOn1 = true;
-				DragOn2 = true;
-				DragOn3 = true;
-				DragOn4 = false;
-				DragOn5 = true;
-				DragOn6 = true;
-				DragOn7 = true;
-				DragOn8 = true;
-				DragOn9 = true;
-
+			else if(target.name == "Puzzle4" && drags[3] == false){				
                 DragCheck(3, true);
-
             }
-            else if(target.name == Puzzle5.name && DragOn5 == false){				
-				Puzzle5.transform.position = pos;
-				DragOn1 = true;
-				DragOn2 = true;
-				DragOn3 = true;
-				DragOn4 = true;
-				DragOn5 = false;
-				DragOn6 = true;
-				DragOn7 = true;
-				DragOn8 = true;
-				DragOn9 = true;
-
+			else if(target.name == "Puzzle5" && drags[4] == false){				
                 DragCheck(4, true);
-
             }
-            else if(target.name == Puzzle6.name && DragOn6 == false){				
-				Puzzle6.transform.position = pos;
-				DragOn1 = true;
-				DragOn2 = true;
-				DragOn3 = true;
-				DragOn4 = true;
-				DragOn5 = true;
-				DragOn6 = false;
-				DragOn7 = true;
-				DragOn8 = true;
-				DragOn9 = true;
-
+			else if(target.name == "Puzzle6" && drags[5] == false){				
                 DragCheck(5, true);
-
             }
-            else if(target.name == Puzzle7.name && DragOn7 == false){				
-				Puzzle7.transform.position = pos;
-				DragOn1 = true;
-				DragOn2 = true;
-				DragOn3 = true;
-				DragOn4 = true;
-				DragOn5 = true;
-				DragOn6 = true;
-				DragOn7 = false;
-				DragOn8 = true;
-				DragOn9 = true;
-
+			else if(target.name == "Puzzle7" && drags[6] == false){				
                 DragCheck(6, true);
-
             }
-            else if(target.name == Puzzle8.name && DragOn8 == false){				
-				Puzzle8.transform.position = pos;
-				DragOn1 = true;
-				DragOn2 = true;
-				DragOn3 = true;
-				DragOn4 = true;
-				DragOn5 = true;
-				DragOn6 = true;
-				DragOn7 = true;
-				DragOn8 = false;
-				DragOn9 = true;
-
+			else if(target.name == "Puzzle8" && drags[7] == false){				
                 DragCheck(7, true);
-
             }
-            else if(target.name == Puzzle9.name && DragOn9 == false){				
-				Puzzle9.transform.position = pos;
-				DragOn1 = true;
-				DragOn2 = true;
-				DragOn3 = true;
-				DragOn4 = true;
-				DragOn5 = true;
-				DragOn6 = true;
-				DragOn7 = true;
-				DragOn8 = true;
-				DragOn9 = false;
-
+			else if(target.name == "Puzzle9" && drags[8] == false){				
                 DragCheck(8, true);
-
             }
 
 		}
-		if(Input.GetMouseButtonUp(0)){
-			DragOn1 = false;
-			DragOn2 = false;
-			DragOn3 = false;
-			DragOn4 = false;
-			DragOn5 = false;
-			DragOn6 = false;
-			DragOn7 = false;
-			DragOn8 = false;
-			DragOn9 = false;
-
-            DragCheck(9, false);
-		}
-
-
 	}
 
 	void CastRay(){
@@ -255,8 +130,6 @@ public class EndingMovePuzzle : MonoBehaviour {
 
 		if (hit.collider != null) {
 			target = hit.collider.gameObject;
-			//name = hit.collider.gameObject.name;
-			//Debug.Log (name);
 		}else {
 
 			target = Null;
@@ -272,13 +145,13 @@ public class EndingMovePuzzle : MonoBehaviour {
     void DragCheck(int idx, bool puzzlepos)
     {
         if(puzzlepos)
-            puzzles[idx].transform.position = pos;
+			puzzles[idx].transform.position = pos+offset;
 
         for(int i = 0; i < drags.Length; i++)
-        {
-            drags[i] = false;
-			if(i == idx)
-			{
+        {     
+			if (i == idx) {
+				drags [i] = false;
+			} else {
 				drags[i] = true;
 			}
         }

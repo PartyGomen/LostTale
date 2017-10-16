@@ -103,7 +103,7 @@ public class Book : MonoBehaviour {
     {
 		if (currentPage == 0) {
 			LeftHotSpot.SetActive (false);
-		} else if (currentPage == 8) {
+		} else if (currentPage == 6) {
 			RightHotSpot.SetActive (false);
 		} else {
 			LeftHotSpot.SetActive (true);
