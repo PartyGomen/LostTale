@@ -17,7 +17,7 @@ public class PuzzleHermitCrab : MonoBehaviour
 
     public int boolIndex;
 
-    float sanpDistance = 0.5f;
+    float sanpDistance = 1f;
 
     Animator anim;
 
