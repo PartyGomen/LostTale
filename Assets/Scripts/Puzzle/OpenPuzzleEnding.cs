@@ -35,9 +35,6 @@ public class OpenPuzzleEnding : MonoBehaviour {
                 }
             }
 		}
-
-
-
 	}
 
 	public void CloseEndPuzzle(){
