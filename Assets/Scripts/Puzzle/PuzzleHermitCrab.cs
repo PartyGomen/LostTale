@@ -8,7 +8,7 @@ public class PuzzleHermitCrab : MonoBehaviour
     {
         IDLE,
         DRAGGING,
-        FINISHED
+        SNAPPING
     };
 
     STEP step = STEP.IDLE;
@@ -16,6 +16,7 @@ public class PuzzleHermitCrab : MonoBehaviour
     bool isDragging;
 
     public int boolIndex;
+    int posIdx;
 
     float sanpDistance = 1f;
 
@@ -25,6 +26,7 @@ public class PuzzleHermitCrab : MonoBehaviour
     Vector3 offset;
 
     public GameObject finishedPos;
+    public GameObject[] checkPos = new GameObject[5];
 
     RaycastHit2D hit;
 
@@ -80,7 +82,9 @@ public class PuzzleHermitCrab : MonoBehaviour
 
             case STEP.DRAGGING:
                 {
-                    if(isDragging)
+                    puzzleMgr.check[boolIndex] = false;
+
+                    if (isDragging)
                     {
                         mousePos.z = 0f;
                         offset.z = 0f;
@@ -91,11 +95,7 @@ public class PuzzleHermitCrab : MonoBehaviour
                     {
                         if(IsSnap())
                         {
-                            step = STEP.FINISHED;
-                            puzzleMgr.check[boolIndex] = true;
-                            puzzleMgr.CheckEnd();
-                            this.GetComponent<SpriteRenderer>().sortingOrder = -5;
-                            this.GetComponent<CircleCollider2D>().enabled = false;
+                            step = STEP.SNAPPING;
                         }
 
                         else
@@ -105,13 +105,13 @@ public class PuzzleHermitCrab : MonoBehaviour
                     }
                 }
                 break;
-            case STEP.FINISHED:
+
+            case STEP.SNAPPING:
                 {
                     Vector3 next_position, distance, move;
 
                     // 속도감이 느껴지는 움직임이 되도록 한다.
-
-                    distance = finishedPos.transform.position - this.transform.position;
+                    distance = checkPos[posIdx].transform.position - this.transform.position;
 
                     // 다음 장소＝현재 장소와 목표위치의 중간지점.
                     distance *= 0.25f * (60.0f * Time.deltaTime);
@@ -125,17 +125,24 @@ public class PuzzleHermitCrab : MonoBehaviour
 
                     if (move.magnitude < snap_speed_min)
                     {
-
                         // 이동량이 일정 이하가 되면 종료.
                         // 목표위치로 이동시킨다. 
                         // 종료판정은 상태변화 점검에서 실행되므로 여기에서는 위치 조정만 실행한다.
-                        // 
-                        this.transform.position = finishedPos.transform.position;
+                        this.transform.position = checkPos[posIdx].transform.position;
 
+                        step = STEP.IDLE;
+
+                        IsFinish();
+
+                        if(IsFinish())
+                        {
+                            puzzleMgr.check[boolIndex] = true;
+                            puzzleMgr.CheckEnd();
+                        }
                     }
+
                     else
                     {
-
                         // 이동 속도가 너무 빠르면 조정한다.
                         if (move.magnitude > snap_speed_max)
                         {
@@ -147,6 +154,7 @@ public class PuzzleHermitCrab : MonoBehaviour
 
                         this.transform.position = next_position;
                     }
+                    
                 }
                 break;
         }
@@ -157,11 +165,27 @@ public class PuzzleHermitCrab : MonoBehaviour
     {
         bool result = false;
 
-        if(Vector3.Distance(this.transform.position, finishedPos.transform.position) < sanpDistance)
+        for(int i = 0; i < checkPos.Length; i++)
+        {
+            if (Vector3.Distance(this.transform.position, checkPos[i].transform.position) < sanpDistance)
+            {
+                result = true;
+                posIdx = i;
+            }
+        }
+
+        return (result);
+    }
+
+    bool IsFinish()
+    {
+        bool result = false;
+
+        if(Vector3.Distance(this.transform.position, finishedPos.transform.position) < 1f)
         {
             result = true;
         }
 
-        return (result);
+        return result;
     }
 }
