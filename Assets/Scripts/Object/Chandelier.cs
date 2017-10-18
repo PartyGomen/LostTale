@@ -10,11 +10,14 @@ public class Chandelier : MonoBehaviour
 
     Rigidbody2D rb2d;
 
+    Animator anim;
+
     int count;
 
     void Start ()
     {
-        rb2d = GetComponent<Rigidbody2D>();	
+        rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 	}
 	
 	void Update ()
@@ -44,6 +47,7 @@ public class Chandelier : MonoBehaviour
         if(!collision.gameObject.CompareTag("Player"))
         {
             rb2d.bodyType = RigidbodyType2D.Static;
+            anim.SetBool("IsBroken", true);
             CameraShake shake = Camera.main.GetComponent<CameraShake>();
             shake.ShakeCamera(0.1f, 0.2f);
             Destroy(this);
