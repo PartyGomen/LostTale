@@ -14,17 +14,11 @@ public class GroundCheck : MonoBehaviour {
     {
         if (coll.CompareTag("Ground"))
         {
-            //if (!player.groundAudio.isPlaying && player.grounded == false)
-            //    player.groundAudio.Play();
-
             player.grounded = true;
         }
 
         if (coll.CompareTag("Elevator"))
         {
-            //if (!player.groundAudio.isPlaying && player.iselevator == false)
-            //    player.groundAudio.Play();
-
             player.iselevator = true;
             player.anim.SetBool("Grounded", true);
         }

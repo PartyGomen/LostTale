@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private bool Btn_Jump_bool;
     [HideInInspector]
     public bool PlayerLooksRight;
-    private bool isdead;
+    public bool isdead;
     [HideInInspector]
     public bool iselevator;
 

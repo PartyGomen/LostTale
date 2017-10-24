@@ -12,13 +12,13 @@ public class Clear : MonoBehaviour
 
     ScreenTransitionImageEffect screenEffect;
 
-    bool isOn;
+    public GameObject mobile_control;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player") && !isOn)
+        if(collision.CompareTag("Player"))
         {
-            isOn = true;
+            mobile_control.SetActive(false);
             panel.gameObject.SetActive(true);
             StartCoroutine(Fade());
             screenEffect = Camera.main.GetComponent<ScreenTransitionImageEffect>();

@@ -27,6 +27,7 @@ public class PuzzleHint : MonoBehaviour
 
     public void ShowHint(int _idx)
     {
+        hint_count -= 1;
         hint_image[_idx].SetActive(true);
     }
 
