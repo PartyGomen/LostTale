@@ -17,8 +17,7 @@ public class Inventory : MonoBehaviour
     [TextArea]
     public string[] pieceStr = new string[9];
     public GameObject go;
-	public GameObject InventoryShadowUp;
-	public GameObject InventoryShadowDown;
+	public GameObject InventoryShadow;
 	public GameObject MobileControl;
 
 	private int count = 0;
@@ -34,8 +33,7 @@ public class Inventory : MonoBehaviour
     {
         go.SetActive(false);
 		PuzzleImageShow.SetActive (false);
-		InventoryShadowUp.SetActive (false);
-		InventoryShadowDown.SetActive (false);
+		InventoryShadow.SetActive (false);
 		MobileControl.SetActive (true);
     }
 
