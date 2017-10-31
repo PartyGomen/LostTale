@@ -18,6 +18,8 @@ public class PuzzleEndManager : MonoBehaviour {
 	public static bool PuzzleOn5 = false;
 
 
+	public static int EndingStoryNumber = 0;
+
 	private bool ShowHint = false;
 	private bool ShowEnding = false;
 
@@ -58,17 +60,21 @@ public class PuzzleEndManager : MonoBehaviour {
 		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" && PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle5" && GalleryManager.TrueEnding == false) {
 			Debug.Log ("진앤딩");
 			ShowEnding = true;
+			EndingStoryNumber = 1;
 			StartCoroutine (ClearEffect());
 		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle6" && PuzzleEnd[4] == "Puzzle7" && GalleryManager.HappyEnding == false) {
 			Debug.Log ("해피앤딩");
 			ShowEnding = true;
+			EndingStoryNumber = 2;
 			StartCoroutine (ClearEffect());
 		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle8" && GalleryManager.SadEnding == false) {
 			Debug.Log ("새드앤딩");
 			ShowEnding = true;
+			EndingStoryNumber = 3;
 			StartCoroutine (ClearEffect());
 		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle9" && GalleryManager.ExceptEnding == false) {
 			Debug.Log ("특전앤딩");
+			EndingStoryNumber = 4;
 			ShowEnding = true;
 			StartCoroutine (ClearEffect());
 		} else {	
