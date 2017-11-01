@@ -8,16 +8,28 @@ public class EndingStoryManager : MonoBehaviour {
 	public string[] EndingText;
 	public Sprite[] EndingImage;
 
+	public Sprite[] TrueEndingletter;
+	public Sprite[] HappyEndingletter;
+	public Sprite[] SadEndingletter;
+	public Sprite[] SpecialEndingletter;
+
 	public GameObject Ending;
 	public Text EndText;
+	public GameObject EndingLetter;
+
 
 	private float colorcount = 0;
 	private int Textcount = 0;
 	private int Finishcount = 1;
 	private int NowPosition = 0;
+	private int Endinglettercount = 1;
+
 	// Use this for initialization
 	private bool IsTyping = true;
 	private bool IsFadeIn = true;
+
+	public static bool IsGetEnding = false;
+
 	void Start () {
 		StartCoroutine (FadeOutEnding());
 		StartCoroutine (ShowText(NowPosition));
@@ -38,8 +50,7 @@ public class EndingStoryManager : MonoBehaviour {
 					StartCoroutine (ShowText(NowPosition)); 
 					Finishcount++;
 				}else {
-					SceneManager.LoadScene ("Title");
-					Debug.Log ("Go to Title");
+					StartCoroutine (ShowEndingletter (PuzzleEndManager.EndingStoryNumber));
 				}
 			}
 		}
@@ -152,5 +163,32 @@ public class EndingStoryManager : MonoBehaviour {
 		Ending.GetComponent<Image> ().sprite = EndingImage [number];
 		StartCoroutine (FadeOutEnding ());
 		StartCoroutine (ShowText(number));
+	}
+
+	public IEnumerator ShowEndingletter(int number){
+			EndingLetter.SetActive(true);
+		while (Endinglettercount < 12){
+			if (PuzzleEndManager.EndingStoryNumber == 1) {
+				EndingLetter.GetComponent<Image> ().sprite = TrueEndingletter [Endinglettercount];
+				GalleryManager.TrueEnding = true;
+			} else if (PuzzleEndManager.EndingStoryNumber == 2) {
+				EndingLetter.GetComponent<Image> ().sprite = HappyEndingletter [Endinglettercount];	
+				GalleryManager.HappyEnding = true;
+			}else if (PuzzleEndManager.EndingStoryNumber == 3) {
+				EndingLetter.GetComponent<Image> ().sprite = SadEndingletter [Endinglettercount];
+				GalleryManager.SadEnding = true;
+			}else if (PuzzleEndManager.EndingStoryNumber == 4) {
+				EndingLetter.GetComponent<Image> ().sprite = SpecialEndingletter [Endinglettercount];
+				GalleryManager.SpecialEnding = true;
+			}
+			yield return new WaitForSeconds (0.2f);
+			Endinglettercount++;
+		}	
+		//	yield return new WaitForSeconds (3.0f);
+		yield return new WaitForSeconds (2.0f);
+		Debug.Log("Finish");
+
+		IsGetEnding = true;
+		SceneManager.LoadScene ("Title");
 	}
 }

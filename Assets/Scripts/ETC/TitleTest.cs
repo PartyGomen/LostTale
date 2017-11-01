@@ -24,6 +24,7 @@ public class TitleTest : MonoBehaviour
 	public GameObject Stage2;
 	public GameObject Stage3;
 
+	public GameObject Gallery;
 //	private bool TouchBan = false;
 //	private bool AppearBook = false;
 //	public Sprite BackGroundSprite;
@@ -98,6 +99,10 @@ public class TitleTest : MonoBehaviour
 		Stage1.GetComponent<Button>().interactable = true;
 		Stage2.GetComponent<Button>().interactable = true;
 		Stage3.GetComponent<Button>().interactable = true;
+		if(EndingStoryManager.IsGetEnding == true){
+			Gallery.SetActive (true);
+			EndingStoryManager.IsGetEnding = false;
+		}
 		gameObject.GetComponent<TitleTest> ().enabled = false;
 	}
 

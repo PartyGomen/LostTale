@@ -28,7 +28,12 @@ public class PuzzleEndManager : MonoBehaviour {
 
 	private float count;
 	private float count1;
+	Vector3 Camposition;
 
+	void Start(){
+		Camposition = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Transform> ().position;
+		Camposition.z = -10f;
+	}
 	// Update is called once per frame
 	void Update () {
 		if (PuzzleOn1 == true && PuzzleOn2 == true && PuzzleOn3 == true && PuzzleOn4 == true && PuzzleOn5 == true && EndingCheck == false) {
@@ -48,14 +53,14 @@ public class PuzzleEndManager : MonoBehaviour {
 		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle8" && GalleryManager.SadEnding == true && GalleryManager.TrueEnding == false) {
 			ShowHint = true;
 			StartCoroutine (ClearEffect());
-		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle9" && GalleryManager.ExceptEnding == true && GalleryManager.TrueEnding == false) {
+		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle9" && GalleryManager.SpecialEnding == true && GalleryManager.TrueEnding == false) {
 			ShowHint = true;
 			StartCoroutine (ClearEffect());
 		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle6" && PuzzleEnd[4] == "Puzzle7" && GalleryManager.HappyEnding == true && GalleryManager.TrueEnding == true) {
 			StartCoroutine (ClearEffect());
 		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle8" && GalleryManager.SadEnding == true && GalleryManager.TrueEnding == true) {
 			StartCoroutine (ClearEffect());
-		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle9" && GalleryManager.ExceptEnding == true && GalleryManager.TrueEnding == true) {
+		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle9" && GalleryManager.SpecialEnding == true && GalleryManager.TrueEnding == true) {
 			StartCoroutine (ClearEffect());
 		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" && PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle5" && GalleryManager.TrueEnding == false) {
 			Debug.Log ("진앤딩");
@@ -72,7 +77,7 @@ public class PuzzleEndManager : MonoBehaviour {
 			ShowEnding = true;
 			EndingStoryNumber = 3;
 			StartCoroutine (ClearEffect());
-		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle9" && GalleryManager.ExceptEnding == false) {
+		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle9" && GalleryManager.SpecialEnding == false) {
 			Debug.Log ("특전앤딩");
 			EndingStoryNumber = 4;
 			ShowEnding = true;
@@ -117,7 +122,7 @@ public class PuzzleEndManager : MonoBehaviour {
 		GameObject.Find ("Puzzle1").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (500, -710, 0);
 		GameObject.Find ("Puzzle2").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (800, -734, 0);
 		GameObject.Find ("Puzzle3").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1100, -695, 0);
-		GameObject.Find ("Puzzle4").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (-500, -692, 0);
+		GameObject.Find ("Puzzle4").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1420, -692, 0);
 		GameObject.Find ("Puzzle5").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (344, -920, 0);
 		GameObject.Find ("Puzzle6").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (644, -935, 0);
 		GameObject.Find ("Puzzle7").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (944, -899, 0);

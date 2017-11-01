@@ -33,12 +33,28 @@ public class EndingMovePuzzle : MonoBehaviour {
 
 	public Sprite[] illustratorImage;
 
+	Vector3 PuzzlePosition;
 
-	void FixedUpdate () {
+	void Update () {
+
 		if (Input.GetMouseButtonDown(0)) {
 			CastRay ();	
 			offset = new Vector2 (target.transform.position.x - pos.x, target.transform.position.y - pos.y);
 			DownPos = pos;
+
+		/*	for (int i = 0; i < 9; i++) {
+				PuzzlePosition = puzzles [i].GetComponent<RectTransform> ().transform.position;
+				Debug.Log (PuzzlePosition);
+				if (PuzzlePosition.x < 175) {
+					PuzzlePosition.x = -175;
+				} else if (PuzzlePosition.x > 190) {
+					PuzzlePosition.x = 190;
+				} else if (PuzzlePosition.y > -3.5f) {
+					PuzzlePosition.y = -3.5f;
+				} else if (PuzzlePosition.y < -6) {
+					PuzzlePosition.y = -6;
+				}
+			}*/
 		}
 
 		if (Input.GetMouseButtonUp(0)) {
@@ -145,7 +161,27 @@ public class EndingMovePuzzle : MonoBehaviour {
     void DragCheck(int idx, bool puzzlepos)
     {
         if(puzzlepos)
-			puzzles[idx].transform.position = pos+offset;
+			puzzles[idx].GetComponent<RectTransform>().transform.position = new Vector3(pos.x + offset.x, pos.y + offset.y , 0f);
+		PuzzlePosition = puzzles [idx].GetComponent<RectTransform> ().anchoredPosition;
+
+		if (PuzzlePosition.x < 175 && PuzzlePosition.y > -150) {
+			puzzles [idx].GetComponent<RectTransform> ().anchoredPosition = new Vector3 (200, -150, 0);  
+		} else if (PuzzlePosition.x < 175 && PuzzlePosition.y < -950) {
+			puzzles [idx].GetComponent<RectTransform> ().anchoredPosition = new Vector3 (200, -950, 0);  
+		} else if (PuzzlePosition.x > 1800 && PuzzlePosition.y > -150) {
+			puzzles [idx].GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1800, -150, 0);  
+		} else if (PuzzlePosition.x > 1800 && PuzzlePosition.y < -950) {
+			puzzles [idx].GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1800, -950, 0);  
+		} else if (PuzzlePosition.x < 175) {
+			puzzles [idx].GetComponent<RectTransform> ().anchoredPosition = new Vector3 (200, PuzzlePosition.y, 0);  
+		} else if (PuzzlePosition.x > 1800) {
+			puzzles [idx].GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1800, PuzzlePosition.y, 0);  
+		} else if (PuzzlePosition.y > -150) {
+			puzzles [idx].GetComponent<RectTransform> ().anchoredPosition = new Vector3 (PuzzlePosition.x, -150, 0);  
+		} else if (PuzzlePosition.y < -950) {
+			puzzles [idx].GetComponent<RectTransform> ().anchoredPosition = new Vector3 (PuzzlePosition.x, -950, 0);  
+		} 
+
 
         for(int i = 0; i < drags.Length; i++)
         {     

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class OpenPuzzleEnding : MonoBehaviour {	
+	public GameObject Cam;
 	public GameObject Player;
 	public GameObject PuzzleEnd;
 	public GameObject MoblieControl;
@@ -13,9 +14,12 @@ public class OpenPuzzleEnding : MonoBehaviour {
 	private GameObject target = null;
 	private Vector2 pos;
 
+	CameraFollow cam;
+	Vector3 camPosition;
 	// Use this for initialization
 	void Start () {
-		
+		cam = Camera.main.GetComponent<CameraFollow>();
+		camPosition = cam.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -30,8 +34,12 @@ public class OpenPuzzleEnding : MonoBehaviour {
                 CastRay();
                 if (target.name == "PuzzleEnd")
                 {
+					Player.transform.position = new Vector3 (185, -10, 0);
+					Player.SetActive (false);
                     PuzzleEnd.SetActive(true);
                     MoblieControl.SetActive(false);
+
+
                 }
             }
 		}
@@ -41,7 +49,7 @@ public class OpenPuzzleEnding : MonoBehaviour {
 		GameObject.Find ("Puzzle1").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (500, -710, 0);
 		GameObject.Find ("Puzzle2").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (800, -734, 0);
 		GameObject.Find ("Puzzle3").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1100, -695, 0);
-		GameObject.Find ("Puzzle4").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (-500, -692, 0);
+		GameObject.Find ("Puzzle4").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1420, -692, 0);
 		GameObject.Find ("Puzzle5").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (344, -920, 0);
 		GameObject.Find ("Puzzle6").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (644, -935, 0);
 		GameObject.Find ("Puzzle7").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (944, -899, 0);
@@ -49,6 +57,8 @@ public class OpenPuzzleEnding : MonoBehaviour {
 		GameObject.Find ("Puzzle9").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1544, -935, 0);
 		PuzzleEnd.SetActive (false);
 		MoblieControl.SetActive (true);
+		Player.transform.position = new Vector3 (190, 8.7f, 0);
+		Player.SetActive (true);
 	}
 
 
