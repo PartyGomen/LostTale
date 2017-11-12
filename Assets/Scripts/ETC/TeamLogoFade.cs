@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TeamLogoFade : MonoBehaviour
 {
@@ -24,11 +25,17 @@ public class TeamLogoFade : MonoBehaviour
         StartCoroutine(ImgFadeOut());
         StartCoroutine(FontFadeOut());
         StartCoroutine(AllFadeOut());
+        Invoke("SceneLoad", 7f);
 	}
+
+    void SceneLoad()
+    {
+        SceneManager.LoadScene(1);
+    }
 
     IEnumerator AllFadeOut()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
 
         float t = 0.0f;
 
