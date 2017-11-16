@@ -12,26 +12,29 @@ public class CrossBow : MonoBehaviour
 
     Vector3 tr;
 
+    Animator anim;
+
 	// Use this for initialization
 	void Start ()
     {
-        tr = this.transform.position;	
+        tr = this.transform.position;
+        anim = GetComponent<Animator>();
+        anim.SetTrigger("Check");
 	}
-	
+
+
 	// Update is called once per frame
 	void Update ()
     {
-        t += Time.deltaTime;
-        
-        if (t > coolTime)
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Cannon_Shot"))
         {
-            t = 0f;
-
-            if(leftShot)
+            if (leftShot)
                 Instantiate(arrow, new Vector3(tr.x - 1, tr.y, tr.z), this.transform.rotation);
-           
+
             else
                 Instantiate(arrow, new Vector3(tr.x + 1, tr.y, tr.z), this.transform.rotation);
+
+            anim.SetTrigger("Check");
         }
-	}
+    }
 }
