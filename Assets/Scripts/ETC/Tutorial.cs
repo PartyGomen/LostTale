@@ -64,7 +64,7 @@ public class Tutorial : MonoBehaviour
                             GetComponent<SpriteRenderer>().sprite = image_sprite[(int)IMAGE_TYPE.SMALL_HAND];
                             time += Time.deltaTime;
 
-                            if(time > 0.5f)
+                            if (time > 0.5f)
                             {
                                 transform.transform.eulerAngles = new Vector3(0, 0, 0);
                                 transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
@@ -78,6 +78,7 @@ public class Tutorial : MonoBehaviour
                                     transform.localScale = new Vector3(1f, 1f, 1f);
                                 }
                             }
+                        }
 
                         else
                         {
