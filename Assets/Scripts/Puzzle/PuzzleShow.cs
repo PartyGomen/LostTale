@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PuzzleShow : MonoBehaviour
 {
+    [HideInInspector]
+    public bool is_clicked;
+
     public int puzzleIdx;
 
     RaycastHit2D hit;
@@ -43,6 +46,7 @@ public class PuzzleShow : MonoBehaviour
 
                     cam.goPuzzele[puzzleIdx] = true;
                     cam.CheckPuzzle();
+                    is_clicked = true;
                 }
             }
         }

@@ -6,7 +6,7 @@ public class Tutorial : MonoBehaviour
 {
 	public enum TUTORIAL_TYPE
 	{
-		PADDLE,
+		DRAG,
 		TOUCH,
 		BULB,
 		PUZZLE_PIECE,
@@ -28,6 +28,7 @@ public class Tutorial : MonoBehaviour
 
 	private Player player;
 	private Bridge bridge;
+    private PuzzleShow puzzle_show;
 
 	public float distance;
 	float time;
@@ -39,21 +40,27 @@ public class Tutorial : MonoBehaviour
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
 		switch (type)
-		{
-		case TUTORIAL_TYPE.PADDLE:
-			{
-				bridge = GameObject.Find("Paddle_Joint").GetComponent<Bridge>();
-			}
-			break;
-		}
-	}
+        {
+            case TUTORIAL_TYPE.DRAG:
+                {
+                    bridge = GameObject.Find("Paddle_Joint").GetComponent<Bridge>();
+                }
+                break;
+
+            case TUTORIAL_TYPE.TOUCH:
+                {
+                    puzzle_show = GameObject.Find("CrabpuzzleShow").GetComponent<PuzzleShow>();
+                }
+                break;
+        }
+    }
 
 	// Update is called once per frame
 	void Update ()
 	{
 		switch (type)
 		{
-		case TUTORIAL_TYPE.PADDLE:
+		case TUTORIAL_TYPE.DRAG:
 			{
 				if(bridge.is_clear == false)
 				{
@@ -97,23 +104,53 @@ public class Tutorial : MonoBehaviour
 			}
 			break;
 
-		case TUTORIAL_TYPE.TOUCH:
-			{
+            case TUTORIAL_TYPE.TOUCH:
+                {
+                    if (puzzle_show.is_clicked == false)
+                    {
+                        distance = Vector3.Distance(player.gameObject.transform.position, puzzle_show.gameObject.transform.position);
 
-			}
-			break;
+                        if(distance < 5f)
+                        {
+                            GetComponent<SpriteRenderer>().sprite = image_sprite[(int)IMAGE_TYPE.SMALL_HAND];
+                            time += Time.deltaTime;
 
-		case TUTORIAL_TYPE.PUZZLE_PIECE:
-			{
+                            if (time > 0.5f)
+                            {
+                                transform.transform.eulerAngles = new Vector3(0, 0, 0);
+                                transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 
-			}
-			break;
+                                if (time > 1f)
+                                {
+                                    time = 0.0f;
+                                    this.transform.eulerAngles = new Vector3(0, 0, -30);
+                                    transform.localScale = new Vector3(1f, 1f, 1f);
+                                }
+                            }
+                        }
 
-		case TUTORIAL_TYPE.BULB:
-			{
+                        else
+                        {
+                            time = 0.0f;
+                            GetComponent<SpriteRenderer>().sprite = image_sprite[(int)IMAGE_TYPE.NONE];
+                            this.transform.eulerAngles = new Vector3(0, 0, -30);
+                            transform.localScale = new Vector3(1f, 1f, 1f);
+                        }
+                    }
+                }
+                break;
 
-			}
-			break;
-		}
+            case TUTORIAL_TYPE.PUZZLE_PIECE:
+                {
+
+                }
+                break;
+
+            case TUTORIAL_TYPE.BULB:
+                {
+
+                }
+                break;
+        }
 	}
 }
