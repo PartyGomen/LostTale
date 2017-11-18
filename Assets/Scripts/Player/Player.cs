@@ -17,8 +17,6 @@ public class Player : MonoBehaviour
     public bool PlayerLooksRight;
     public bool isdead;
     [HideInInspector]
-    public bool cant_move;
-    [HideInInspector]
     public bool iselevator;
 
     private Rigidbody2D rb2d;
@@ -43,7 +41,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (isdead == true || cant_move == true)
+        if (isdead == true)
             return;
 
         if(!iselevator)
@@ -83,7 +81,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isdead == true || cant_move == true)
+        if (isdead == true)
             return;
 
         if (Btn_Left_bool == true && Btn_Right_bool == false)

@@ -16,6 +16,8 @@ public class Bridge : MonoBehaviour
     float distance;
 
     bool isClicked;
+    [HideInInspector]
+    public bool is_clear;
 
 	void Start ()
     {
@@ -50,6 +52,7 @@ public class Bridge : MonoBehaviour
 
                 if (distance > 1f)
                 {
+                    is_clear = true;
                     hinge.useMotor = true;
                     this.enabled = false;
                 }
