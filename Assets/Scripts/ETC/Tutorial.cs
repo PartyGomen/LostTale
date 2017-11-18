@@ -30,6 +30,7 @@ public class Tutorial : MonoBehaviour
     private Bridge bridge;
 
     public float distance;
+    float time;
 
 
 	// Use this for initialization
@@ -61,18 +62,30 @@ public class Tutorial : MonoBehaviour
                         if (distance < 7)
                         {
                             GetComponent<SpriteRenderer>().sprite = image_sprite[(int)IMAGE_TYPE.SMALL_HAND];
-                            transform.Translate(Vector2.left * Time.deltaTime * 2);
+                            time += Time.deltaTime;
 
-                            if (transform.position.x < -2f)
+                            if(time > 0.5f)
                             {
-                                this.transform.position = new Vector3(0.6f, 4.5f, 0);
+                                transform.transform.eulerAngles = new Vector3(0, 0, 0);
+                                transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                                transform.Translate(Vector2.left * Time.deltaTime * 2);
+
+                                if (transform.position.x < -2f)
+                                {
+                                    time = 0.0f;
+                                    this.transform.position = new Vector3(0.6f, 4.5f, 0);
+                                    this.transform.eulerAngles = new Vector3(0, 0, -30);
+                                    transform.localScale = new Vector3(1f, 1f, 1f);
+                                }
                             }
-                        }
 
                         else
                         {
+                            time = 0.0f;
                             GetComponent<SpriteRenderer>().sprite = image_sprite[(int)IMAGE_TYPE.NONE];
                             this.transform.position = new Vector3(0.6f, 4.5f, 0);
+                            this.transform.eulerAngles = new Vector3(0, 0, -30);
+                            transform.localScale = new Vector3(1f, 1f, 1f);
                         }
                     }
 
