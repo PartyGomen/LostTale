@@ -33,6 +33,8 @@ public class Tutorial : MonoBehaviour
 	public float distance;
 	float time;
 
+    [HideInInspector]
+    public bool is_clicked;
 
 	// Use this for initialization
 	void Start ()
@@ -148,7 +150,21 @@ public class Tutorial : MonoBehaviour
 
             case TUTORIAL_TYPE.BULB:
                 {
+                    if(!is_clicked)
+                    {
+                        GetComponent<SpriteRenderer>().sprite = image_sprite[(int)IMAGE_TYPE.SMALL_HAND];
+                        transform.Translate(Vector2.up * Time.deltaTime * 0.7f);
 
+                        if (transform.position.y < -33f)
+                        {
+                            this.transform.position = new Vector3(-9.5f, -32.5f, 0);
+                        }
+                    }
+
+                    else
+                    {
+                        this.gameObject.SetActive(false);
+                    }
                 }
                 break;
         }
