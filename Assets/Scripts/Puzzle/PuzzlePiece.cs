@@ -6,13 +6,14 @@ using UnityEngine.EventSystems;
 public class PuzzlePiece : MonoBehaviour
 {
     private float RotateSpeed = 5f;
-    private float Radius = 1f;
+    private float Radius = 0.5f;
     private float distance;
+    private float _angle;
+    private float scale_and_alpha = 1.0f;
 
     private Vector2 _centre;
     private Vector3 mouse_pos;
     private Vector3 thispos;
-    private float _angle;
 
     private RaycastHit2D hit;
 
@@ -46,9 +47,20 @@ public class PuzzlePiece : MonoBehaviour
 
             distance = Vector3.Distance(this.transform.position, pos.transform.position);
 
-            if(distance < 8f)
+            if(distance < 25f)
             {
-                this.gameObject.SetActive(false);
+                scale_and_alpha -= Time.deltaTime / 1.5f;
+
+                if (scale_and_alpha >= 0)
+                {
+                    //this.transform.localScale = new Vector3(scale_and_alpha, scale_and_alpha, 1);
+                    this.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, scale_and_alpha);
+                }
+
+                else
+                {
+                    this.gameObject.SetActive(false);
+                }
             }
         }
 
