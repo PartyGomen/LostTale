@@ -22,25 +22,14 @@ public class BookManager : MonoBehaviour {
 	public GameObject LeftNext;
 
 	public GameObject ExitButton;
+	public GameObject GalleryManager;
 
 	public AudioSource BookSkip;
 	public AudioSource BookGrid;
 
 	public GameObject Null;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
 
-	/*	if (Input.GetMouseButtonDown (0)) {
-			Gallery.SetActive (true);
-			}*/
-	}
-		
 
 	public void FadeDisappearStart(){
 		StartCoroutine (FadeDisappearContents());
@@ -85,7 +74,7 @@ public class BookManager : MonoBehaviour {
 	}
 
 	public void	ShowGallery(){
-		//Debug.Log ("ShowGallery");
+		GalleryManager.SetActive (true);
 		RightNext.SetActive (false); // 페이지 넘기는 이벤트 방지 
 		LeftNext.SetActive (false);
 		Gallery.SetActive (true); // 갤러리 이미지 보여줌
@@ -98,9 +87,13 @@ public class BookManager : MonoBehaviour {
 	}
 
 	public void DisappearGallery(){
+		GalleryManager.SetActive (false);
 		Gallery.SetActive (false);
 		RightNext.SetActive (true);
 		LeftNext.SetActive (true);
+		Stage1.GetComponent<Button> ().interactable = true; // 스테이지 버튼 비초기화
+		Stage2.GetComponent<Button> ().interactable = true;
+		Stage3.GetComponent<Button> ().interactable = true;
 		ExitButton.GetComponent<Button>().interactable = true;
 		GameObject.Find ("GalleryOpen").GetComponent<Image>().raycastTarget = true;
 		GameObject.Find ("GalleryOpen").GetComponent<Button>().interactable = true;

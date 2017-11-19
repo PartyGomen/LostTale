@@ -10,8 +10,6 @@ public class TitleTest : MonoBehaviour
 	public GameObject BlackBackGround;
 	public GameObject BackGroundText;
 	public GameObject ExitButton;
-    public Text text;
-
 
 	public GameObject Book;
 	public GameObject RightPage;
@@ -25,6 +23,7 @@ public class TitleTest : MonoBehaviour
 	public GameObject Stage3;
 
 	public GameObject Gallery;
+	public GameObject GalleryManager;
 //	private bool TouchBan = false;
 //	private bool AppearBook = false;
 //	public Sprite BackGroundSprite;
@@ -100,13 +99,16 @@ public class TitleTest : MonoBehaviour
 		Stage2.GetComponent<Button>().interactable = true;
 		Stage3.GetComponent<Button>().interactable = true;
 		if(EndingStoryManager.IsGetEnding == true){
+			
 			Gallery.SetActive (true);
+
+
+			GalleryManager.SetActive (true);
 			EndingStoryManager.IsGetEnding = false;
 		}
 		gameObject.GetComponent<TitleTest> ().enabled = false;
 	}
-
-
+		
     void PlayScene()
     {
         SceneManager.LoadScene(0);

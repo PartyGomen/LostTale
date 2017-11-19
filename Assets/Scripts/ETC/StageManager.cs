@@ -51,11 +51,6 @@ public class StageManager : MonoBehaviour {
             stages[0].onClick.AddListener(delegate { LoadStage(4); });
             stages[1].onClick.AddListener(delegate { LoadStage(5); });
             stages[2].onClick.AddListener(delegate { LoadStage(6); });
-
-            //for (int i = 0; i < 3; i++)
-            //{               
-            //    stages[i].onClick.AddListener(delegate { LoadStage(idx[0]); });
-            //}
         }
     }
 

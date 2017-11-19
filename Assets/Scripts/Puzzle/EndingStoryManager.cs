@@ -16,7 +16,7 @@ public class EndingStoryManager : MonoBehaviour {
 	public GameObject Ending;
 	public Text EndText;
 	public GameObject EndingLetter;
-
+	public GameObject EndingManager;
 
 	private float colorcount = 0;
 	private int Textcount = 0;
@@ -27,10 +27,12 @@ public class EndingStoryManager : MonoBehaviour {
 	// Use this for initialization
 	private bool IsTyping = true;
 	private bool IsFadeIn = true;
+	private bool IsGallery = false;
 
 	public static bool IsGetEnding = false;
+	public static int ClearEnding = 0;
 
-	void Start () {
+	void OnEnable () {
 		StartCoroutine (FadeOutEnding());
 		StartCoroutine (ShowText(NowPosition));
 	}
@@ -59,7 +61,7 @@ public class EndingStoryManager : MonoBehaviour {
 
 	public IEnumerator FadeOutEnding(){
 		while(colorcount < 255){
-		colorcount += 0.02f;
+			colorcount += 0.02f;
 			Ending.GetComponent<Image>().color  = new Color(255, 255, 255, colorcount);
 			EndText.GetComponent<Text>().color  = new Color(255, 255, 255, colorcount);
 		yield return new WaitForSeconds (0.025f);
@@ -89,22 +91,7 @@ public class EndingStoryManager : MonoBehaviour {
 				NowPosition = 5;
 				ControlEnding (NowPosition);
 			}
-		}else if(PuzzleEndManager.EndingStoryNumber == 2){ // 해피 엔딩
-			if (Finishcount == 1) {
-				NowPosition = 1;
-				ControlEnding (NowPosition);
-			} else if (Finishcount == 3) {
-				NowPosition = 3;
-				ControlEnding (NowPosition);
-			} else if (Finishcount == 4) {
-				NowPosition = 6;
-				ControlEnding (NowPosition);
-			} else if (Finishcount == 5) {
-				NowPosition = 7;
-				ControlEnding (NowPosition);
-			}
-
-		}else if(PuzzleEndManager.EndingStoryNumber == 3){ // 세드 엔딩
+		}else if(PuzzleEndManager.EndingStoryNumber == 2){ // 세드 엔딩
 			if (Finishcount == 1) {
 				NowPosition = 1;
 				ControlEnding (NowPosition);
@@ -118,7 +105,20 @@ public class EndingStoryManager : MonoBehaviour {
 				NowPosition = 8;
 				ControlEnding (NowPosition);
 			}
-
+		}else if(PuzzleEndManager.EndingStoryNumber == 3){ // 해피 엔딩
+			if (Finishcount == 1) {
+				NowPosition = 1;
+				ControlEnding (NowPosition);
+			} else if (Finishcount == 3) {
+				NowPosition = 3;
+				ControlEnding (NowPosition);
+			} else if (Finishcount == 4) {
+				NowPosition = 6;
+				ControlEnding (NowPosition);
+			} else if (Finishcount == 5) {
+				NowPosition = 7;
+				ControlEnding (NowPosition);
+			}
 		}else if(PuzzleEndManager.EndingStoryNumber == 4){ // 특전 엔딩
 			if (Finishcount == 1) {
 				NowPosition = 1;
@@ -172,10 +172,10 @@ public class EndingStoryManager : MonoBehaviour {
 				EndingLetter.GetComponent<Image> ().sprite = TrueEndingletter [Endinglettercount];
 				GalleryManager.TrueEnding = true;
 			} else if (PuzzleEndManager.EndingStoryNumber == 2) {
-				EndingLetter.GetComponent<Image> ().sprite = HappyEndingletter [Endinglettercount];	
+				EndingLetter.GetComponent<Image> ().sprite = SadEndingletter [Endinglettercount];
 				GalleryManager.HappyEnding = true;
 			}else if (PuzzleEndManager.EndingStoryNumber == 3) {
-				EndingLetter.GetComponent<Image> ().sprite = SadEndingletter [Endinglettercount];
+				EndingLetter.GetComponent<Image> ().sprite = HappyEndingletter [Endinglettercount];	
 				GalleryManager.SadEnding = true;
 			}else if (PuzzleEndManager.EndingStoryNumber == 4) {
 				EndingLetter.GetComponent<Image> ().sprite = SpecialEndingletter [Endinglettercount];
@@ -189,6 +189,28 @@ public class EndingStoryManager : MonoBehaviour {
 		Debug.Log("Finish");
 
 		IsGetEnding = true;
-		SceneManager.LoadScene ("Title");
+		if (IsGallery == false) {
+			ClearEnding = number;
+			SceneManager.LoadScene ("Title");
+		} else {
+			EndingManager.SetActive (false);
+			resetGalleryEndingShow ();
+		}
+	}
+
+	public void resetGalleryEndingShow(){
+		Ending.GetComponent<Image> ().sprite = EndingImage [0];
+		IsGallery = false;
+		Textcount = 0;
+		Finishcount = 1;
+		Endinglettercount = 1;
+		NowPosition = 0;
+		EndingLetter.SetActive(false);
+	}
+
+	public void GalleryShowEnding(int number){
+		IsGallery = true;
+		EndingManager.SetActive (true);
+		PuzzleEndManager.EndingStoryNumber = number;
 	}
 }
