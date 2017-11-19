@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class PuzzlePiece : MonoBehaviour
 {
     private float RotateSpeed = 5f;
-    private float Radius = 0.5f;
+    private float Radius = 1f;
     private float distance;
 
     private Vector2 _centre;
