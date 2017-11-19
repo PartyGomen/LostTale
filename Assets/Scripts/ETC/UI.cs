@@ -10,7 +10,8 @@ public class UI : MonoBehaviour
     Vector3 startPosition = new Vector3(300, -5, 0);
     Vector3 endPosition = new Vector3(-160, -5, 0);
 
-    bool isOn;
+    [HideInInspector]
+    public bool isOn;
 
     public AudioSource clickSound;
 
@@ -19,11 +20,21 @@ public class UI : MonoBehaviour
         clickSound.Play();
 
         if (isOn)
-            StartCoroutine(UIOff());
+            OffCoroutine();
         else
-            StartCoroutine(UIOn());
+            OnCoroutine();
 
         isOn = !isOn;
+    }
+
+    public void OnCoroutine()
+    {
+        StartCoroutine(UIOn());
+    }
+
+    public void OffCoroutine()
+    {
+        StartCoroutine(UIOff());
     }
 
     IEnumerator UIOn()
