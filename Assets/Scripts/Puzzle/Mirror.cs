@@ -5,14 +5,24 @@ using UnityEngine.EventSystems;
 
 public class Mirror : MonoBehaviour
 {
+    public Laser laser;
+
     Vector3 pos;
 
     RaycastHit2D hit2d;
 
+    public int check_count;
     int rot = 0;
-	
-	// Update is called once per frame
-	void Update ()
+    public int[] answer_count;
+    public int index_number;
+
+    private void Start()
+    {
+        rot = (int)this.transform.eulerAngles.z;
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         if(!IsPointerOverUIObject())
         {
@@ -26,8 +36,26 @@ public class Mirror : MonoBehaviour
                 {
                     if (hit2d.collider.gameObject == this.gameObject)
                     {
+                        check_count++;
+
+                        if (check_count > 4)
+                            check_count = 0;
+
                         rot += 90;
                         this.transform.eulerAngles = new Vector3(0, 0, rot);
+
+                        for(int i = 0; i < answer_count.Length; i++)
+                        {
+                            if(answer_count[i] == check_count)
+                            {
+                                laser.reflected[index_number] = true;
+                            }
+
+                            else
+                            {
+                                laser.reflected[index_number + i] = false;
+                            }
+                        }
                     }
                 }
             }
