@@ -45,13 +45,10 @@ public class PianoKey : MonoBehaviour
                 {
                     sprite.color = new Color32(200, 200, 200, 255);
                     Invoke("ColorBack", 0.2f);
-                    //수정해야함
-                    //random_value = Random.Range(0, notes.Length);
-                    //random_x = Random.Range(20.0f, 40.0f);
-                    //random_y = Random.Range(-25.0f, -35.0f);
-                    //random_vector = new Vector3(random_x, random_y, 0);
-                    //random_transform.position = random_vector;
-                    //Instantiate(notes[random_value], random_transform);
+                    random_value = Random.Range(0, notes.Length);
+                    random_x = Random.Range(20.0f, 40.0f);
+                    random_y = Random.Range(-25.0f, -35.0f);
+                    Instantiate(notes[random_value], new Vector3(random_x, random_y, 0), Quaternion.identity);
                 }
             }
         }
