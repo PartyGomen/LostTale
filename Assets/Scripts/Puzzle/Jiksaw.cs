@@ -15,10 +15,10 @@ public class Jiksaw : MonoBehaviour
 
     public void CheckRay ()
     {
-        ray[0] = Physics2D.Raycast(new Vector2(this.transform.position.x + 0.55f, this.transform.position.y), Vector2.right, 0.1f);
-        ray[1] = Physics2D.Raycast(new Vector2(this.transform.position.x - 0.55f, this.transform.position.y), Vector2.left, 0.1f);
-        ray[2] = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y + 0.55f), Vector2.up, 0.1f);
-        ray[3] = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y - 0.55f), Vector2.down, 0.1f);
+        ray[0] = Physics2D.Raycast(new Vector2(this.transform.position.x + 1.8f, this.transform.position.y), Vector2.right, 0.1f);
+        ray[1] = Physics2D.Raycast(new Vector2(this.transform.position.x - 1.8f, this.transform.position.y), Vector2.left, 0.1f);
+        ray[2] = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y + 1.8f), Vector2.up, 0.1f);
+        ray[3] = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y - 1.8f), Vector2.down, 0.1f);
 
         if (ray[0])
         {
