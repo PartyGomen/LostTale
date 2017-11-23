@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class chess : MonoBehaviour
+public class Chess : MonoBehaviour
 {
     public Transform[] canMove;
 

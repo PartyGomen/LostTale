@@ -20,12 +20,11 @@ public class PianoKey : MonoBehaviour
     RaycastHit2D hit;
 
     Vector3 mouse_pos;
-    Vector3 random_vector;
 
-    Transform random_transform;
+    public PianoPuzzleManager piano_manager;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         sprite = GetComponent<SpriteRenderer>();
 	}
@@ -49,6 +48,7 @@ public class PianoKey : MonoBehaviour
                     random_x = Random.Range(20.0f, 40.0f);
                     random_y = Random.Range(-25.0f, -35.0f);
                     Instantiate(notes[random_value], new Vector3(random_x, random_y, 0), Quaternion.identity);
+                    piano_manager.EnterKey(key);
                 }
             }
         }

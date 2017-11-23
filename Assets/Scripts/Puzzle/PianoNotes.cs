@@ -5,7 +5,6 @@ using UnityEngine;
 public class PianoNotes : MonoBehaviour
 {
     public float fade_time;
-    public float shakeAmount;
 
     SpriteRenderer sprite_renderer;
 
@@ -30,17 +29,4 @@ public class PianoNotes : MonoBehaviour
             yield return null;
         }
     }
-
-    ////음표 떨림
-    //void Update()
-    //{
-    //    if (fade_time >= 0)
-    //    {
-    //        Vector2 ShakePos = Random.insideUnitCircle * shakeAmount;
-
-    //        transform.position = new Vector3(transform.position.x + ShakePos.x, transform.position.y + ShakePos.y, transform.position.z);
-
-    //        fade_time -= Time.deltaTime;
-    //    }
-    //}
 }
