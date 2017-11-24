@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Chandelier : MonoBehaviour
 {
+    AudioSource drop_audio;
+
     RaycastHit2D hit;
 
     Vector3 pos;
@@ -16,6 +18,7 @@ public class Chandelier : MonoBehaviour
 
     void Start ()
     {
+        drop_audio = GetComponent<AudioSource>();
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 	}
@@ -46,6 +49,7 @@ public class Chandelier : MonoBehaviour
     {
         if(!collision.gameObject.CompareTag("Player"))
         {
+            drop_audio.Play();
             rb2d.bodyType = RigidbodyType2D.Static;
             anim.SetBool("IsBroken", true);
             CameraShake shake = Camera.main.GetComponent<CameraShake>();
