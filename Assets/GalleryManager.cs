@@ -12,7 +12,6 @@ public class GalleryManager : MonoBehaviour {
 
 	public GameObject[] GalleryButton;
 	public GameObject[] NowTitle;
-	public Sprite[] TitleImage;
 	public GameObject[] DisableImage;
 	public GameObject[] NotImage;
 
@@ -22,15 +21,14 @@ public class GalleryManager : MonoBehaviour {
 
 	void OnEnable(){
 		if(EndingStoryManager.ClearEnding == 1){
-			
+			StartCoroutine (FadeInGallery(1));
 		}else if(EndingStoryManager.ClearEnding == 2){
-			
+			StartCoroutine (FadeInGallery(2));
 		}else if(EndingStoryManager.ClearEnding == 3){
-
+			StartCoroutine (FadeInGallery(3));
 		}else if(EndingStoryManager.ClearEnding == 4){
-
+			StartCoroutine (FadeInGallery(4));
 		}else if(EndingStoryManager.ClearEnding == 0){
-			StartCoroutine (FadeInGallery());
 			if(TrueEnding == true){
 				CheckGallery (0);
 			}else if(SadEnding == true){
@@ -45,35 +43,33 @@ public class GalleryManager : MonoBehaviour {
 	}
 	public void CheckGallery(int number){
 		GalleryButton [number].GetComponent<Button> ().interactable = true;
-		NowTitle [number].GetComponent<Image> ().sprite = TitleImage [number];
+		NowTitle [number].SetActive (true);
 		DisableImage [number].SetActive (false);
 		NotImage[number].SetActive (false);
 	}
 
-	IEnumerator FadeInGallery()
+	IEnumerator FadeInGallery(int number)
 	{
 		while (count > 0){  // 책 내용물  Fade Out 시킴 
 			DisableImage[0].GetComponent<Image> ().color =  new Color(1, 1, 1, count);
 			NotImage[0].GetComponent<Image> ().color =  new Color(1, 1, 1, count);
 			NowTitle[0].GetComponent<Image> ().color =  new Color(1, 1, 1, count);
-			//Stage1.GetComponent<Image> ().color =  new Color(255, 255, 255, count);
-			//Stage2.GetComponent<Image> ().color =  new Color(255, 255, 255, count);
-			Debug.Log(count);
 			yield return new WaitForSeconds(0.01f);
 			count -= 0.02f;
 		} 
 		count = 0;
-		StartCoroutine (FadeOutGallery());
+		StartCoroutine (FadeOutGallery(number));
 	}
 
-	IEnumerator FadeOutGallery()
+	IEnumerator FadeOutGallery(int number)
 	{
-		NowTitle [0].GetComponent<Image> ().sprite = TitleImage [0];
+		NowTitle [number-1].SetActive (true);
 		while (count < 1){  // 책 내용물  Fade Out 시킴 
-			NowTitle[0].GetComponent<Image> ().color =  new Color(1, 1, 1, count);
-			Debug.Log(count);
+			NowTitle[number-1].GetComponent<Image> ().color =  new Color(1, 1, 1, count);
 			yield return new WaitForSeconds(0.01f);
 			count += 0.02f;
 		} 
+		GalleryButton [number-1].GetComponent<Button> ().interactable = true;
+		EndingStoryManager.ClearEnding = 0;
 	}
 }
