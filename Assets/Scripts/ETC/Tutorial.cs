@@ -49,6 +49,12 @@ public class Tutorial : MonoBehaviour
                     puzzle_show = GameObject.Find("CrabpuzzleShow").GetComponent<PuzzleShow>();
                 }
                 break;
+
+            case TUTORIAL_TYPE.BULB:
+                {
+                    puzzle_show = GameObject.Find("CrabpuzzleShow").GetComponent<PuzzleShow>();
+                }
+                break;
         }
     }
 
@@ -57,17 +63,17 @@ public class Tutorial : MonoBehaviour
 	{
         alpha = Mathf.Clamp(alpha, 0.0f, 1.0f);
 
-		switch (type)
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
+        for (int i = 0; i < tutorial_image.Length; i++)
+        {
+            tutorial_image[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
+        }
+
+
+        switch (type)
 		{
             case TUTORIAL_TYPE.DRAG:
                 {
-                    GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
-
-                    for (int i = 0; i < tutorial_image.Length; i++)
-                    {
-                        tutorial_image[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
-                    }
-
                     if (bridge.is_clear == false)
                     {
                         distance = Vector3.Distance(player.gameObject.transform.position, bridge.gameObject.transform.position);
@@ -144,11 +150,6 @@ public class Tutorial : MonoBehaviour
                             is_first = true;
 
                             alpha += Time.deltaTime;
-                            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
-                            for (int i = 0; i < tutorial_image.Length; i++)
-                            {
-                                tutorial_image[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
-                            }
                             time += Time.deltaTime;
 
                             if (time > 0.5f)
@@ -168,22 +169,13 @@ public class Tutorial : MonoBehaviour
                         else
                         {
                             alpha -= Time.deltaTime;
-                            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
-                            for (int i = 0; i < tutorial_image.Length; i++)
-                            {
-                                tutorial_image[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
-                            }
                             is_first = false;
                         }
                     }
                     else
                     {
+                        puzzle_show.is_clicked = true;
                         alpha -= Time.deltaTime;
-                        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
-                        for (int i = 0; i < tutorial_image.Length; i++)
-                        {
-                            tutorial_image[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
-                        }
 
                         if (alpha <= 0)
                         {
@@ -205,19 +197,20 @@ public class Tutorial : MonoBehaviour
 
             case TUTORIAL_TYPE.BULB:
                 {
-                    if (!is_clicked)
+                    if (!is_clicked && puzzle_show.is_clicked)
                     {
-                        GetComponent<SpriteRenderer>().enabled = true;
+                        alpha += Time.deltaTime;
                         transform.Translate(Vector2.up * Time.deltaTime * 0.7f);
 
-                        if (transform.position.y < -33f)
+                        if (transform.position.y < min_value)
                         {
                             this.transform.position = new Vector3(-9.5f, -32.5f, 0);
                         }
                     }
 
-                    else
+                    else if(is_clicked)
                     {
+                        alpha -= Time.deltaTime;
                         this.gameObject.SetActive(false);
                     }
                 }
