@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GalleryManager : MonoBehaviour {
 
-	public static bool HappyEnding = true;
+	public static bool HappyEnding = false;
 	public static bool SadEnding = false;
 	public static bool TrueEnding = false;
 	public static bool SpecialEnding = false;
@@ -20,6 +20,7 @@ public class GalleryManager : MonoBehaviour {
 	private float count = 1;
 
 	void OnEnable(){
+		Debug.Log (EndingStoryManager.ClearEnding);
 		if(EndingStoryManager.ClearEnding == 1){
 			StartCoroutine (FadeInGallery(1));
 		}else if(EndingStoryManager.ClearEnding == 2){
@@ -51,9 +52,9 @@ public class GalleryManager : MonoBehaviour {
 	IEnumerator FadeInGallery(int number)
 	{
 		while (count > 0){  // 책 내용물  Fade Out 시킴 
-			DisableImage[0].GetComponent<Image> ().color =  new Color(1, 1, 1, count);
-			NotImage[0].GetComponent<Image> ().color =  new Color(1, 1, 1, count);
-			NowTitle[0].GetComponent<Image> ().color =  new Color(1, 1, 1, count);
+			DisableImage[number-1].GetComponent<Image> ().color =  new Color(1, 1, 1, count);
+			NotImage[number-1].GetComponent<Image> ().color =  new Color(1, 1, 1, count);
+			NowTitle[number-1].GetComponent<Image> ().color =  new Color(1, 1, 1, count);
 			yield return new WaitForSeconds(0.01f);
 			count -= 0.02f;
 		} 
