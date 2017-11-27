@@ -29,6 +29,7 @@ public class Tutorial : MonoBehaviour
     [HideInInspector]
     public bool is_clicked;
     private bool is_first;
+    private bool alpha_on;
 
 	// Use this for initialization
 	void Start ()
@@ -90,7 +91,22 @@ public class Tutorial : MonoBehaviour
 
                             is_first = true;
 
-                            alpha += Time.deltaTime;
+                            if(alpha_on)
+                            {
+                                alpha += Time.deltaTime;
+
+                                if (alpha >= 1)
+                                    alpha_on = false;
+                            }
+
+                            else
+                            {
+                                alpha -= Time.deltaTime;
+
+                                if (alpha < 0.5)
+                                    alpha_on = true;
+                            }
+
                             time += Time.deltaTime;
 
                             if (time > 0.5f)
@@ -149,7 +165,22 @@ public class Tutorial : MonoBehaviour
 
                             is_first = true;
 
-                            alpha += Time.deltaTime;
+                            if (alpha_on)
+                            {
+                                alpha += Time.deltaTime;
+
+                                if (alpha >= 1)
+                                    alpha_on = false;
+                            }
+
+                            else
+                            {
+                                alpha -= Time.deltaTime;
+
+                                if (alpha < 0.5)
+                                    alpha_on = true;
+                            }
+
                             time += Time.deltaTime;
 
                             if (time > 0.5f)
@@ -199,7 +230,22 @@ public class Tutorial : MonoBehaviour
                 {
                     if (!is_clicked && puzzle_show.is_clicked)
                     {
-                        alpha += Time.deltaTime;
+                        if (alpha_on)
+                        {
+                            alpha += Time.deltaTime;
+
+                            if (alpha >= 1)
+                                alpha_on = false;
+                        }
+
+                        else
+                        {
+                            alpha -= Time.deltaTime;
+
+                            if (alpha < 0.5)
+                                alpha_on = true;
+                        }
+
                         transform.Translate(Vector2.up * Time.deltaTime * 0.7f);
 
                         if (transform.position.y < min_value)
