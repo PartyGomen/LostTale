@@ -34,6 +34,13 @@ public class EndingMovePuzzle : MonoBehaviour {
 	public Sprite[] illustratorImage;
 
 	Vector3 PuzzlePosition;
+	void OnEnable(){
+		for(int i =0 ; i < 9 ; i++){
+			if(Inventory.PuzzleGet[i] == true){
+				puzzles [i].SetActive (true);
+			}
+		}
+	}
 
 	void Update () {
 
