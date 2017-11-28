@@ -24,10 +24,10 @@ public class PuzzleHermitCrabManager : MonoBehaviour
         if(check[0] && check[1] && check[2] && check[3] && check[4])
         {
             camfollow.CheckPlayer();
-            Inventory.PuzzleGet[0] = true;
-            Inventory.GetPuzzle1();
+            //Inventory.PuzzleGet[0] = true;
+            //Inventory.GetPuzzle1();
             bridge.SetActive(true);
-            player.saveZoneidx = 1;
+            GetComponent<PuzzleClear>().Clear();
         }
     }
 }

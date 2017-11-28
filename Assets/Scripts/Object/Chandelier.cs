@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Chandelier : MonoBehaviour
 {
+    public GameObject particle;
+
     AudioSource drop_audio;
 
     RaycastHit2D hit;
@@ -42,8 +44,11 @@ public class Chandelier : MonoBehaviour
         if(count == 2)
         {
             rb2d.bodyType = RigidbodyType2D.Dynamic;
+
+            if(particle != null)
+                particle.SetActive(false);
         }
-	}
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

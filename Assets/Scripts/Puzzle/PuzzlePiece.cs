@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class PuzzlePiece : MonoBehaviour
 {
+    public int change_index;
+
     private float RotateSpeed = 5f;
     private float Radius = 0.5f;
     private float distance;
@@ -17,6 +19,8 @@ public class PuzzlePiece : MonoBehaviour
 
     private RaycastHit2D hit;
 
+    private Player player;
+
     public GameObject pos;
 
     public UI ui_panel;
@@ -26,6 +30,7 @@ public class PuzzlePiece : MonoBehaviour
     private void Start()
     {
         _centre = transform.position;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     private void Update()
@@ -81,6 +86,7 @@ public class PuzzlePiece : MonoBehaviour
                     }
 
                     isclicked = true;
+                    player.saveZoneidx = change_index;
                 }
             }
         }
