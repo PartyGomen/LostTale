@@ -6,17 +6,21 @@ public class PuzzleHermitCrabManager : MonoBehaviour
 {
     public bool[] check = new bool[5];
 
-    Player player;
-
     CameraFollow camfollow;
 
     public GameObject bridge;
+    public GameObject[] crabs = new GameObject[5];
+    Vector3[] crab_pos = new Vector3[5];
 
 	// Use this for initialization
 	void Start ()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         camfollow = Camera.main.GetComponent<CameraFollow>();
+
+        for(int i = 0; i < crabs.Length; i ++)
+        {
+            crab_pos[i] = crabs[i].transform.position;
+        }
 	}
 
     public void CheckEnd()
@@ -28,6 +32,15 @@ public class PuzzleHermitCrabManager : MonoBehaviour
             //Inventory.GetPuzzle1();
             bridge.SetActive(true);
             GetComponent<PuzzleClear>().Clear();
+        }
+    }
+
+    public void Crab_Reset()
+    {
+        for(int i = 0; i < crabs.Length; i++)
+        {
+            check[i] = false;
+            crabs[i].transform.position = crab_pos[i];
         }
     }
 }

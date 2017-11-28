@@ -14,16 +14,12 @@ public class Password : MonoBehaviour {
 
     PasswordObj passwordObj;
 
-    Player player;
-
 	void Start ()
     {
         one = 0;
         two = 0;
         three = 0;
         four = 0;
-
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	}
 	
 	void Update ()
@@ -34,6 +30,14 @@ public class Password : MonoBehaviour {
         num[3].text = four.ToString();
 
         passwordObj = GameObject.Find("PassWordObj").GetComponent<PasswordObj>();
+    }
+
+    public void Number_Reset()
+    {
+        one = 0;
+        two = 0;
+        three = 0;
+        four = 0;
     }
 
     void CheckCorret()
@@ -48,7 +52,6 @@ public class Password : MonoBehaviour {
             control.SetActive(true);
             obj.SetActive(true);
             GetComponent<PuzzleClear>().Clear();
-            //player.saveZoneidx = 2;
         }
     }
 
