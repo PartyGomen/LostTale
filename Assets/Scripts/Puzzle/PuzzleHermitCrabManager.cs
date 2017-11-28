@@ -10,7 +10,7 @@ public class PuzzleHermitCrabManager : MonoBehaviour
 
     public GameObject bridge;
     public GameObject[] crabs = new GameObject[5];
-    Vector3[] crab_pos = new Vector3[5];
+    private Vector3[] crab_pos = new Vector3[5];
 
 	// Use this for initialization
 	void Start ()

@@ -32,14 +32,6 @@ public class Password : MonoBehaviour {
         passwordObj = GameObject.Find("PassWordObj").GetComponent<PasswordObj>();
     }
 
-    public void Number_Reset()
-    {
-        one = 0;
-        two = 0;
-        three = 0;
-        four = 0;
-    }
-
     void CheckCorret()
     {
         if (one == answer[0] && two == answer[1] && three == answer[2] && four == answer[3])
@@ -57,8 +49,13 @@ public class Password : MonoBehaviour {
 
     public void Off()
     {
-        GameObject Go = GameObject.Find("PassWordPanel");
-        Go.SetActive(false);
+        GameObject go = GameObject.Find("PassWordPanel");
+        if(go != null)
+            go.SetActive(false);
+        one = 0;
+        two = 0;
+        three = 0;
+        four = 0;
         control.SetActive(true);
     }
 

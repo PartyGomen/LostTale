@@ -11,6 +11,7 @@ public class PasswordObj : MonoBehaviour
 
 	private GameObject target;
 	public GameObject Null;
+    public GameObject back_btn;
 	public Vector2 pos;
 
     GameObject player;
@@ -28,8 +29,10 @@ public class PasswordObj : MonoBehaviour
 
         if (Input.GetMouseButtonDown (0) && distance < 6.5) {
 			CastRay ();
-			if (target.name == "PassWordObj") {
-				Panel.SetActive(true);
+			if (target.name == "PassWordObj")
+            {
+                back_btn.SetActive(true);
+                Panel.SetActive(true);
 				MobileControls.SetActive(false);
 			}
 		}
