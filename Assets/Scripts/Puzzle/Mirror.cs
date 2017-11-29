@@ -11,11 +11,13 @@ public class Mirror : MonoBehaviour
 
     RaycastHit2D hit2d;
 
-    public int check_count;
     int rot = 0;
-    public int[] answer_count;
-    public int index_number;
 
+    //생각해보자
+    public int[] answer_number;
+    public int[] idx_number;
+    public int check_number;
+        
     private void Start()
     {
         rot = (int)this.transform.eulerAngles.z;
@@ -36,24 +38,24 @@ public class Mirror : MonoBehaviour
                 {
                     if (hit2d.collider.gameObject == this.gameObject)
                     {
-                        check_count++;
+                        check_number++;
 
-                        if (check_count > 4)
-                            check_count = 0;
+                        if (check_number > 4)
+                            check_number = 1;
 
                         rot += 90;
                         this.transform.eulerAngles = new Vector3(0, 0, rot);
 
-                        for(int i = 0; i < answer_count.Length; i++)
+                        for(int i = 0; i < answer_number.Length; i ++)
                         {
-                            if(answer_count[i] == check_count)
+                            if(answer_number[i] == check_number)
                             {
-                                laser.reflected[index_number] = true;
+                                laser.reflected[idx_number[i]] = true;
                             }
 
                             else
                             {
-                                laser.reflected[index_number + i] = false;
+                                laser.reflected[idx_number[i]] = false;
                             }
                         }
                     }

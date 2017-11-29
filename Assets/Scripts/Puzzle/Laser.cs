@@ -40,6 +40,12 @@ public class Laser : MonoBehaviour
                     line.SetPosition(4, mirror[4].transform.position);
                 }
 
+                else if(reflected[5])
+                {
+                    linecount = 5;
+                    line.SetPosition(4, mirror[6].transform.position);
+                }
+
                 else
                 {
                     linecount = 4;
@@ -55,6 +61,12 @@ public class Laser : MonoBehaviour
                 {
                     linecount = 5;
                     line.SetPosition(4, mirror[5].transform.position);
+                }
+
+                else if(reflected[6])
+                {
+                    linecount = 5;
+                    line.SetPosition(4, mirror[7].transform.position);
                 }
 
                 else
