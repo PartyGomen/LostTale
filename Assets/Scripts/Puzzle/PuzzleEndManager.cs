@@ -30,6 +30,9 @@ public class PuzzleEndManager : MonoBehaviour {
 	private float count1;
 	Vector3 Camposition;
 
+	public Text HintText;
+	private bool KindHint = false;
+
 	void Start(){
 		Camposition = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Transform> ().position;
 		Camposition.z = -10f;
@@ -84,7 +87,7 @@ public class PuzzleEndManager : MonoBehaviour {
 			StartCoroutine (ClearEffect());
 		} else {	
 			StopAllCoroutines ();
-			HintOn ();
+			HintOn (PuzzleEnd);
 
 		}
 	}
@@ -107,7 +110,7 @@ public class PuzzleEndManager : MonoBehaviour {
 		//StopAllCoroutines ();
 		EndingCheck = true;
 		if (ShowHint == true) {
-			HintOn ();
+			HintOn (PuzzleEnd);
 			ShowHint = false;
 		}else if(ShowEnding == true){
 			EndingStoryOn ();
@@ -136,10 +139,24 @@ public class PuzzleEndManager : MonoBehaviour {
 	}
 
 		
-	public void HintOn(){
+	public void HintOn(string[] Puzzle){
 		EndingCheck = true;
-		Debug.Log ("HintOn");
 		HintPanel.SetActive (true);
+
+		for(int i = 0 ; i < 5 ; i ++){
+			if (Puzzle [i] == "Puzzle1" || Puzzle [i] == "Puzzle2" || Puzzle [i] == "Puzzle3" || Puzzle [i] == "Puzzle4" || Puzzle [i] == "Puzzle5") {
+				KindHint = true;
+			} else {
+				KindHint = false;
+				break;
+			}
+		}
+		if (KindHint == true) {
+			HintText.text = "퍼즐 순서가 틀렸어...";
+		} else {
+			HintText.text = "퍼즐 조각이 틀렸어...";
+		}
+		KindHint = false;
 		this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = false;
 
 	}
