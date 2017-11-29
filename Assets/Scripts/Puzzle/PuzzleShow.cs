@@ -15,7 +15,8 @@ public class PuzzleShow : MonoBehaviour
 
     CameraFollow cam;
 
-    float distance;
+    public float distance;
+    public float max_distance;
 
     GameObject target;
 
@@ -29,7 +30,7 @@ public class PuzzleShow : MonoBehaviour
     {
         distance = Vector3.Distance(target.transform.position, this.gameObject.transform.position);
 
-        if (Input.GetMouseButtonDown(0) && distance < 6.5)
+        if (Input.GetMouseButtonDown(0) && distance < max_distance)
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
