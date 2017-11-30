@@ -17,7 +17,6 @@ public class PelicanMgr : MonoBehaviour
     public GameObject go2;
     public GameObject siso;
     GameObject[] fishes;
-    
 
 	void Start ()
     {
@@ -72,7 +71,8 @@ public class PelicanMgr : MonoBehaviour
             
             if(distance < 0.1f && (weight1 + weight2 == 12))
             {
-                Debug.Log("클리어");
+                GetComponent<PuzzleClear>().Clear();
+                Destroy(this);
             }
         }
     }
@@ -87,7 +87,7 @@ public class PelicanMgr : MonoBehaviour
         weight2 += i;
     }
 
-    void ResetWeight()
+    public void ResetWeight()
     {
         weight1 = 0;
         weight2 = 0;

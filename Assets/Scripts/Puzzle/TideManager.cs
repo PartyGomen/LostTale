@@ -15,6 +15,10 @@ public class TideManager : MonoBehaviour
 
     public int starspot;
 
+    private bool get_puzzle_piece;
+    [HideInInspector]
+    public bool is_clear;
+
     void Start ()
     {
         starspot = Random.Range(1, 9);
@@ -104,6 +108,12 @@ public class TideManager : MonoBehaviour
             StartCoroutine(SecondWaterPosChange());
 
             GameObject.Find("TideBtn").SetActive(false);
+
+            if(get_puzzle_piece == false && is_clear)
+            {
+                get_puzzle_piece = true;
+                GetComponent<PuzzleClear>().Clear();
+            }
         }
     }
 }

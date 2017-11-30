@@ -19,8 +19,8 @@ public class Laser : MonoBehaviour
         line.SetPosition(0, this.transform.position);
         line.SetPosition(1, mirror[0].transform.position);
     }
-	
-	void Update ()
+
+    void Update()
     {
         line.positionCount = linecount;
 
@@ -40,7 +40,7 @@ public class Laser : MonoBehaviour
                     line.SetPosition(4, mirror[4].transform.position);
                 }
 
-                else if(reflected[5])
+                else if (reflected[5])
                 {
                     linecount = 5;
                     line.SetPosition(4, mirror[6].transform.position);
@@ -63,7 +63,7 @@ public class Laser : MonoBehaviour
                     line.SetPosition(4, mirror[5].transform.position);
                 }
 
-                else if(reflected[6])
+                else if (reflected[6])
                 {
                     linecount = 5;
                     line.SetPosition(4, mirror[7].transform.position);
@@ -84,6 +84,12 @@ public class Laser : MonoBehaviour
         else
         {
             linecount = 2;
+        }
+
+        if (reflected[0] && reflected[1] && reflected[2] && reflected[4])
+        {
+            GetComponent<PuzzleClear>().Clear();
+            Camera.main.GetComponent<CameraFollow>().CheckPlayer();
         }
 	}
 }
