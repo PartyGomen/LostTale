@@ -18,7 +18,9 @@ public class TideManager : MonoBehaviour
     private bool get_puzzle_piece;
     [HideInInspector]
     public bool is_clear;
-
+    [HideInInspector]
+    public bool is_trigger_on;
+    
     void Start ()
     {
         starspot = Random.Range(1, 9);
@@ -104,6 +106,22 @@ public class TideManager : MonoBehaviour
     {
         if (Camera.main.GetComponent<CameraFollow>().goPuzzele[0] == true)
         {
+            if(is_trigger_on)
+            {
+                for(int i = 0; i < moon.waterObj.Length; i++)
+                {
+                    moon.waterObj[i].GetComponent<BoxCollider2D>().isTrigger = true;
+                }
+            }
+
+            else
+            {
+                for (int i = 0; i < moon.waterObj.Length; i++)
+                {
+                    moon.waterObj[i].GetComponent<BoxCollider2D>().isTrigger = false;
+                }
+            }
+
             StartCoroutine(FirstWaterPosChange());
             StartCoroutine(SecondWaterPosChange());
 

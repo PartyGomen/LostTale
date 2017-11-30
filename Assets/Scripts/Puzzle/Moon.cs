@@ -14,14 +14,16 @@ public class Moon : MonoBehaviour
     {
         if (collision.gameObject.name == "rising")
         {
-            tide_manager.is_clear = true;
+            tide_manager.is_clear = false;
+            tide_manager.is_trigger_on = false;
             waterYPos[0] = -6.7f;
             waterYPos[1] = -2.5f;
         }
 
         else if (collision.gameObject.name == "edd")
         {
-            tide_manager.is_clear = false;
+            tide_manager.is_clear = true;
+            tide_manager.is_trigger_on = true;
             waterYPos[0] = -10.7f;
             waterYPos[1] = -14.5f;
         }

@@ -71,6 +71,7 @@ public class PelicanMgr : MonoBehaviour
             
             if(distance < 0.1f && (weight1 + weight2 == 12))
             {
+                Camera.main.GetComponent<CameraFollow>().CheckPlayer();
                 GetComponent<PuzzleClear>().Clear();
                 Destroy(this);
             }
