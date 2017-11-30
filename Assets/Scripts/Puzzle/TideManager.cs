@@ -6,13 +6,12 @@ public class TideManager : MonoBehaviour
 {
     public GameObject star; //별 오브젝트
     public GameObject moonObj; //달 오브젝트
-    public GameObject moonParent; //달 부모 오브젝트
 
     public Moon moon;
 
     Transform[] spots;  //별 위치 + 달 위치
 
-    public Tide tide;
+    private Tide tide;
 
     public int starspot;
 

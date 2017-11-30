@@ -29,4 +29,14 @@ public class PianoPuzzleManager : MonoBehaviour
             Debug.Log("Clear");
         }
     }
+
+    void ResetKey()
+    {
+        index_number = 0;
+
+        for (int i = 0; i < answer.Length; i++)
+        {
+            answer[i] = "";
+        }
+    }
 }
