@@ -22,13 +22,6 @@ public class Inventory : MonoBehaviour
 
 	private int count = 0;
 
-	void Start(){
-
-	}
-
-
-
-
     public void OffInven()
     {
         go.SetActive(false);
@@ -71,11 +64,6 @@ public class Inventory : MonoBehaviour
 			piece [j].SetActive (false);
 		}
 		count = 0;
-
-		for (int i = 0; i < PuzzleGet.Length; i++) {
-			Debug.Log (PuzzleGetNumber [i]);
-		}
-
 	}
 
 }

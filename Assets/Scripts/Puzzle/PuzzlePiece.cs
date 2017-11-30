@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class PuzzlePiece : MonoBehaviour
 {
     public int change_index;
+    public int piece_number;
 
     private float RotateSpeed = 5f;
     private float Radius = 0.5f;
@@ -64,6 +65,7 @@ public class PuzzlePiece : MonoBehaviour
 
                 else
                 {
+                    Inventory.PuzzleGet[piece_number] = true;
                     this.gameObject.SetActive(false);
                 }
             }
