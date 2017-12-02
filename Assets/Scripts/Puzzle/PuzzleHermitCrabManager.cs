@@ -12,6 +12,9 @@ public class PuzzleHermitCrabManager : MonoBehaviour
     public GameObject[] crabs = new GameObject[5];
     private Vector3[] crab_pos = new Vector3[5];
 
+    [HideInInspector]
+    public bool is_clear = false;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -27,6 +30,7 @@ public class PuzzleHermitCrabManager : MonoBehaviour
     {
         if(check[0] && check[1] && check[2] && check[3] && check[4])
         {
+            is_clear = true;
             camfollow.CheckPuzzleOrPlayer(false);
             //Inventory.PuzzleGet[0] = true;
             //Inventory.GetPuzzle1();

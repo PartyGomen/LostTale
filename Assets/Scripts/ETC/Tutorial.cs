@@ -18,10 +18,12 @@ public class Tutorial : MonoBehaviour
 	private Player player;
 	private Bridge bridge;
     private PuzzleShow puzzle_show;
+    private PuzzleHermitCrabManager crab_manager;
+    private PuzzlePiece puzzle_piece;
     private Vector3 pos;
     public GameObject[] tutorial_image;
 
-	public float distance;
+	private float distance;
     public float min_value;
 	private float time;
     private float alpha;
@@ -47,7 +49,15 @@ public class Tutorial : MonoBehaviour
 
             case TUTORIAL_TYPE.TOUCH:
                 {
-                    puzzle_show = GameObject.Find("CrabpuzzleShow").GetComponent<PuzzleShow>();
+                    crab_manager = GameObject.Find("Puzzle_Screen").GetComponent<PuzzleHermitCrabManager>();
+                }
+                break;
+
+            case TUTORIAL_TYPE.PUZZLE_PIECE:
+                {
+                    crab_manager = GameObject.Find("Puzzle_Screen").GetComponent<PuzzleHermitCrabManager>();
+                    puzzle_piece = GameObject.Find("HermitCrab_Puzzle").GetComponent<PuzzlePiece>();
+                    puzzle_piece.gameObject.SetActive(false);
                 }
                 break;
 
@@ -150,9 +160,9 @@ public class Tutorial : MonoBehaviour
 
             case TUTORIAL_TYPE.TOUCH:
                 {
-                    if (puzzle_show.is_clicked == false)
+                    if (crab_manager.is_clear == false)
                     {
-                        distance = Vector3.Distance(player.gameObject.transform.position, puzzle_show.gameObject.transform.position);
+                        distance = Vector3.Distance(player.gameObject.transform.position, this.gameObject.transform.position);
 
                         if (distance < 5f)
                         {
@@ -205,7 +215,6 @@ public class Tutorial : MonoBehaviour
                     }
                     else
                     {
-                        puzzle_show.is_clicked = true;
                         alpha -= Time.deltaTime;
 
                         if (alpha <= 0)
@@ -222,7 +231,73 @@ public class Tutorial : MonoBehaviour
 
             case TUTORIAL_TYPE.PUZZLE_PIECE:
                 {
+                    if (puzzle_piece.isclicked == false && crab_manager.is_clear == true)
+                    {
+                        distance = Vector3.Distance(player.gameObject.transform.position, this.gameObject.transform.position);
 
+                        if (distance < 5f)
+                        {
+                            if (!is_first)
+                            {
+                                time = 0.0f;
+                                this.transform.eulerAngles = new Vector3(0, 0, -30);
+                                transform.localScale = new Vector3(1f, 1f, 1f);
+                            }
+
+                            is_first = true;
+
+                            if (alpha_on)
+                            {
+                                alpha += Time.deltaTime;
+
+                                if (alpha >= 1)
+                                    alpha_on = false;
+                            }
+
+                            else
+                            {
+                                alpha -= Time.deltaTime;
+
+                                if (alpha < 0.5)
+                                    alpha_on = true;
+                            }
+
+                            time += Time.deltaTime;
+
+                            if (time > 0.5f)
+                            {
+                                transform.transform.eulerAngles = new Vector3(0, 0, 0);
+                                transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+
+                                if (time > 1f)
+                                {
+                                    time = 0.0f;
+                                    this.transform.eulerAngles = new Vector3(0, 0, -30);
+                                    transform.localScale = new Vector3(1f, 1f, 1f);
+                                }
+                            }
+                        }
+
+                        else
+                        {
+                            alpha -= Time.deltaTime;
+                            is_first = false;
+                        }
+                    }
+
+                    else if(puzzle_piece.isclicked)
+                    {
+                        alpha -= Time.deltaTime;
+
+                        if (alpha <= 0)
+                        {
+                            for (int i = 0; i < tutorial_image.Length; i++)
+                            {
+                                tutorial_image[i].SetActive(false);
+                            }
+                            this.gameObject.SetActive(false);
+                        }
+                    }
                 }
                 break;
 
@@ -257,7 +332,15 @@ public class Tutorial : MonoBehaviour
                     else if(is_clicked)
                     {
                         alpha -= Time.deltaTime;
-                        this.gameObject.SetActive(false);
+
+                        if (alpha <= 0)
+                        {
+                            for (int i = 0; i < tutorial_image.Length; i++)
+                            {
+                                tutorial_image[i].SetActive(false);
+                            }
+                            this.gameObject.SetActive(false);
+                        }
                     }
                 }
                 break;

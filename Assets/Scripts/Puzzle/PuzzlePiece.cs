@@ -26,7 +26,8 @@ public class PuzzlePiece : MonoBehaviour
 
     public UI ui_panel;
 
-    bool isclicked;
+    [HideInInspector]
+    public bool isclicked;
 
     private void Start()
     {
