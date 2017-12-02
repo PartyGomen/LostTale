@@ -29,23 +29,44 @@ public class CameraFollow : MonoBehaviour
         screeneffect = GetComponent<ScreenTransitionImageEffect>();
 
         StartCoroutine(ScreenEffectStart());
-        StartCoroutine(Fade());
+        StartCoroutine(Fade(true, 0f));
     }
 
-    IEnumerator Fade()
+    IEnumerator Fade(bool is_in, float delay)
     {
-        float t = 1.0f;
+        yield return new WaitForSeconds(delay);
 
-        while (t >= 0)
+        if(is_in)
         {
-            t -= (Time.deltaTime / fadeTime);
+            float t = 1.0f;
 
-            panel.color = new Color(0, 0, 0, t);
+            while (t >= 0)
+            {
+                t -= (Time.deltaTime / fadeTime);
 
-            yield return null;
+                panel.color = new Color(0, 0, 0, t);
+
+                yield return null;
+            }
+
+            panel.gameObject.SetActive(false);
         }
 
-        panel.gameObject.SetActive(false);
+        else
+        {
+            panel.gameObject.SetActive(true);
+
+            float t = 0.0f;
+
+            while (t < 1)
+            {
+                t += (Time.deltaTime / fadeTime);
+
+                panel.color = new Color(0, 0, 0, t);
+
+                yield return null;
+            }
+        }
     }
 
     IEnumerator ScreenEffectStart()
@@ -75,27 +96,23 @@ public class CameraFollow : MonoBehaviour
                 NewPosition = new Vector3(Mathf.Clamp(NewPosition.x, minxy[0], maxxy[0]), Mathf.Clamp(NewPosition.y, minxy[1], maxxy[1]), NewPosition.z);
                 this.transform.position = new Vector3(NewPosition.x, NewPosition.y, this.transform.position.z);
             }
-            else if (ShowPuzzle.puzzleOn == true)
-            {
-              //  this.transform.position = new Vector3(-27.73f, 0f, -10);
-            }
-
-            if (ShowPuzzle.puzzleClear == true)
-            {
-              /*  Transform tr = GameObject.FindWithTag("Player").GetComponent<Transform>();
-
-                this.transform.position = new Vector3(tr.position.x, tr.position.y, -10);
-                control.SetActive(true);
-                ShowPuzzle.puzzleOn = false;
-                ShowPuzzle.puzzleClear = false;*/
-            }
         }
+    }
+    
+    public void CheckPuzzleOrPlayer(bool is_puzzle)
+    {
+        if (is_puzzle)
+        {
+            control.SetActive(false);
+            Invoke("CheckPuzzle", 1f);
+        }
+        else
+            Invoke("CheckPlayer", 1f);
     }
 
     public void CheckPuzzle()
     {
         isPuzzle = true;
-        control.SetActive(false);
         backBtn.SetActive(true);
 
         for (int i = 0; i < goPuzzele.Length; i++)
@@ -117,5 +134,10 @@ public class CameraFollow : MonoBehaviour
 
         control.SetActive(true);
         backBtn.SetActive(false);
+    }
+
+    public void FadeCoroutine(bool fade_in, float delay_time)
+    {
+        StartCoroutine(Fade(fade_in, delay_time));
     }
 }

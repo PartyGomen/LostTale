@@ -46,7 +46,9 @@ public class PuzzleShow : MonoBehaviour
                     }
 
                     cam.goPuzzele[puzzleIdx] = true;
-                    cam.CheckPuzzle();
+                    cam.CheckPuzzleOrPlayer(true);
+                    cam.FadeCoroutine(false, 0f);
+                    cam.FadeCoroutine(true, 1f);
                     is_clicked = true;
                 }
             }
