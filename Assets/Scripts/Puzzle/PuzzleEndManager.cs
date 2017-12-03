@@ -32,10 +32,13 @@ public class PuzzleEndManager : MonoBehaviour {
 
 	public Text HintText;
 	private bool KindHint = false;
+	public float ShakeAmount;
+
 
 	void Start(){
 		Camposition = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Transform> ().position;
 		Camposition.z = -10f;
+
 	}
 	// Update is called once per frame
 	void Update () {
@@ -86,6 +89,7 @@ public class PuzzleEndManager : MonoBehaviour {
 			ShowEnding = true;
 			StartCoroutine (ClearEffect());
 		} else {	
+		//	StartCoroutine (ShakePuzzle (PuzzleEnd, 2.0f));
 			StopAllCoroutines ();
 			HintOn (PuzzleEnd);
 
@@ -179,4 +183,14 @@ public class PuzzleEndManager : MonoBehaviour {
 		RelocatePuzzle ();
 
 	}
+	/*IEnumerator ShakePuzzle(string []PuzzleEnd, float ShakeAmount){
+		while (true) {
+			for (int i = 0; i < MaxPuzzle; i++) {
+				Vector2 ShakePosition = ShakeAmount * Random.insideUnitCircle;
+				GameObject.Find (PuzzleEnd [i]).transform.position = new Vector3 (GameObject.Find (PuzzleEnd [i]).transform.position.x + ShakePosition.x, GameObject.Find (PuzzleEnd [i]).transform.position.y + ShakePosition.y, GameObject.Find (PuzzleEnd [i]).transform.position.z);
+			}
+		}
+		yield return new WaitForSeconds(1.5f);
+	}*/
 }
+  
