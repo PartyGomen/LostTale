@@ -5,28 +5,28 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public float speed = 1000f;
-    public float jumppower = 8f;
-    private float JumpForceCount;
+    public float jump_power = 8.5f;
+    private float jump_force_count;
 
     //[HideInInspector]
     public bool grounded;
-    private bool Btn_Left_bool;
-    private bool Btn_Right_bool;
-    private bool Btn_Jump_bool;
+    private bool btn_left_bool;
+    private bool btn_right_bool;
+    private bool btn_jump_bool;
     [HideInInspector]
-    public bool PlayerLooksRight;
-    public bool isdead;
+    public bool player_looks_right;
+    public bool is_dead;
     [HideInInspector]
-    public bool iselevator;
+    public bool is_elevator;
 
     private Rigidbody2D rb2d;
     [HideInInspector]
     public Animator anim;
-    private Vector3 MySpriteOriginalScale;
+    private Vector3 my_sprite_originalscale;
     //public AudioSource groundAudio;
-    public AudioSource jumpAudio;
+    public AudioSource jump_audio;
 
-    public Transform[] saveZone;
+    public Transform[] save_zone;
 
     //[HideInInspector]
     public int saveZoneidx = 0;
@@ -35,16 +35,16 @@ public class Player : MonoBehaviour
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
-        PlayerLooksRight = true;
-        MySpriteOriginalScale = transform.localScale;
+        player_looks_right = true;
+        my_sprite_originalscale = transform.localScale;
     }
 
     void Update()
     {
-        if (isdead == true)
+        if (is_dead == true)
             return;
 
-        if(!iselevator)
+        if(!is_elevator)
         {
             anim.SetBool("Grounded", grounded);
         }
@@ -81,91 +81,91 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isdead == true)
+        if (is_dead == true)
             return;
 
-        if (Btn_Left_bool == true && Btn_Right_bool == false)
+        if (btn_left_bool == true && btn_right_bool == false)
         {
-            if (PlayerLooksRight == true)
+            if (player_looks_right == true)
             {
-                PlayerLooksRight = false;
-                transform.localScale = new Vector3(-MySpriteOriginalScale.x, MySpriteOriginalScale.y, MySpriteOriginalScale.z);
+                player_looks_right = false;
+                transform.localScale = new Vector3(-my_sprite_originalscale.x, my_sprite_originalscale.y, my_sprite_originalscale.z);
             }
 
-            this.GetComponent<Rigidbody2D>().AddForce(Vector2.left * speed * Time.deltaTime);
+            rb2d.AddForce(Vector2.left * speed * Time.deltaTime);
         }
 
-        else if (Btn_Left_bool == false && Btn_Right_bool == true)
+        else if (btn_left_bool == false && btn_right_bool == true)
         {
-            if (PlayerLooksRight == false)
+            if (player_looks_right == false)
             {
-                PlayerLooksRight = true;
-                transform.localScale = MySpriteOriginalScale;
+                player_looks_right = true;
+                transform.localScale = my_sprite_originalscale;
             }
 
-            this.GetComponent<Rigidbody2D>().AddForce(Vector2.right * speed * Time.deltaTime);
+            rb2d.AddForce(Vector2.right * speed * Time.deltaTime);
         }
 
-        if (Btn_Jump_bool == true && JumpForceCount > 0)
+        if (btn_jump_bool == true && jump_force_count > 0)
         {
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, jumppower);
-            JumpForceCount -= 0.1f * Time.deltaTime;
+            rb2d.velocity = new Vector2(rb2d.velocity.x, jump_power);
+            jump_force_count -= 0.1f * Time.deltaTime;
         }
 
 
         //땅에 있을때 중력1, 그렇지 않으면 중력2
         if (grounded == true)
         {
-            this.GetComponent<Rigidbody2D>().gravityScale = 1f;
+            rb2d.gravityScale = 1f;
         }
         else
         {
-            if (this.GetComponent<Rigidbody2D>().gravityScale != 2.5f)
+            if (rb2d.gravityScale != 2.5f)
             {
-                this.GetComponent<Rigidbody2D>().gravityScale = 2.5f;
+                rb2d.gravityScale = 2.5f;
             }
         }
     }
 
     public void Button_Left_press()
     {
-        Btn_Left_bool = true;
+        btn_left_bool = true;
     }
 
     public void Button_Left_release()
     {
-        Btn_Left_bool = false;
+        btn_left_bool = false;
     }
 
     public void Button_Right_press()
     {
-        Btn_Right_bool = true;
+        btn_right_bool = true;
     }
 
     public void Button_Right_release()
     {
-        Btn_Right_bool = false;
+        btn_right_bool = false;
     }
 
     public void Button_Jump_press()
     {
-        Btn_Jump_bool = true;
+        btn_jump_bool = true;
 
         //땅에 있을때 점프
-        if (grounded || iselevator)
+        if (grounded || is_elevator)
         {
-            JumpForceCount = 0.02f;
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f) + new Vector2(transform.up.x, transform.up.y) * jumppower;
+            jump_force_count = 0.02f;
+            rb2d.velocity = new Vector2(rb2d.velocity.x, 0f) + new Vector2(transform.up.x, transform.up.y) * jump_power;
             grounded = false;
-            jumpAudio.Play();
+            jump_audio.Play();
             //점프 두번
         }
     }
 
     public void Button_Jump_release()
     {
-        JumpForceCount = 0f;
-        Btn_Jump_bool = false;
+        jump_force_count = 0f;
+        btn_jump_bool = false;
     }
 
     IEnumerator PlayerDied()
@@ -173,14 +173,14 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         ResetPlayer();
-        this.transform.position = saveZone[saveZoneidx].position;
+        this.transform.position = save_zone[saveZoneidx].position;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy") && !isdead)
+        if(collision.gameObject.CompareTag("Enemy") && !is_dead)
         {
-            isdead = true;
+            is_dead = true;
             anim.SetTrigger("Die");
             StartCoroutine(PlayerDied());
         }
@@ -188,9 +188,9 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && !isdead)
+        if (collision.gameObject.CompareTag("Enemy") && !is_dead)
         {
-            isdead = true;
+            is_dead = true;
             anim.SetTrigger("Die");
             StartCoroutine(PlayerDied());
         }
@@ -198,9 +198,9 @@ public class Player : MonoBehaviour
 
     private void ResetPlayer()
     {
-        isdead = false;
+        is_dead = false;
         transform.localScale = new Vector3(1, 1, 1);
-        PlayerLooksRight = true;
+        player_looks_right = true;
         anim.Play("Player_Idle");
         Button_Jump_release();
         Button_Right_release();

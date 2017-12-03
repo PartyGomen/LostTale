@@ -19,7 +19,7 @@ public class GroundCheck : MonoBehaviour {
 
         if (coll.CompareTag("Elevator"))
         {
-            player.iselevator = true;
+            player.is_elevator = true;
             player.anim.SetBool("Grounded", true);
         }
     }
@@ -39,7 +39,7 @@ public class GroundCheck : MonoBehaviour {
 
         if(coll.CompareTag("Elevator"))
         {
-            player.iselevator = false;
+            player.is_elevator = false;
             player.anim.SetBool("Grounded", false);
         }
     }
