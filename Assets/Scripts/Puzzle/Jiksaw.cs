@@ -15,15 +15,13 @@ public class Jiksaw : MonoBehaviour
 
     public void CheckRay ()
     {
-        ray[0] = Physics2D.Raycast(new Vector2(this.transform.position.x + 1.8f, this.transform.position.y), Vector2.right, 0.1f);
+        ray[0] = Physics2D.Raycast(new Vector2(this.transform.position.x + 1.9f, this.transform.position.y), Vector2.right, 0.1f);
         ray[1] = Physics2D.Raycast(new Vector2(this.transform.position.x - 1.9f, this.transform.position.y), Vector2.left, 0.1f);
         ray[2] = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y + 1.8f), Vector2.up, 0.1f);
         ray[3] = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y - 1.8f), Vector2.down, 0.1f);
 
         if (ray[0])
         {
-            Debug.Log(ray[0].collider.name);
-
             if (ray[0].collider.gameObject != this.gameObject)
             {
                 move[0] = true;
@@ -35,8 +33,6 @@ public class Jiksaw : MonoBehaviour
 
         if (ray[1])
         {
-            Debug.Log(ray[1].collider.name);
-
             if (ray[1].collider.gameObject != this.gameObject)
             {
                 move[1] = true;
@@ -48,8 +44,6 @@ public class Jiksaw : MonoBehaviour
 
         if (ray[2])
         {
-            Debug.Log(ray[2].collider.name);
-
             if (ray[2].collider.gameObject != this.gameObject)
             {
                 move[2] = true;
@@ -61,8 +55,6 @@ public class Jiksaw : MonoBehaviour
 
         if (ray[3])
         {
-            Debug.Log(ray[3].collider.name);
-
             if (ray[3].collider.gameObject != this.gameObject)
             {
                 move[3] = true;

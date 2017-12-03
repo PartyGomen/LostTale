@@ -26,13 +26,13 @@ public class JiksawMgr : MonoBehaviour
                     Jiksaw jik = hit.collider.gameObject.GetComponent<Jiksaw>();
 
                     if (!jik.move[0])
-                        hit.collider.gameObject.transform.Translate(Vector2.right * move_value);
+                        hit.collider.gameObject.transform.Translate(Vector2.right * 3.6f);
                     else if (!jik.move[1])
-                        hit.collider.gameObject.transform.Translate(Vector2.left * move_value);
+                        hit.collider.gameObject.transform.Translate(Vector2.left * 3.6f);
                     else if (!jik.move[2])
-                        hit.collider.gameObject.transform.Translate(Vector2.up * move_value);
+                        hit.collider.gameObject.transform.Translate(Vector2.up * 3f);
                     else if (!jik.move[3])
-                        hit.collider.gameObject.transform.Translate(Vector2.down * move_value);
+                        hit.collider.gameObject.transform.Translate(Vector2.down * 3f);
 
                     CheckBool();
                 }
