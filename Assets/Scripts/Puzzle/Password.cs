@@ -10,12 +10,13 @@ public class Password : MonoBehaviour {
     public int[] answer = new int[4];
 
     public GameObject obj;
-    public GameObject control;
-
-    PasswordObj passwordObj;
+    public Sprite unlock_sprite;
+    public GameObject password_object;
+    private CameraFollow cam_follow;
 
 	void Start ()
     {
+        cam_follow = Camera.main.GetComponent<CameraFollow>();
         one = 0;
         two = 0;
         three = 0;
@@ -28,23 +29,26 @@ public class Password : MonoBehaviour {
         num[1].text = two.ToString();
         num[2].text = three.ToString();
         num[3].text = four.ToString();
-
-        passwordObj = GameObject.Find("PassWordObj").GetComponent<PasswordObj>();
     }
 
     void CheckCorret()
     {
         if (one == answer[0] && two == answer[1] && three == answer[2] && four == answer[3])
         {
-			//Inventory.GetPuzzle2 ();
-            GameObject Go = GameObject.Find("PassWordPanel");
-            Go.SetActive(false);
-            passwordObj.GetComponent<SpriteRenderer>().sprite = passwordObj.sprites[1];
-            passwordObj.GetComponent<BoxCollider2D>().enabled = false;
-            control.SetActive(true);
+            cam_follow.FadeCoroutine(false, 0f);
+            cam_follow.FadeCoroutine(true, 1f);
+            cam_follow.CheckPuzzleOrPlayer(false);
+            Invoke("AfterClear", 1f);
+            password_object.GetComponent<SpriteRenderer>().sprite = unlock_sprite;
             obj.SetActive(true);
             GetComponent<PuzzleClear>().Clear();
         }
+    }
+
+    void AfterClear()
+    {
+        GameObject Go = GameObject.Find("PassWordPanel");
+        Go.SetActive(false);
     }
 
     public void Off()
@@ -56,7 +60,6 @@ public class Password : MonoBehaviour {
         two = 0;
         three = 0;
         four = 0;
-        control.SetActive(true);
     }
 
     public void AddOne ()

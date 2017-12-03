@@ -31,6 +31,8 @@ public class PuzzleHermitCrabManager : MonoBehaviour
         if(check[0] && check[1] && check[2] && check[3] && check[4])
         {
             is_clear = true;
+            camfollow.FadeCoroutine(false, 0f);
+            camfollow.FadeCoroutine(true, 1f);
             camfollow.CheckPuzzleOrPlayer(false);
             //Inventory.PuzzleGet[0] = true;
             //Inventory.GetPuzzle1();

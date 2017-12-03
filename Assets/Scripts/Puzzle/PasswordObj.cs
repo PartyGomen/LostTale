@@ -5,13 +5,9 @@ using UnityEngine;
 public class PasswordObj : MonoBehaviour
 {
     public GameObject Panel;
-	public GameObject MobileControls;
-
-    public Sprite[] sprites = new Sprite[2];
 
 	private GameObject target;
 	public GameObject Null;
-    public GameObject back_btn;
 	public Vector2 pos;
 
     GameObject player;
@@ -27,31 +23,20 @@ public class PasswordObj : MonoBehaviour
     {
         distance = Vector3.Distance(player.transform.position, this.gameObject.transform.position);
 
-        if (Input.GetMouseButtonDown (0) && distance < 6.5) {
+        if (Input.GetMouseButtonDown (0) && distance < 6.5)
+        {
 			CastRay ();
-			if (target.name == "PassWordObj")
+			if (target == this.gameObject)
             {
-                back_btn.SetActive(true);
-                Panel.SetActive(true);
-				MobileControls.SetActive(false);
+                Invoke("PanelOn", 1f);
 			}
 		}
 	}
 
-	/*
-
-    void OnTriggerEnter2D(Collider2D coll)
+    void PanelOn()
     {
-        if(coll.CompareTag("Player"))
-        {
-            Panel.SetActive(true);
-            GameObject Go = GameObject.Find("MobileControls");
-            Go.SetActive(false);
-        }
+        Panel.SetActive(true);
     }
-
-*/
-
 
 	void CastRay()
 	{
