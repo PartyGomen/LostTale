@@ -9,8 +9,9 @@ public class Laser : MonoBehaviour
     public GameObject[] mirror;
 
     public bool[] reflected;
+    private bool is_clear;
 
-    int linecount = 2;
+    private int linecount = 2;
 
 	void Start ()
     {
@@ -85,11 +86,21 @@ public class Laser : MonoBehaviour
         {
             linecount = 2;
         }
-
-        if (reflected[0] && reflected[1] && reflected[2] && reflected[4])
-        {
-            GetComponent<PuzzleClear>().Clear();
-            Camera.main.GetComponent<CameraFollow>().CheckPlayer();
-        }
 	}
+
+    public void CheckClear()
+    {
+        if(reflected[0] && reflected[1] && reflected[3] && !is_clear)
+        {
+            is_clear = true;
+
+            GetComponent<PuzzleClear>().Clear();
+
+            CameraFollow cam_follow = Camera.main.GetComponent<CameraFollow>();
+
+            cam_follow.FadeCoroutine(false, 0f);
+            cam_follow.FadeCoroutine(true, 1f);
+            cam_follow.CheckPuzzleOrPlayer(false);
+        }
+    }
 }

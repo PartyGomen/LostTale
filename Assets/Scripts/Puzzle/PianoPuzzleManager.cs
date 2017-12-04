@@ -7,7 +7,9 @@ public class PianoPuzzleManager : MonoBehaviour
     [HideInInspector]
     public string[] answer = new string[4];
 
-    int index_number = 0;
+    private int index_number = 0;
+
+    private bool is_clear = false;
 
     public void EnterKey(string str)
     {
@@ -24,14 +26,22 @@ public class PianoPuzzleManager : MonoBehaviour
 
     void CheckAnswer()
     {
-        if(answer[0] == "C" && answer[1] == "A" && answer[2] == "G" && answer[3] == "E")
+        if(answer[0] == "C" && answer[1] == "A" && answer[2] == "G" && answer[3] == "E" && !is_clear)
         {
-            Debug.Log("Clear");
+            is_clear = true;
+            CameraFollow cam_follow = Camera.main.GetComponent<CameraFollow>();
+            cam_follow.FadeCoroutine(false, 0f);
+            cam_follow.FadeCoroutine(true, 1f);
+            cam_follow.CheckPuzzleOrPlayer(false);
+            GetComponent<PuzzleClear>().Clear();
         }
     }
 
     void ResetKey()
     {
+        if (is_clear)
+            return;
+
         index_number = 0;
 
         for (int i = 0; i < answer.Length; i++)

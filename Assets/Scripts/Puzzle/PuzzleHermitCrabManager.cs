@@ -15,11 +15,11 @@ public class PuzzleHermitCrabManager : MonoBehaviour
     [HideInInspector]
     public bool is_clear = false;
 
-	// Use this for initialization
 	void Start ()
     {
         camfollow = Camera.main.GetComponent<CameraFollow>();
 
+        //소라게 위치 저장
         for(int i = 0; i < crabs.Length; i ++)
         {
             crab_pos[i] = crabs[i].transform.position;
@@ -28,14 +28,13 @@ public class PuzzleHermitCrabManager : MonoBehaviour
 
     public void CheckEnd()
     {
-        if(check[0] && check[1] && check[2] && check[3] && check[4])
+        //클리어 조건
+        if(check[0] && check[1] && check[2] && check[3] && check[4] && !is_clear)
         {
             is_clear = true;
             camfollow.FadeCoroutine(false, 0f);
             camfollow.FadeCoroutine(true, 1f);
             camfollow.CheckPuzzleOrPlayer(false);
-            //Inventory.PuzzleGet[0] = true;
-            //Inventory.GetPuzzle1();
             bridge.SetActive(true);
             GetComponent<PuzzleClear>().Clear();
         }
@@ -43,6 +42,9 @@ public class PuzzleHermitCrabManager : MonoBehaviour
 
     public void Crab_Reset()
     {
+        if (is_clear)
+            return;
+
         for(int i = 0; i < crabs.Length; i++)
         {
             check[i] = false;

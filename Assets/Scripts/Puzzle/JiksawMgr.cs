@@ -6,7 +6,12 @@ public class JiksawMgr : MonoBehaviour
 {
     public Jiksaw[] jiksawObj;
 
-    public float move_value;
+    public float[] distance = new float[5];
+
+    public GameObject[] pos_check = new GameObject[5];
+
+    private bool[] bool_clear = new bool[5];
+    private bool is_clear;
 
     Vector3 pos;
     RaycastHit2D hit;
@@ -35,6 +40,7 @@ public class JiksawMgr : MonoBehaviour
                         hit.collider.gameObject.transform.Translate(Vector2.down * 3f);
 
                     CheckBool();
+                    CheckClear();
                 }
             }
         }
@@ -48,6 +54,48 @@ public class JiksawMgr : MonoBehaviour
             {
                 jiksawObj[i].move[j] = false;
                 jiksawObj[i].CheckRay();
+            }
+        }
+    }
+
+    void CheckClear()
+    {
+        for(int i = 0; i < pos_check.Length; i++)
+        {
+            distance[i] = Vector3.Distance(jiksawObj[i].gameObject.transform.position, pos_check[i].transform.position);
+
+            if(distance[i] < 1f)
+            {
+                bool_clear[i] = true;
+            }
+
+            else
+            {
+                bool_clear[i] = false;
+            }
+        }
+
+        for(int i = 0; i < bool_clear.Length; i++)
+        {
+            if(bool_clear[i] != true)
+            {
+                return;
+            }
+
+            else
+            {
+                if(i == bool_clear.Length - 1)
+                {
+                    is_clear = true;
+
+                    CameraFollow cam_follow = Camera.main.GetComponent<CameraFollow>();
+
+                    cam_follow.FadeCoroutine(false, 0f);
+                    cam_follow.FadeCoroutine(true, 1f);
+                    cam_follow.CheckPuzzleOrPlayer(false);
+
+                    GetComponent<PuzzleClear>().Clear();
+                }
             }
         }
     }

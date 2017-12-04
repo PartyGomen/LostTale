@@ -16,7 +16,9 @@ public class PelicanMgr : MonoBehaviour
     public GameObject go1;
     public GameObject go2;
     public GameObject siso;
-    GameObject[] fishes;
+    private GameObject[] fishes;
+
+    private bool is_clear;
 
 	void Start ()
     {
@@ -69,11 +71,17 @@ public class PelicanMgr : MonoBehaviour
 
             float distance = Mathf.Abs(go1.transform.position.y - go2.transform.position.y);
             
-            if(distance < 0.1f && (weight1 + weight2 == 12))
+            if(distance < 0.1f && (weight1 + weight2 == 12) && !is_clear)
             {
-                Camera.main.GetComponent<CameraFollow>().CheckPlayer();
+                is_clear = true;
+
+                CameraFollow cam_follow =  Camera.main.GetComponent<CameraFollow>();
+
+                cam_follow.FadeCoroutine(false, 0f);
+                cam_follow.FadeCoroutine(true, 1f);
+                cam_follow.CheckPuzzleOrPlayer(false);
+
                 GetComponent<PuzzleClear>().Clear();
-                Destroy(this);
             }
         }
     }

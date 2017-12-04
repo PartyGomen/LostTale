@@ -8,11 +8,13 @@ public class SFXSound : MonoBehaviour
 
     GameObject player;
 
-    float time;
-    float distance;
+    private float time;
+    private float distance;
     public float sound_min_distance;
     public float sound_cycle_time;
     public float division_value;
+
+    private bool is_play;
 
 	// Use this for initialization
 	void Start ()
@@ -34,12 +36,40 @@ public class SFXSound : MonoBehaviour
 
         if (distance < sound_min_distance && time >= sound_cycle_time)
         {
-            time = 0.0f;
+            if(!CheckIsPuzzle());
+            {
+                time = 0.0f;
 
-            sfx_sound.volume = 1.0f;
-            sfx_sound.volume -= distance / division_value;
+                sfx_sound.volume = Mathf.Clamp(sfx_sound.volume, 0.0f, 0.7f);
 
-            sfx_sound.Play();
+                sfx_sound.volume = 0.7f;
+                sfx_sound.volume -= distance / division_value;
+
+                sfx_sound.Play();
+            }
         }
+    }
+
+    bool CheckIsPuzzle()
+    {
+        bool is_playing = false; ;
+
+        CameraFollow cam_follow = Camera.main.GetComponent<CameraFollow>();
+
+        for(int i = 0; i < cam_follow.goPuzzele.Length; i++)
+        {
+            if(cam_follow.goPuzzele[i] == true)
+            {
+                is_playing = true;
+                break;
+            }
+
+            else
+            {
+                is_playing = false;
+            }
+        }
+
+        return is_playing;
     }
 }

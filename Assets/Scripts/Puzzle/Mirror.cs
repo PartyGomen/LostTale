@@ -58,6 +58,8 @@ public class Mirror : MonoBehaviour
                                 laser.reflected[idx_number[i]] = false;
                             }
                         }
+
+                        laser.CheckClear();
                     }
                 }
             }
