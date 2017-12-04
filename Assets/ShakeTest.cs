@@ -7,24 +7,21 @@ public class ShakeTest : MonoBehaviour {
 //	public static bool IsShake = true;
 	private float ShakeTime = 3.0f;
 	private float Switch = 1.0f;
+	private float count = 0.0f;
 	// Use this for initialization
+
 	void Start () {
 		
 	}
 	 
+	void OnEnable () {
+		StartCoroutine (ShakePuzzles());
+	}
 	// Update is called once per frame
 	void Update () {
-		if (ShakeTime > 0) {
-			for (int i = 0; i < 2; i++) {
-				Vector2 ShakePosition =  new Vector2(Switch * 20.0f, Switch * 20.0f);
-				GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition = new Vector3 (GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition.x + ShakePosition.x, GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition.y + ShakePosition.y, 0);
-				Switch = -1.0f * Switch;
-			}
-			ShakeTime -= Time.deltaTime;
-		}else {
-			Debug.Log ("finish");
-		}
-
+	//	if(Input.GetMouseButton(0)){
+		//	StartCoroutine (ShakePuzzles());
+	//	}
 	}
 
 /*	public void ShakePuzzle(){
@@ -48,4 +45,31 @@ public class ShakeTest : MonoBehaviour {
 		//IsShake = true;
 		//Debug.Log ("finish");
 //	}*/
+
+	IEnumerator ShakePuzzles(){
+		while (count < 20) {
+			for (int i = 0; i < 2; i++) {	
+				Debug.Log ("start");
+				Vector2 ShakePosition = new Vector2 (20f, 20f);
+				GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition = new Vector3 (GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition.x + ShakePosition.x, GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition.y, 0);
+				//	GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition = new Vector3 (GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition.x - ShakePosition.x, GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition.y - ShakePosition.y, 0);
+				Debug.Log ("shake");
+			}
+			//	count++;
+			yield  return new WaitForSeconds (1.0f);
+
+			//}
+			for (int i = 0; i < 2; i++) {	
+				Debug.Log ("start");
+				Vector2 ShakePosition = new Vector2 (20f, 20f);
+				//	GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition = new Vector3 (GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition.x + ShakePosition.x, GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition.y + ShakePosition.y, 0);
+				GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition = new Vector3 (GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition.x - ShakePosition.x, GameObject.Find (PuzzleEndManager.PuzzleEnd [i]).GetComponent<RectTransform> ().anchoredPosition.y, 0);
+				Debug.Log ("shake");
+			}
+			yield  return new WaitForSeconds (1.0f);
+			count++;
+		}
+	}
+
+
 }
