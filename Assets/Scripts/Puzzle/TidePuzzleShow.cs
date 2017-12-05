@@ -46,7 +46,9 @@ public class TidePuzzleShow : MonoBehaviour
                     }
 
                     cam.goPuzzele[0] = true;
-                    cam.CheckPuzzle();
+                    cam.FadeCoroutine(false, 0f);
+                    cam.CheckPuzzleOrPlayer(true);
+                    cam.FadeCoroutine(true, 1f);
                     tideBtn.SetActive(true);
                     tideMgr.StopAllCoroutines();
                 }
