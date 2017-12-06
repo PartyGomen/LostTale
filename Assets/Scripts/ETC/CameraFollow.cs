@@ -113,6 +113,7 @@ public class CameraFollow : MonoBehaviour
     public void CheckPuzzle()
     {
         isPuzzle = true;
+        control.SetActive(false);
         backBtn.SetActive(true);
 
         for (int i = 0; i < goPuzzele.Length; i++)
