@@ -36,7 +36,7 @@ public class SFXSound : MonoBehaviour
 
         if (distance < sound_min_distance && time >= sound_cycle_time)
         {
-            if(!CheckIsPuzzle());
+            if(!CheckIsPuzzle())
             {
                 time = 0.0f;
 
