@@ -32,6 +32,9 @@ public class EndingStoryManager : MonoBehaviour {
 	public static bool IsGetEnding = false;
 	public static int ClearEnding = 0;
 
+	public AudioClip HappyEnding;
+	public AudioClip AnotehrEnding;
+
 	void OnEnable () {
 		StartCoroutine (FadeOutEnding());
 		StartCoroutine (ShowText(NowPosition));
@@ -193,6 +196,8 @@ public class EndingStoryManager : MonoBehaviour {
 			ClearEnding = number;
 			SceneManager.LoadScene ("Title");
 		} else {
+			GameObject.Find ("Main Camera").GetComponent<AudioSource> ().Play ();
+			GameObject.Find ("Gallery").GetComponent<AudioSource> ().Stop ();
 			EndingManager.SetActive (false);
 			resetGalleryEndingShow ();
 		}
@@ -209,6 +214,16 @@ public class EndingStoryManager : MonoBehaviour {
 	}
 
 	public void GalleryShowEnding(int number){
+		// 사운드 제어 부분
+		GameObject.Find ("Main Camera").GetComponent<AudioSource> ().Pause ();
+		if (number == 3) {
+			GameObject.Find ("Gallery").GetComponent<AudioSource> ().clip = HappyEnding;
+			GameObject.Find ("Gallery").GetComponent<AudioSource> ().Play ();
+		} else {
+			GameObject.Find ("Gallery").GetComponent<AudioSource> ().clip = AnotehrEnding;
+			GameObject.Find ("Gallery").GetComponent<AudioSource> ().Play ();
+		}
+		//
 		IsGallery = true;
 		EndingManager.SetActive (true);
 		PuzzleEndManager.EndingStoryNumber = number;

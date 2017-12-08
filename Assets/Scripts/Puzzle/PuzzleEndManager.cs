@@ -34,6 +34,9 @@ public class PuzzleEndManager : MonoBehaviour {
 	private bool KindHint = false;
 	public float ShakeAmount;
 
+	public AudioClip HappyEnding;
+	public AudioClip AnotherEnding;
+
 
 	void Start(){
 		Camposition = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Transform> ().position;
@@ -72,21 +75,33 @@ public class PuzzleEndManager : MonoBehaviour {
 			Debug.Log ("진앤딩");
 			ShowEnding = true;
 			EndingStoryNumber = 1;
+			this.GetComponent<AudioSource> ().Stop ();
+			this.GetComponent<AudioSource> ().clip = AnotherEnding;
+			this.GetComponent<AudioSource> ().Play ();
 			StartCoroutine (ClearEffect());
 		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle8" && GalleryManager.SadEnding == false) {
 			Debug.Log ("새드앤딩");
 			ShowEnding = true;
 			EndingStoryNumber = 2;
+			this.GetComponent<AudioSource> ().Stop ();
+			this.GetComponent<AudioSource> ().clip = AnotherEnding;
+			this.GetComponent<AudioSource> ().Play ();
 			StartCoroutine (ClearEffect());
 		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle6" && PuzzleEnd[4] == "Puzzle7" && GalleryManager.HappyEnding == false) {
 			Debug.Log ("해피앤딩");
 			ShowEnding = true;
 			EndingStoryNumber = 3;
+			this.GetComponent<AudioSource> ().Stop ();
+			this.GetComponent<AudioSource> ().clip = HappyEnding;
+			this.GetComponent<AudioSource> ().Play ();
 			StartCoroutine (ClearEffect());
 		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle9" && GalleryManager.SpecialEnding == false) {
 			Debug.Log ("특전앤딩");
 			EndingStoryNumber = 4;
 			ShowEnding = true;
+			this.GetComponent<AudioSource> ().Stop ();
+			this.GetComponent<AudioSource> ().clip = AnotherEnding;
+			this.GetComponent<AudioSource> ().Play ();
 			StartCoroutine (ClearEffect());
 		} else {	
 		//	StartCoroutine (ShakePuzzle (PuzzleEnd, 2.0f));
@@ -181,7 +196,6 @@ public class PuzzleEndManager : MonoBehaviour {
 		this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = true;
 		EndingStory.SetActive (true);
 		RelocatePuzzle ();
-
 	}
 	/*IEnumerator ShakePuzzle(string []PuzzleEnd, float ShakeAmount){
 		while (true) {

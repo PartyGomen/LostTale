@@ -34,6 +34,7 @@ public class OpenPuzzleEnding : MonoBehaviour {
                 CastRay();
                 if (target.name == "PuzzleEnd")
                 {
+					GameObject.Find ("Main Camera").GetComponent<AudioSource> ().Pause ();
 					Player.transform.position = new Vector3 (185, -10, 0);
 					Player.SetActive (false);
                     PuzzleEnd.SetActive(true);
@@ -65,6 +66,7 @@ public class OpenPuzzleEnding : MonoBehaviour {
 		} else if (Inventory.PuzzleGet [8] == true) {
 			GameObject.Find ("Puzzle9").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1544, -935, 0);
 		}
+		GameObject.Find ("Main Camera").GetComponent<AudioSource> ().Play ();
 		PuzzleEnd.SetActive (false);
 		MoblieControl.SetActive (true);
 		Player.transform.position = new Vector3 (190, 8.7f, 0);
