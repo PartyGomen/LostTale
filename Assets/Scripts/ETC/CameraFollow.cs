@@ -9,6 +9,7 @@ public class CameraFollow : MonoBehaviour
     public GameObject followTargetOBJ;
     public GameObject control;
     public GameObject backBtn;
+    public GameObject bulb_object;
 
     public float fadeTime;
     public float followSpeed;
@@ -115,6 +116,7 @@ public class CameraFollow : MonoBehaviour
         isPuzzle = true;
         control.SetActive(false);
         backBtn.SetActive(true);
+        bulb_object.SetActive(true);
 
         for (int i = 0; i < goPuzzele.Length; i++)
         {
@@ -135,6 +137,7 @@ public class CameraFollow : MonoBehaviour
 
         control.SetActive(true);
         backBtn.SetActive(false);
+        bulb_object.SetActive(false);
     }
 
     public void FadeCoroutine(bool fade_in, float delay_time)

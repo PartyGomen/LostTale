@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PuzzleHermitCrab : MonoBehaviour
 {
@@ -40,32 +41,35 @@ public class PuzzleHermitCrab : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-	    if(Input.GetMouseButtonDown(0))
+        if(!IsPointerOverUIObject())
         {
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            hit = Physics2D.Raycast(mousePos, Vector2.zero, 0f);
-
-            if(hit)
+            if (Input.GetMouseButtonDown(0))
             {
-                if(hit.collider.gameObject == this.gameObject)
+                mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                hit = Physics2D.Raycast(mousePos, Vector2.zero, 0f);
+
+                if (hit)
                 {
-                    isDragging = true;
-                    anim.SetBool("IsOut", true);
-                    offset = transform.position - mousePos;
+                    if (hit.collider.gameObject == this.gameObject)
+                    {
+                        isDragging = true;
+                        anim.SetBool("IsOut", true);
+                        offset = transform.position - mousePos;
+                    }
                 }
             }
-        }
 
-        if (Input.GetMouseButton(0))
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (Input.GetMouseButton(0))
+                mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            if(isDragging)
+            if (Input.GetMouseButtonUp(0))
             {
-                isDragging = false;
-                anim.SetBool("IsOut", false);
+                if (isDragging)
+                {
+                    isDragging = false;
+                    anim.SetBool("IsOut", false);
+                }
             }
         }
 
@@ -187,5 +191,20 @@ public class PuzzleHermitCrab : MonoBehaviour
         }
 
         return result;
+    }
+
+    bool IsPointerOverUIObject()
+    {
+        // Referencing this code for GraphicRaycaster 
+        // https://gist.github.com/stramit/ead7ca1f432f3c0f181f
+        // the ray cast appears to require only eventData.position.
+        PointerEventData eventDataCurrentPosition
+            = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position
+            = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 }

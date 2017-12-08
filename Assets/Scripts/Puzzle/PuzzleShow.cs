@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PuzzleShow : MonoBehaviour
 {
@@ -30,28 +31,46 @@ public class PuzzleShow : MonoBehaviour
     {
         distance = Vector3.Distance(target.transform.position, this.gameObject.transform.position);
 
-        if (Input.GetMouseButtonDown(0) && distance < max_distance)
+        if(!IsPointerOverUIObject())
         {
-            pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            hit = Physics2D.Raycast(pos, Vector2.zero, Mathf.Infinity);
-
-            if (hit)
+            if (Input.GetMouseButtonDown(0) && distance < max_distance)
             {
-                if (hit.collider.gameObject == this.gameObject)
-                {
-                    for (int i = 0; i < cam.goPuzzele.Length; i++)
-                    {
-                        cam.goPuzzele[i] = false;
-                    }
+                pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                    cam.goPuzzele[puzzleIdx] = true;
-                    cam.CheckPuzzleOrPlayer(true);
-                    cam.FadeCoroutine(false, 0f);
-                    cam.FadeCoroutine(true, 1f);
-                    is_clicked = true;
+                hit = Physics2D.Raycast(pos, Vector2.zero, Mathf.Infinity);
+
+                if (hit)
+                {
+                    if (hit.collider.gameObject == this.gameObject)
+                    {
+                        for (int i = 0; i < cam.goPuzzele.Length; i++)
+                        {
+                            cam.goPuzzele[i] = false;
+                        }
+
+                        cam.goPuzzele[puzzleIdx] = true;
+                        cam.CheckPuzzleOrPlayer(true);
+                        cam.FadeCoroutine(false, 0f);
+                        cam.FadeCoroutine(true, 1f);
+                        is_clicked = true;
+                    }
                 }
             }
         }
+    }
+
+    bool IsPointerOverUIObject()
+    {
+        // Referencing this code for GraphicRaycaster 
+        // https://gist.github.com/stramit/ead7ca1f432f3c0f181f
+        // the ray cast appears to require only eventData.position.
+        PointerEventData eventDataCurrentPosition
+            = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position
+            = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 }
