@@ -10,6 +10,7 @@ public class CameraFollow : MonoBehaviour
     public GameObject control;
     public GameObject backBtn;
     public GameObject bulb_object;
+    public GameObject[] block_btn = new GameObject[2];
 
     public float fadeTime;
     public float followSpeed;
@@ -125,6 +126,11 @@ public class CameraFollow : MonoBehaviour
                 this.transform.position = puzzlePos[i];
             }
         }
+
+        for(int i = 0; i < block_btn.Length; i++)
+        {
+            block_btn[i].SetActive(false);
+        }
     }
 
     public void CheckPlayer()
@@ -138,6 +144,11 @@ public class CameraFollow : MonoBehaviour
         control.SetActive(true);
         backBtn.SetActive(false);
         bulb_object.SetActive(false);
+
+        for (int i = 0; i < block_btn.Length; i++)
+        {
+            block_btn[i].SetActive(true);
+        }
     }
 
     public void FadeCoroutine(bool fade_in, float delay_time)

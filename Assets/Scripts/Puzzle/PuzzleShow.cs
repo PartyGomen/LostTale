@@ -9,6 +9,7 @@ public class PuzzleShow : MonoBehaviour
     public bool is_clicked;
 
     public int puzzleIdx;
+    public int hint_idx;
 
     RaycastHit2D hit;
 
@@ -20,6 +21,8 @@ public class PuzzleShow : MonoBehaviour
     public float max_distance;
 
     GameObject target;
+
+    public PuzzleHint puzzle_hint;
 
     void Start()
     {
@@ -52,6 +55,7 @@ public class PuzzleShow : MonoBehaviour
                         cam.CheckPuzzleOrPlayer(true);
                         cam.FadeCoroutine(false, 0f);
                         cam.FadeCoroutine(true, 1f);
+                        puzzle_hint.hint_index = hint_idx;
                         is_clicked = true;
                     }
                 }
