@@ -19,6 +19,8 @@ public class TideManager : MonoBehaviour
     [HideInInspector]
     public bool is_clear;
     [HideInInspector]
+    public bool get_puzzle;
+    [HideInInspector]
     public bool is_trigger_on;
     
     void Start ()
@@ -127,7 +129,7 @@ public class TideManager : MonoBehaviour
 
             GameObject.Find("TideBtn").SetActive(false);
 
-            if(get_puzzle_piece == false && is_clear)
+            if(get_puzzle_piece == false && get_puzzle && is_clear)
             {
                 get_puzzle_piece = true;
                 GetComponent<PuzzleClear>().Clear();

@@ -16,6 +16,8 @@ public class TidePuzzleShow : MonoBehaviour
     float distance;
     public float playerDistance;
 
+    public bool is_get_puzzle;
+
     GameObject target;
 
 	void Start ()
@@ -49,10 +51,25 @@ public class TidePuzzleShow : MonoBehaviour
                     cam.FadeCoroutine(false, 0f);
                     cam.CheckPuzzleOrPlayer(true);
                     cam.FadeCoroutine(true, 1f);
-                    tideBtn.SetActive(true);
+                    Invoke("TideBtnSetActive", 1f);
                     tideMgr.StopAllCoroutines();
+
+                    if(is_get_puzzle)
+                    {
+                        tideMgr.get_puzzle = true;
+                    }
+
+                    else
+                    {
+                        tideMgr.get_puzzle = false;
+                    }
                 }
             }
         }
 	}
+
+    void TideBtnSetActive()
+    {
+        tideBtn.SetActive(true);
+    }
 }
