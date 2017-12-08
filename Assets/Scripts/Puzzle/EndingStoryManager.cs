@@ -173,10 +173,10 @@ public class EndingStoryManager : MonoBehaviour {
 				GalleryManager.TrueEnding = true;
 			} else if (PuzzleEndManager.EndingStoryNumber == 2) {
 				EndingLetter.GetComponent<Image> ().sprite = SadEndingletter [Endinglettercount];
-				GalleryManager.HappyEnding = true;
+				GalleryManager.SadEnding = true;
 			}else if (PuzzleEndManager.EndingStoryNumber == 3) {
 				EndingLetter.GetComponent<Image> ().sprite = HappyEndingletter [Endinglettercount];	
-				GalleryManager.SadEnding = true;
+				GalleryManager.HappyEnding = true;
 			}else if (PuzzleEndManager.EndingStoryNumber == 4) {
 				EndingLetter.GetComponent<Image> ().sprite = SpecialEndingletter [Endinglettercount];
 				GalleryManager.SpecialEnding = true;
