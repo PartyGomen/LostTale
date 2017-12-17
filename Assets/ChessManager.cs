@@ -31,23 +31,22 @@ public class ChessManager : MonoBehaviour {
 			CastRay ();
 			Debug.Log (Turn);
 			if (Turn == 1 && target.name == "Black_Queen") {
-//				Debug.Log ("Touch");
 				ShowMovePossible (7);
 				StartCoroutine (ChangeTurn (2));
-			}	else if(Turn == 1 && target.name != "Black_Queen") {
+			}	else if(Turn == 1 && target.name != "Black_Queen" && target.name != "Null") {
 				Debug.Log (target.name);
 				Reset ();
 			}
 
 			if (Turn == 2 && target.name == "MovePossible7") {
-				WhiteChess [2].SetActive (false);
+				WhiteChess [2].transform.localPosition = new Vector3 (50f, -50f, 0);
 				BlackChess [0].transform.localPosition = new Vector3 (32.5f, -33.5f, 0);
 				DeleteMovePossible (7);
 				GameText.SetActive (true);
 				GameText.GetComponent<SpriteRenderer> ().sprite = GameTextImage [1];
 				StartCoroutine (ShowGameText());
 				StartCoroutine (MoveRook());
-			} else if(Turn == 2 && target.name != "MovePossible7") {
+			} else if(Turn == 2 && target.name != "MovePossible7" && target.name != "Null") {
 				Debug.Log (target.name);
 				Reset ();
 			}
@@ -56,7 +55,7 @@ public class ChessManager : MonoBehaviour {
 				ShowMovePossible (7);
 				MovePossibleSeting ();
 				StartCoroutine (ChangeTurn (4));
-			}	else if(Turn == 3 && target.name != "Black_Knight") {
+			}	else if(Turn == 3 && target.name != "Black_Knight" && target.name != "Null") {
 				Debug.Log (target.name);
 				Reset ();
 			}
@@ -67,7 +66,7 @@ public class ChessManager : MonoBehaviour {
 				GameText.SetActive (true);
 				GameText.GetComponent<SpriteRenderer> ().sprite = GameTextImage [2];
 				StartCoroutine (ShowGameText());
-			}	else if(Turn == 4 && target.name != "MovePossible4") {
+			}	else if(Turn == 4 && target.name != "MovePossible4" && target.name != "Null") {
 				Debug.Log ("four");
 				Debug.Log (target.name);
 				Reset ();
@@ -92,11 +91,12 @@ public class ChessManager : MonoBehaviour {
 	}
 
 	public void Reset(){
+		StopAllCoroutines();
 		Turn = 1;
-		BlackChess [0].SetActive (true);
+		BlackChess [0].transform.localPosition = new Vector3 (30.5f, -31.5f, 0);
 		BlackChess [0].transform.localPosition = new Vector3 (30.5f, -31.5f, 0);
 		BlackChess [2].transform.localPosition = new Vector3 (32.5f, -30.5f, 0); 	
-		WhiteChess [2].SetActive (true);
+		WhiteChess [2].transform.localPosition = new Vector3 (32.5f, -33.5f, 0);
 		WhiteChess [3].transform.localPosition = new Vector3 (31.5f, -33.5f, 0); 	
 		MovePossilbeReSet ();
 		DeleteMovePossible (7);
@@ -136,18 +136,38 @@ public class ChessManager : MonoBehaviour {
 		MovePossible[6].transform.localPosition = new Vector3 (33.5f, -32.5f, 0);
 	
 	}
+	public void DelectCollider2D(){		
+		for (int i = 0 ; i < 4 ; i++) {			
+			BlackChess [i].GetComponent<BoxCollider2D> ().enabled = false;
+		}
+		for (int i = 0 ; i < 5 ; i++) {			
+			WhiteChess [i].GetComponent<BoxCollider2D> ().enabled = false;
+		}	
+	}
+	
+	public void ActiveCollider2D(){		
+		for (int i = 0 ; i < 4 ; i++) {			
+			BlackChess [i].GetComponent<BoxCollider2D> ().enabled = true;
+		}
+		for (int i = 0 ; i < 5 ; i++) {			
+			WhiteChess [i].GetComponent<BoxCollider2D> ().enabled = true;
+		}
+	}
 
 	IEnumerator ShowGameText(){
-		GameText.SetActive (true);
-		yield return new WaitForSeconds(2.5f);
-		GameText.SetActive (false);
-		//StopAllCoroutines();
+			DelectCollider2D ();
+			GameText.SetActive (true);
+			yield return new WaitForSeconds(2.5f);
+			GameText.SetActive (false);
+			if(Turn ==1 || Turn == 3){
+				ActiveCollider2D ();
+			}
 	}
 
 	IEnumerator MoveRook(){
 		yield return new WaitForSeconds(3.5f);
 		WhiteChess [3].transform.localPosition = new Vector3 (32.5f, -33.5f, 0); 	
-		BlackChess [0].SetActive (false);
+		BlackChess [0].transform.localPosition = new Vector3 (50f, -55f, 0);
 		yield return new WaitForSeconds(1.5f);
 		GameText.SetActive (true);
 		GameText.GetComponent<SpriteRenderer> ().sprite = GameTextImage [0];
@@ -157,7 +177,7 @@ public class ChessManager : MonoBehaviour {
 	}
 
 	IEnumerator ChangeTurn(int number){
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.01f);
 		Turn = number;
 	}
 }
