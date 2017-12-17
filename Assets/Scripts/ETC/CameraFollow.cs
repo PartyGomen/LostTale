@@ -117,7 +117,7 @@ public class CameraFollow : MonoBehaviour
         isPuzzle = true;
         control.SetActive(false);
         backBtn.SetActive(true);
-        bulb_object.SetActive(true);
+		bulb_object.SetActive(true);
 
         for (int i = 0; i < goPuzzele.Length; i++)
         {

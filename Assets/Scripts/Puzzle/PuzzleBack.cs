@@ -13,6 +13,10 @@ public class PuzzleBack : MonoBehaviour
 
     public void Back()
     {
+		if (ChessManager.IsActiveScript == true) {
+			GameObject.Find ("Chess").GetComponent<ChessManager> ().enabled = false;
+			ChessManager.IsActiveScript = false;
+		}
         camfollow.CheckPlayer();
     }
 }
