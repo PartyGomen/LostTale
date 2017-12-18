@@ -9,7 +9,7 @@ public class PuzzleHint : MonoBehaviour
     [HideInInspector]
     public int hint_index;
 
-    private Image img;
+    public Image img;
     public Sprite[] hint_img = null;
     public Text hint_count_text;
 
@@ -26,12 +26,38 @@ public class PuzzleHint : MonoBehaviour
 	void Start ()
     {
         cam_follow = Camera.main.GetComponent<CameraFollow>();
-        img = GetComponent<Image>();
 
         if (PlayerPrefs.HasKey("Hint"))
             CountLoad();
-	}
+
+        if (PlayerPrefs.HasKey("PurchaseHint"))
+            HintLoad();
+
+        TextCount();
+    }
 	
+    public void HintSave()
+    {
+        save_hint_string = "";
+
+        for(int i= 0; i < is_hinted.Length; i++)
+        {
+            save_hint_string = save_hint_string + is_hinted[i] + ",";
+        }
+
+        PlayerPrefs.SetString("PurchaseHint", save_hint_string);
+    }
+
+    public void HintLoad()
+    {
+        string[] hint_string = PlayerPrefs.GetString("PurchaseHint").Split(',');
+
+        for(int i = 0;  i < is_hinted.Length; i++)
+        {
+            is_hinted[i] = bool.Parse(hint_string[i]);
+        }
+    }
+
     public void CountSave()     //힌트 갯수 저장
     {
         PlayerPrefs.SetInt("Hint", hint_count);
@@ -42,7 +68,7 @@ public class PuzzleHint : MonoBehaviour
         hint_count = PlayerPrefs.GetInt("Hint");
     }
 
-    void TextCount()    //힌트 갯수 텍스트 변경
+    public void TextCount()    //힌트 갯수 텍스트 변경
     {
         hint_count_text.text = hint_count.ToString();
     }
@@ -64,6 +90,8 @@ public class PuzzleHint : MonoBehaviour
         }
 
         img.color = new Color(1, 1, 1, 1);
+        CountSave();
+        HintSave();
     }
 
     public void UnlockedHintShow()  //힌트를 구매했을때 바로 보여주기

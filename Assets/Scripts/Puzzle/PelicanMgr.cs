@@ -20,7 +20,7 @@ public class PelicanMgr : MonoBehaviour
 
     private bool is_clear;
 
-	void Start ()
+    void Start ()
     {
         startGo1Pos = go1.transform.position;
         startGo2Pos = go2.transform.position;

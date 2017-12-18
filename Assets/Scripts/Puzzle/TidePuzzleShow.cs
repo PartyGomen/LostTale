@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class TidePuzzleShow : MonoBehaviour
 {
+    public PuzzleHint puzzle_hint;
+
     TideManager tideMgr;
     public GameObject tideBtn;
 
@@ -16,6 +18,8 @@ public class TidePuzzleShow : MonoBehaviour
 
     float distance;
     public float playerDistance;
+
+    public int hint_idx;
 
     public bool is_get_puzzle;
 
@@ -54,6 +58,7 @@ public class TidePuzzleShow : MonoBehaviour
                         cam.FadeCoroutine(false, 0f);
                         cam.CheckPuzzleOrPlayer(true);
                         cam.FadeCoroutine(true, 1f);
+                        puzzle_hint.hint_index = hint_idx;
                         Invoke("TideBtnSetActive", 1f);
                         tideMgr.StopAllCoroutines();
 

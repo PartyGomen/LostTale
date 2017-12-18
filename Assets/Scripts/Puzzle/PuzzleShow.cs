@@ -60,7 +60,7 @@ public class PuzzleShow : MonoBehaviour
                         cam.CheckPuzzleOrPlayer(true);
                         cam.FadeCoroutine(false, 0f);
                         cam.FadeCoroutine(true, 1f);
-                         puzzle_hint.hint_index = hint_idx;
+                        puzzle_hint.hint_index = hint_idx;
                         is_clicked = true;
                     }
                 }

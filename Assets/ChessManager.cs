@@ -66,6 +66,16 @@ public class ChessManager : MonoBehaviour {
 				GameText.SetActive (true);
 				GameText.GetComponent<SpriteRenderer> ().sprite = GameTextImage [2];
 				StartCoroutine (ShowGameText());
+
+                CameraFollow cam_follow = Camera.main.GetComponent<CameraFollow>();
+
+                cam_follow.FadeCoroutine(false, 0f);
+                cam_follow.FadeCoroutine(true, 1f);
+                cam_follow.CheckPuzzleOrPlayer(false);
+
+                GetComponent<PuzzleClear>().Clear();
+
+                Destroy(this);
 			}	else if(Turn == 4 && target.name != "MovePossible4" && target.name != "Null") {
 				Debug.Log ("four");
 				Debug.Log (target.name);
