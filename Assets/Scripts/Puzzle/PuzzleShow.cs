@@ -51,11 +51,6 @@ public class PuzzleShow : MonoBehaviour
                             cam.goPuzzele[i] = false;
                         }
 
-						if (puzzleIdx == 3) {
-							GameObject.Find ("Chess").GetComponent<ChessManager> ().enabled = true;
-							ChessManager.IsActiveScript = true;
-						}
-
                         cam.goPuzzele[puzzleIdx] = true;
                         cam.CheckPuzzleOrPlayer(true);
                         cam.FadeCoroutine(false, 0f);

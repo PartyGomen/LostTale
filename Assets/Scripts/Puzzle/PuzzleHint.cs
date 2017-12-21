@@ -25,6 +25,8 @@ public class PuzzleHint : MonoBehaviour
 
 	void Start ()
     {
+        PlayerPrefs.DeleteAll();
+
         cam_follow = Camera.main.GetComponent<CameraFollow>();
 
         if (PlayerPrefs.HasKey("Hint"))
@@ -75,6 +77,9 @@ public class PuzzleHint : MonoBehaviour
 
     public void ShowHint()  //힌트 구매 후 힌트 보여주기
     {
+        if (hint_count <= 0)
+            return;
+
         show_hint_btn.SetActive(false);
         is_hinted[hint_index] = true;
         hint_count -= 1;

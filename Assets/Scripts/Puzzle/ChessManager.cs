@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ChessManager : MonoBehaviour {
-	public static bool IsActiveScript = false;
+	//public static bool IsActiveScript = false;
 
 	private GameObject target = null;
 	public GameObject[] MovePossible;
@@ -29,12 +29,12 @@ public class ChessManager : MonoBehaviour {
 	void Update () {
 		if (Input.GetMouseButtonUp (0)) {
 			CastRay ();
-			Debug.Log (Turn);
+			//Debug.Log (Turn);
 			if (Turn == 1 && target.name == "Black_Queen") {
 				ShowMovePossible (7);
 				StartCoroutine (ChangeTurn (2));
 			}	else if(Turn == 1 && target.name != "Black_Queen" && target.name != "Null") {
-				Debug.Log (target.name);
+				//Debug.Log (target.name);
 				Reset ();
 			}
 
@@ -47,7 +47,7 @@ public class ChessManager : MonoBehaviour {
 				StartCoroutine (ShowGameText());
 				StartCoroutine (MoveRook());
 			} else if(Turn == 2 && target.name != "MovePossible7" && target.name != "Null") {
-				Debug.Log (target.name);
+				//Debug.Log (target.name);
 				Reset ();
 			}
 
@@ -56,7 +56,7 @@ public class ChessManager : MonoBehaviour {
 				MovePossibleSeting ();
 				StartCoroutine (ChangeTurn (4));
 			}	else if(Turn == 3 && target.name != "Black_Knight" && target.name != "Null") {
-				Debug.Log (target.name);
+				//Debug.Log (target.name);
 				Reset ();
 			}
 
@@ -77,8 +77,8 @@ public class ChessManager : MonoBehaviour {
 
                 Destroy(this);
 			}	else if(Turn == 4 && target.name != "MovePossible4" && target.name != "Null") {
-				Debug.Log ("four");
-				Debug.Log (target.name);
+				//Debug.Log ("four");
+				//Debug.Log (target.name);
 				Reset ();
 			}
 
