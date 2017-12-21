@@ -23,9 +23,11 @@ public class GalleryManager : MonoBehaviour {
 		if(EndingStoryManager.ClearEnding == 1){
 			if(SadEnding == true){
 				CheckGallery (1);
-			}else if(HappyEnding == true){
+			}
+			if(HappyEnding == true){
 				CheckGallery (2);
-			}else if(SpecialEnding == true){
+			}
+			if(SpecialEnding == true){
 				CheckGallery (3);
 			}
 			GameObject.Find ("BookManager").GetComponent<BookManager>().ShowGallery();
@@ -33,9 +35,11 @@ public class GalleryManager : MonoBehaviour {
 		}else if(EndingStoryManager.ClearEnding == 2){
 			if(TrueEnding == true){
 				CheckGallery (0);
-			}else if(HappyEnding == true){
+			} 
+			if(HappyEnding == true){
 				CheckGallery (2);
-			}else if(SpecialEnding == true){
+			} 
+			if(SpecialEnding == true){
 				CheckGallery (3);
 			}
 			GameObject.Find ("BookManager").GetComponent<BookManager>().ShowGallery();
@@ -43,9 +47,11 @@ public class GalleryManager : MonoBehaviour {
 		}else if(EndingStoryManager.ClearEnding == 3){
 			if (TrueEnding == true) {
 				CheckGallery (0);
-			}else if (SadEnding == true) {
+			} 
+			if (SadEnding == true) {
 				CheckGallery (1);
-			}else if(SpecialEnding == true){
+			} 
+			if(SpecialEnding == true){
 				CheckGallery (3);
 			}
 			GameObject.Find ("BookManager").GetComponent<BookManager>().ShowGallery();
@@ -53,9 +59,11 @@ public class GalleryManager : MonoBehaviour {
 		}else if(EndingStoryManager.ClearEnding == 4){
 			if(TrueEnding == true){
 				CheckGallery (0);
-			}else if(SadEnding == true){
+			} 
+			if(SadEnding == true){
 				CheckGallery (1);
-			}else if(HappyEnding == true){
+			} 
+			if(HappyEnding == true){
 				CheckGallery (2);
 			}
 			GameObject.Find ("BookManager").GetComponent<BookManager>().ShowGallery();
@@ -63,11 +71,14 @@ public class GalleryManager : MonoBehaviour {
 		}else {
 			if(TrueEnding == true){
 				CheckGallery (0);
-			}else if(SadEnding == true){
+			} 
+			if(SadEnding == true){
 				CheckGallery (1);
-			}else if(HappyEnding == true){
+			} 
+			if(HappyEnding == true){
 				CheckGallery (2);
-			}else if(SpecialEnding == true){
+			} 
+			if(SpecialEnding == true){
 				CheckGallery (3);
 			}
 

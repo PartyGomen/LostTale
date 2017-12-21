@@ -234,4 +234,8 @@ public class EndingStoryManager : MonoBehaviour {
 		EndingManager.SetActive (true);
 		PuzzleEndManager.EndingStoryNumber = number;
 	}
+
+	public void SkipButton(){
+
+	}
 }

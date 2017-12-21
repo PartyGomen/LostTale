@@ -33,8 +33,13 @@ public class PuzzleEndManager : MonoBehaviour {
 	private bool KindHint = false;
 	public float ShakeAmount;
 
+
 	public AudioClip HappyEnding;
 	public AudioClip AnotherEnding;
+
+
+	public GameObject ClearSound;
+	public GameObject FailSound;
 
 
 	void Start(){
@@ -160,7 +165,7 @@ public class PuzzleEndManager : MonoBehaviour {
 	public void HintOn(string[] Puzzle){
 		EndingCheck = true;
 		HintPanel.SetActive (true);
-
+		FailSound.SetActive (true);
 		for(int i = 0 ; i < 5 ; i ++){
 			if (Puzzle [i] == "Puzzle1" || Puzzle [i] == "Puzzle2" || Puzzle [i] == "Puzzle3" || Puzzle [i] == "Puzzle4" || Puzzle [i] == "Puzzle5") {
 				KindHint = true;
@@ -180,6 +185,7 @@ public class PuzzleEndManager : MonoBehaviour {
 	}
 
 	public void HintOff(){
+		FailSound.SetActive (false);
 		this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = true;
 		HintPanel.SetActive (false);
 		RelocatePuzzle ();
