@@ -17,6 +17,7 @@ public class PuzzleHint : MonoBehaviour
 
     public GameObject show_hint_btn;
     public GameObject hint_obj;
+    public GameObject purchase_bulb;
 
     private bool[] is_hinted = new bool[9];
     private bool is_unlock;
@@ -78,25 +79,28 @@ public class PuzzleHint : MonoBehaviour
     public void ShowHint()  //힌트 구매 후 힌트 보여주기
     {
         if (hint_count <= 0)
-            return;
+            PurChaseOn();
 
-        show_hint_btn.SetActive(false);
-        is_hinted[hint_index] = true;
-        hint_count -= 1;
-        TextCount();
-
-        for(int i = 0; i < cam_follow.goPuzzele.Length; i++)
+        else
         {
-            if(cam_follow.goPuzzele[i] == true)
-            {
-                img.sprite = hint_img[i];
-                break;
-            }
-        }
+            show_hint_btn.SetActive(false);
+            is_hinted[hint_index] = true;
+            hint_count -= 1;
+            TextCount();
 
-        img.color = new Color(1, 1, 1, 1);
-        CountSave();
-        HintSave();
+            for (int i = 0; i < cam_follow.goPuzzele.Length; i++)
+            {
+                if (cam_follow.goPuzzele[i] == true)
+                {
+                    img.sprite = hint_img[i];
+                    break;
+                }
+            }
+
+            img.color = new Color(1, 1, 1, 1);
+            CountSave();
+            HintSave();
+        }
     }
 
     public void UnlockedHintShow()  //힌트를 구매했을때 바로 보여주기
@@ -140,5 +144,15 @@ public class PuzzleHint : MonoBehaviour
     public void AddHint()       //힌트 구매
     {
         hint_count += 3;
+    }
+    
+    void PurChaseOn()
+    {
+        purchase_bulb.SetActive(true);
+    }
+
+    public void StageClear()
+    {
+        hint_count++;
     }
 }
