@@ -17,6 +17,8 @@ public class EndingStoryManager : MonoBehaviour {
 	public Text EndText;
 	public GameObject EndingLetter;
 	public GameObject EndingManager;
+	public GameObject EndingImag;
+	public GameObject EndingBackGround;
 
 	private float colorcount = 0;
 	private int Textcount = 0;
@@ -36,6 +38,8 @@ public class EndingStoryManager : MonoBehaviour {
 	public AudioClip AnotehrEnding;
 
 	void OnEnable () {
+		EndingImag.SetActive (true);
+		EndingBackGround.SetActive (true);
 		StartCoroutine (FadeOutEnding());
 		StartCoroutine (ShowText(NowPosition));
 	}
@@ -199,6 +203,8 @@ public class EndingStoryManager : MonoBehaviour {
 			GameObject.Find ("Main Camera").GetComponent<AudioSource> ().Play ();
 			GameObject.Find ("Gallery").GetComponent<AudioSource> ().Stop ();
 			EndingManager.SetActive (false);
+			EndingImag.SetActive (false);
+			EndingBackGround.SetActive (false);
 			resetGalleryEndingShow ();
 		}
 	}
