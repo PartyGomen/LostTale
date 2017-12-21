@@ -26,7 +26,7 @@ public class PuzzleHint : MonoBehaviour
 
 	void Start ()
     {
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
 
         cam_follow = Camera.main.GetComponent<CameraFollow>();
 
@@ -126,6 +126,7 @@ public class PuzzleHint : MonoBehaviour
 
         else
         {
+            show_hint_btn.SetActive(false);
             UnlockedHintShow();
         }
     }
