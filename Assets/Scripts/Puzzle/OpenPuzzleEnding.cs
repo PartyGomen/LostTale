@@ -9,6 +9,8 @@ public class OpenPuzzleEnding : MonoBehaviour {
 	public GameObject PuzzleEnd;
 	public GameObject MoblieControl;
 	public float Distance;
+
+	public GameObject PuzzleEndTuto;
 	public GameObject Null;
 
 	private GameObject target = null;
@@ -25,45 +27,50 @@ public class OpenPuzzleEnding : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetMouseButton (0))
-        {
-            Distance = Vector2.Distance(this.transform.position, Player.transform.position);
+		if (Input.GetMouseButton (0)) {
+			Distance = Vector2.Distance (this.transform.position, Player.transform.position);
 
-            if(Distance <= 2.0f)
-            {
-                CastRay();
-                if (target.name == "PuzzleEnd")
-                {
+			if (Distance <= 2.0f) {
+				CastRay ();
+				if (target.name == "PuzzleEnd") {
 					GameObject.Find ("Main Camera").GetComponent<AudioSource> ().Pause ();
 					Player.transform.position = new Vector3 (185, -10, 0);
 					Player.SetActive (false);
-                    PuzzleEnd.SetActive(true);
-                    MoblieControl.SetActive(false);
-
-
-                }
-            }
+					PuzzleEnd.SetActive (true);
+					MoblieControl.SetActive (false);
+					if (EndingStoryTuto.Is_FirstEndingTuto == true) {
+						PuzzleEndTuto.SetActive (true);
+					}
+				}
+			}
 		}
 	}
-
 	public void CloseEndPuzzle(){
 		if (Inventory.PuzzleGet [0] == true) {
 			GameObject.Find ("Puzzle1").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (500, -710, 0);
-		} else if (Inventory.PuzzleGet [1] == true) {
+		}  
+		if (Inventory.PuzzleGet [1] == true) {
 			GameObject.Find ("Puzzle2").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (800, -734, 0);
-		} else if (Inventory.PuzzleGet [2] == true) {
+		}
+		if (Inventory.PuzzleGet [2] == true) {
 			GameObject.Find ("Puzzle3").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1100, -695, 0);
-		} else if (Inventory.PuzzleGet [3] == true) {
+		}
+		if (Inventory.PuzzleGet [3] == true) {
 			GameObject.Find ("Puzzle4").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1420, -692, 0);
-		} else if (Inventory.PuzzleGet [4] == true) {
+		} 
+		if (Inventory.PuzzleGet [4] == true) {
 			GameObject.Find ("Puzzle5").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (344, -920, 0);
-		} else if (Inventory.PuzzleGet [5] == true) {
+		} 
+		if (Inventory.PuzzleGet [5] == true) {
 			GameObject.Find ("Puzzle6").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (644, -935, 0);
-		} else if (Inventory.PuzzleGet [6] == true) {
+		}
+		if (Inventory.PuzzleGet [6] == true) {
 			GameObject.Find ("Puzzle7").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (944, -899, 0);
-		} else if (Inventory.PuzzleGet [7] == true) {
+		}
+		if (Inventory.PuzzleGet [7] == true) {
 			GameObject.Find ("Puzzle8").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1244, -920, 0);
-		} else if (Inventory.PuzzleGet [8] == true) {
+		}
+		if (Inventory.PuzzleGet [8] == true) {
 			GameObject.Find ("Puzzle9").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1544, -935, 0);
 		}
 		GameObject.Find ("Main Camera").GetComponent<AudioSource> ().Play ();

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class EndingStoryTuto : MonoBehaviour {
-	public static bool Is_FirstEndingTuto = false;
+	public static bool Is_FirstEndingTuto = true;
 
 	public GameObject PuzzleImage;
 	public GameObject HandImage;
@@ -18,11 +18,12 @@ public class EndingStoryTuto : MonoBehaviour {
 	private float x = -450;
 	private float y = -160;
 	// Use this for initialization
+
 	void OnEnable () {
-		//if(Is_FirstEndingTuto == true){
-		Debug.Log("hi");
-			StartCoroutine (EndingTuto());
-	//	}
+		if (Is_FirstEndingTuto == true) {
+			Debug.Log ("hi");
+			StartCoroutine (EndingTuto ());
+		} 
 	}
 	
 	// Update is called once per frame
@@ -31,6 +32,7 @@ public class EndingStoryTuto : MonoBehaviour {
 	}
 
 	public void ExitTuto(){
+		Is_FirstEndingTuto = false;
 		PuzzleEndTuto.SetActive (false);
 	}
 
