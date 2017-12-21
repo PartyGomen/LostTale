@@ -23,10 +23,15 @@ public class TitleTest : MonoBehaviour
 	public GameObject Stage3;
 
 	public GameObject Gallery;
-	public GameObject GalleryManager;
+	public GameObject GalleryMg;
+
+	public GameObject GalleryTuto;
+	public GameObject GalleryOpen;
 //	private bool TouchBan = false;
 //	private bool AppearBook = false;
 //	public Sprite BackGroundSprite;
+
+	private bool IsFirstTuto = true;
 
     float xScale = 0;
     //float yScale = 0;
@@ -98,12 +103,11 @@ public class TitleTest : MonoBehaviour
 		Stage1.GetComponent<Button>().interactable = true;
 		Stage2.GetComponent<Button>().interactable = true;
 		Stage3.GetComponent<Button>().interactable = true;
-		if(EndingStoryManager.IsGetEnding == true){
-			
+		CheckGalleryTuto ();	
+
+		if(EndingStoryManager.IsGetEnding == true && IsFirstTuto == false ){
 			Gallery.SetActive (true);
-
-
-			GalleryManager.SetActive (true);
+			GalleryMg.SetActive (true);
 			EndingStoryManager.IsGetEnding = false;
 		}
 		gameObject.GetComponent<TitleTest> ().enabled = false;
@@ -113,4 +117,34 @@ public class TitleTest : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+	public void CheckGalleryTuto(){
+
+		if (GalleryManager.HappyEnding == true && GalleryManager.SadEnding == false && GalleryManager.SpecialEnding == false && GalleryManager.TrueEnding == false && IsFirstTuto == true) {
+			GalleryTuto.SetActive (true);
+			GalleryOpen.SetActive (false);
+			Debug.Log ("1");
+		}else if(GalleryManager.HappyEnding == false && GalleryManager.SadEnding == true && GalleryManager.SpecialEnding == false && GalleryManager.TrueEnding == false && IsFirstTuto == true){
+			GalleryTuto.SetActive (true);
+			GalleryOpen.SetActive (false);
+			Debug.Log ("2");
+		}else if(GalleryManager.HappyEnding == false && GalleryManager.SadEnding == false && GalleryManager.SpecialEnding == true && GalleryManager.TrueEnding == false && IsFirstTuto == true){
+			GalleryTuto.SetActive (true);
+			GalleryOpen.SetActive (false);
+			Debug.Log ("3");
+		}else if(GalleryManager.HappyEnding == false && GalleryManager.SadEnding == false && GalleryManager.SpecialEnding == false && GalleryManager.TrueEnding == true && IsFirstTuto == true){
+			GalleryTuto.SetActive (true);
+			GalleryOpen.SetActive (false);
+			Debug.Log ("4");
+		}
+	}
+
+	public void StartGalleryTuto(){
+		GalleryTuto.SetActive (false);
+		GalleryOpen.SetActive (true);
+		Gallery.SetActive (true);
+		GalleryMg.SetActive (true);
+		EndingStoryManager.IsGetEnding = false;
+		IsFirstTuto = false;
+	}
 }

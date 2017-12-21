@@ -17,7 +17,6 @@ public class PuzzleEndManager : MonoBehaviour {
 	public static bool PuzzleOn4 = false;
 	public static bool PuzzleOn5 = false;
 
-
 	public static int EndingStoryNumber = 0;
 
 	private bool ShowHint = false;
