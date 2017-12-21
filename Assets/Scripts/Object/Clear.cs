@@ -26,6 +26,8 @@ public class Clear : MonoBehaviour
             //screenEffect.maskInvert = true;
 
             StartCoroutine(ScreenEffectStart());
+
+            Invoke("BackToTitle", fadeT);
         }
     }
 
@@ -56,7 +58,10 @@ public class Clear : MonoBehaviour
 
             yield return null;
         }
+    }
 
+    void BackToTitle()
+    {
         SceneManager.LoadScene(3);
     }
 }
