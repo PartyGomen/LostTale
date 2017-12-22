@@ -12,6 +12,8 @@ public class UIBtn : MonoBehaviour
 	public GameObject InventoryShadow;
 	public GameObject MobileControl;
     public GameObject exitPanel;
+
+	public GameObject Control;
     public AudioSource clickSound;
 
 	void Start ()
@@ -53,6 +55,7 @@ public class UIBtn : MonoBehaviour
     {
         SoundPlay();
         exitPanel.SetActive(true);
+		Control.SetActive (false);
     }
 
     public void BackToTitleScene()
@@ -65,4 +68,8 @@ public class UIBtn : MonoBehaviour
     {
         clickSound.Play();
     }
+
+	public void HideControl(){
+		Control.SetActive (true);
+	}
 }

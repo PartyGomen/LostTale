@@ -14,6 +14,13 @@ public class Logo : MonoBehaviour
 
     float t = 0.0f;
 
+
+	public GameObject BGM;
+
+	void Awake(){
+		DontDestroyOnLoad (BGM);
+	}
+
     void Start()
     {
         StartCoroutine(FadeIn());

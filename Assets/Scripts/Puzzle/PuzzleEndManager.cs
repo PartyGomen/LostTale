@@ -117,19 +117,22 @@ public class PuzzleEndManager : MonoBehaviour {
 		
 	IEnumerator ClearEffect()
 	{
+		ClearSound.SetActive (true);
 		ClearBackGround.SetActive (true);
-		while (count < 2) {  // 책 내용물  Fade Out 시킴 
+		while (count < 2) {  
 			ClearBackGround.GetComponent<Image>().color = new Color(255, 255, 255, count);
 			yield return new WaitForSeconds(0.001f);
 			count += 0.002f;
 		} 
 
-		while (count1 < 256) {  // 책 내용물  Fade Out 시킴 
+		while (count1 < 256) {  
 			ClearBackGround.GetComponent<Image>().color = new Color(255 - count1, 255 - count1, 255 - count1, 255);
 			yield return new WaitForSeconds(0.1f);
 			count1 += 1f;
 			Debug.Log (count1);
 		} 
+		yield return new WaitForSeconds(1.0f);
+		ClearSound.SetActive (false);
 		//StopAllCoroutines ();
 		EndingCheck = true;
 		if (ShowHint == true) {
@@ -145,15 +148,33 @@ public class PuzzleEndManager : MonoBehaviour {
 	}
 		
 	public void RelocatePuzzle(){
-		GameObject.Find ("Puzzle1").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (500, -710, 0);
-		GameObject.Find ("Puzzle2").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (800, -734, 0);
-		GameObject.Find ("Puzzle3").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1100, -695, 0);
-		GameObject.Find ("Puzzle4").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1420, -692, 0);
-		GameObject.Find ("Puzzle5").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (344, -920, 0);
-		GameObject.Find ("Puzzle6").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (644, -935, 0);
-		GameObject.Find ("Puzzle7").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (944, -899, 0);
-		GameObject.Find ("Puzzle8").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1244, -920, 0);
-		GameObject.Find ("Puzzle9").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1544, -935, 0);
+		if (Inventory.PuzzleGet [0] == true) {
+			GameObject.Find ("Puzzle1").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (500, -710, 0);
+		}  
+		if (Inventory.PuzzleGet [1] == true) {
+			GameObject.Find ("Puzzle2").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (800, -734, 0);
+		}
+		if (Inventory.PuzzleGet [2] == true) {
+			GameObject.Find ("Puzzle3").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1100, -695, 0);
+		}
+		if (Inventory.PuzzleGet [3] == true) {
+			GameObject.Find ("Puzzle4").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1420, -692, 0);
+		} 
+		if (Inventory.PuzzleGet [4] == true) {
+			GameObject.Find ("Puzzle5").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (344, -920, 0);
+		} 
+		if (Inventory.PuzzleGet [5] == true) {
+			GameObject.Find ("Puzzle6").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (644, -935, 0);
+		}
+		if (Inventory.PuzzleGet [6] == true) {
+			GameObject.Find ("Puzzle7").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (944, -899, 0);
+		}
+		if (Inventory.PuzzleGet [7] == true) {
+			GameObject.Find ("Puzzle8").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1244, -920, 0);
+		}
+		if (Inventory.PuzzleGet [8] == true) {
+			GameObject.Find ("Puzzle9").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1544, -935, 0);
+		}
 		count = 0;  // 기본 변수 초기화 
 		count1 = 0;
 		ClearBackGround.GetComponent<Image>().color = new Color(255, 255, 255, 0);

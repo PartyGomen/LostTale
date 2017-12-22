@@ -30,11 +30,11 @@ public class Switch : MonoBehaviour
     {
         this.transform.position = new Vector3(71.0f, 9.6f, 0f);
 
-        if(isDown)
+       if(isDown)
         {
             door.transform.Translate(Vector2.down * 0.5f * Time.deltaTime);
 
-            if(door.transform.position.y <= -10.5f)
+            if(door.transform.position.y <= 10.2f)
             {
                 obstacle.SetActive(false);
                 isDown = false;
@@ -44,7 +44,7 @@ public class Switch : MonoBehaviour
             }
 
             pos = door.transform.position;
-            door.transform.position = new Vector3(pos.x, Mathf.Clamp(pos.y, -10.5f, 6.5f), pos.z);
+            door.transform.position = new Vector3(pos.x, Mathf.Clamp(pos.y, 10.2f, 14.2f), pos.z);
         }
 	}
 
