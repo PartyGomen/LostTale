@@ -17,6 +17,8 @@ public class PianoKey : MonoBehaviour
     float random_x;
     float random_y;
 
+    public bool is_reset;
+
     RaycastHit2D hit;
 
     Vector3 mouse_pos;
@@ -42,6 +44,9 @@ public class PianoKey : MonoBehaviour
             {
                 if(hit.collider.gameObject == this.gameObject)
                 {
+                    if (is_reset)
+                        piano_manager.ResetKey();
+
                     sprite.color = new Color32(200, 200, 200, 255);
                     Invoke("ColorBack", 0.2f);
                     random_value = Random.Range(0, notes.Length);

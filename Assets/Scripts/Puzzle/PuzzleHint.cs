@@ -19,6 +19,8 @@ public class PuzzleHint : MonoBehaviour
     public GameObject hint_obj;
     public GameObject purchase_bulb;
 
+    public RectTransform sub_bulb_text;
+
     private bool[] is_hinted = new bool[9];
     private bool is_unlock;
 
@@ -83,6 +85,7 @@ public class PuzzleHint : MonoBehaviour
 
         else
         {
+            StartCoroutine(ShowBulbSub());
             show_hint_btn.SetActive(false);
             is_hinted[hint_index] = true;
             hint_count -= 1;
@@ -155,5 +158,28 @@ public class PuzzleHint : MonoBehaviour
     public void StageClear()
     {
         hint_count++;
+    }
+
+    IEnumerator ShowBulbSub()
+    {
+        sub_bulb_text.gameObject.SetActive(true);
+
+        float time = 1.0f;
+        float cur_time = 0.0f;
+        float vector_normalized_value;
+        float alpha_normalized_value = 1.0f;
+
+        while (cur_time <=time)
+        {
+            cur_time += Time.deltaTime;
+            vector_normalized_value = cur_time / time;
+            alpha_normalized_value -= Time.deltaTime;
+            sub_bulb_text.anchoredPosition = Vector3.Lerp(new Vector3(70, -20, 0), new Vector3(70, 60, 0), vector_normalized_value);
+            sub_bulb_text.GetComponent<Text>().color = new Color(1, 1, 1, alpha_normalized_value);
+
+            yield return null;
+        }
+
+        sub_bulb_text.gameObject.SetActive(false);
     }
 }

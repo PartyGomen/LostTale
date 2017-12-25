@@ -37,16 +37,11 @@ public class PianoPuzzleManager : MonoBehaviour
         }
     }
 
-    void ResetKey()
+    public void ResetKey()
     {
         if (is_clear)
             return;
 
         index_number = 0;
-
-        for (int i = 0; i < answer.Length; i++)
-        {
-            answer[i] = "";
-        }
     }
 }
