@@ -18,6 +18,7 @@ public class PuzzleHint : MonoBehaviour
     public GameObject show_hint_btn;
     public GameObject hint_obj;
     public GameObject purchase_bulb;
+    public GameObject[] character = new GameObject[2];
 
     public RectTransform sub_bulb_text;
 
@@ -28,7 +29,7 @@ public class PuzzleHint : MonoBehaviour
 
 	void Start ()
     {
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
 
         cam_follow = Camera.main.GetComponent<CameraFollow>();
 
@@ -85,6 +86,7 @@ public class PuzzleHint : MonoBehaviour
 
         else
         {
+            ShowCharacter(true);
             StartCoroutine(ShowBulbSub());
             show_hint_btn.SetActive(false);
             is_hinted[hint_index] = true;
@@ -124,13 +126,30 @@ public class PuzzleHint : MonoBehaviour
     {
         if(is_hinted[hint_index] == false)  //Puzzle Show에서 힌트 인덱스를 넘겨받고 그게 풀렸는지 안풀렸는지를 판단!
         {
+            ShowCharacter(false);
             show_hint_btn.SetActive(true);
         }
 
         else
         {
+            ShowCharacter(true);
             show_hint_btn.SetActive(false);
             UnlockedHintShow();
+        }
+    }
+
+    void ShowCharacter(bool is_buy)
+    {
+        if(is_buy)
+        {
+            character[0].SetActive(false);
+            character[1].SetActive(true);
+        }
+
+        else
+        {
+            character[1].SetActive(false);
+            character[0].SetActive(true);
         }
     }
 
