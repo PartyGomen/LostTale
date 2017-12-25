@@ -20,6 +20,7 @@ public class Clear : MonoBehaviour
         {
             mobile_control.SetActive(false);
             panel.gameObject.SetActive(true);
+            GameObject.Find("HintManager").GetComponent<PuzzleHint>().StageClear();
             StartCoroutine(Fade());
             screenEffect = Camera.main.GetComponent<ScreenTransitionImageEffect>();
 

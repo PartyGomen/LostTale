@@ -31,6 +31,7 @@ public class Moon : MonoBehaviour
         else
         {
             tide_manager.is_clear = false;
+            tide_manager.is_trigger_on = false;
             waterYPos[0] = -7.7f;
             waterYPos[1] = -7.5f;
         }
