@@ -28,7 +28,7 @@ public class Switch : MonoBehaviour
 
     void FixedUpdate ()
     {
-        this.transform.position = new Vector3(71.0f, 9.6f, 0f);
+        this.transform.position = new Vector3(70.85f, 9.48f, 0f);
 
        if(isDown)
         {
