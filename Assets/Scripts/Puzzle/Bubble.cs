@@ -9,7 +9,6 @@ public class Bubble : MonoBehaviour
     private Vector3 start_pos;
 
     private float speed;
-    private float vector_x;
     private float alpha_value;
     private float divide_value;
     private float scale_value;
@@ -46,7 +45,6 @@ public class Bubble : MonoBehaviour
     {
         scale_value = 0.1f;
         alpha_value = 1.0f; 
-        //vector_x = Random.Range(start_pos.x - 0.2f, start_pos.x + 0.2f);
         speed = Random.Range(0.4f, 0.8f);
         divide_value = Random.Range(1.0f, 2.0f);
     }
