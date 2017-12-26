@@ -10,6 +10,7 @@ public class PianoKey : MonoBehaviour
     SpriteRenderer sprite;
 
     public GameObject[] notes;
+	public GameObject PianoManager;
 
     int random_value;
 
@@ -24,6 +25,7 @@ public class PianoKey : MonoBehaviour
     Vector3 mouse_pos;
 
     public PianoPuzzleManager piano_manager;
+	public AudioClip[] PianoSound;
 
     // Use this for initialization
     void Start ()
@@ -46,6 +48,30 @@ public class PianoKey : MonoBehaviour
                 {
                     if (is_reset)
                         piano_manager.ResetKey();
+					if (key == "C") {
+						PianoManager.GetComponent<AudioSource> ().clip = PianoSound [0];
+						PianoManager.GetComponent<AudioSource> ().Play ();
+					}else if(key == "D"){
+						PianoManager.GetComponent<AudioSource> ().clip = PianoSound [1];
+						PianoManager.GetComponent<AudioSource> ().Play ();
+					}else if(key == "E"){
+						PianoManager.GetComponent<AudioSource> ().clip = PianoSound [2];
+						PianoManager.GetComponent<AudioSource> ().Play ();
+					}else if(key == "F"){
+						PianoManager.GetComponent<AudioSource> ().clip = PianoSound [3];
+						PianoManager.GetComponent<AudioSource> ().Play ();
+
+					}else if(key == "G"){
+						PianoManager.GetComponent<AudioSource> ().clip = PianoSound [4];
+						PianoManager.GetComponent<AudioSource> ().Play ();
+					}else if(key == "A"){
+						PianoManager.GetComponent<AudioSource> ().clip = PianoSound [5];
+						PianoManager.GetComponent<AudioSource> ().Play ();
+					}else if(key == "B"){
+						PianoManager.GetComponent<AudioSource> ().clip = PianoSound [6];
+						PianoManager.GetComponent<AudioSource> ().Play ();
+					}
+
 
                     sprite.color = new Color32(200, 200, 200, 255);
                     Invoke("ColorBack", 0.2f);
