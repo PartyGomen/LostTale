@@ -31,14 +31,18 @@ public class PuzzleHermitCrabManager : MonoBehaviour
         //클리어 조건
         if(check[0] && check[1] && check[2] && check[3] && check[4] && !is_clear)
         {
-            is_clear = true;
-            camfollow.FadeCoroutine(false, 0f);
-            camfollow.FadeCoroutine(true, 1f);
-            camfollow.CheckPuzzleOrPlayer(false);
-            bridge.SetActive(true);
-            GetComponent<PuzzleClear>().Clear();
-        }
+			ClearHermitCrabPuzzle ();
+		}
     }
+
+	public void ClearHermitCrabPuzzle(){
+		is_clear = true;
+		camfollow.FadeCoroutine(false, 0f);
+		camfollow.FadeCoroutine(true, 1f);
+		camfollow.CheckPuzzleOrPlayer(false);
+		bridge.SetActive(true);
+		GetComponent<PuzzleClear>().Clear();
+	}
 
     public void Crab_Reset()
     {
