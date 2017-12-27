@@ -70,7 +70,7 @@ public class Logo : MonoBehaviour
 
 	    if(Input.GetMouseButtonDown(0) && isNext == true)
         {
-            SceneManager.LoadScene(2);
+			StartCoroutine (SoundPlay());
         }	
 	}
 
@@ -83,4 +83,10 @@ public class Logo : MonoBehaviour
     {
         img.CrossFadeAlpha(0.1f, 1f, false);
     }
+
+	IEnumerator SoundPlay(){
+		this.GetComponent<AudioSource> ().Play ();
+		yield return new WaitForSeconds (0.3f);
+		SceneManager.LoadScene(2);
+	}
 }
