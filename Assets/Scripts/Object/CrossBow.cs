@@ -46,10 +46,27 @@ public class CrossBow : MonoBehaviour
             cannon_audio.volume = 1.0f;
             cannon_audio.volume -= distance / 20.0f;
 
-            if (distance < 20f)
+            if (distance < 20f && !CheckIsPuzzle())
             {
                 cannon_audio.Play();
             }
         }
+    }
+
+    bool CheckIsPuzzle()
+    {
+        bool is_playing = false; ;
+
+        CameraFollow cam_follow = Camera.main.GetComponent<CameraFollow>();
+
+        for (int i = 0; i < cam_follow.goPuzzele.Length; i++)
+        {
+            if (cam_follow.goPuzzele[i] == true)
+            {
+                is_playing = true;
+            }
+        }
+
+        return is_playing;
     }
 }

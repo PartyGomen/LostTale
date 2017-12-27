@@ -137,6 +137,11 @@ public class CameraFollow : MonoBehaviour
     {
         isPuzzle = false;
 
+        for (int i = 0; i < goPuzzele.Length; i++)
+        {
+            goPuzzele[i] = false;
+        }
+
         Transform tr = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
         this.transform.position = new Vector3(tr.position.x, tr.position.y, -10);

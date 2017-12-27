@@ -235,6 +235,7 @@ public class GameTutorial : MonoBehaviour
                     for (int i = 2; i < 4; i++)
                     {
                         player[i].Button_Right_press();
+                        player[i].transform.localScale = new Vector3(1.5f, 1.5f, 1);
                     }
                 }
                 break;
@@ -309,8 +310,8 @@ public class GameTutorial : MonoBehaviour
                     for (int i = 2; i < 4; i++)
                         player[i].is_dead = false;
 
-                    player[2].gameObject.transform.position = new Vector3(-6, 2, 0);
-                    player[3].gameObject.transform.position = new Vector3(-6, -2, 0);
+                    player[2].gameObject.transform.position = new Vector3(-6, 2.5f, 0);
+                    player[3].gameObject.transform.position = new Vector3(-6, -2.5f, 0);
                 }
                 break;
         }

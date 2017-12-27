@@ -46,11 +46,6 @@ public class PuzzleShow : MonoBehaviour
                 {
                     if (hit.collider.gameObject == this.gameObject)
                     {
-                        for (int i = 0; i < cam.goPuzzele.Length; i++)
-                        {
-                            cam.goPuzzele[i] = false;
-                        }
-
                         cam.goPuzzele[puzzleIdx] = true;
                         cam.CheckPuzzleOrPlayer(true);
                         cam.FadeCoroutine(false, 0f);

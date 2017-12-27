@@ -61,12 +61,6 @@ public class SFXSound : MonoBehaviour
             if(cam_follow.goPuzzele[i] == true)
             {
                 is_playing = true;
-                break;
-            }
-
-            else
-            {
-                is_playing = false;
             }
         }
 
