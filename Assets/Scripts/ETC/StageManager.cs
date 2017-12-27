@@ -48,7 +48,7 @@ public class StageManager : MonoBehaviour {
 
         if(CurrentPage == 0)
         {
-            stages[0].onClick.AddListener(delegate { LoadStage(4); });
+            stages[0].onClick.AddListener(delegate { LoadStage(7); });
             stages[1].onClick.AddListener(delegate { LoadStage(5); });
             stages[2].onClick.AddListener(delegate { LoadStage(6); });
         }

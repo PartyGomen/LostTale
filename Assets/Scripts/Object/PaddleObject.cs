@@ -10,13 +10,13 @@ public class PaddleObject : MonoBehaviour
 	
 	void Update ()
     {
-	    if(this.transform.localPosition.x < -43.8f && sounded == false)
+	    if(this.transform.localPosition.x < -43.93f && sounded == false)
         {
             sounded = true;
             paddleAudio.Play();
         }
 
-        if(this.transform.localPosition.x >= -43.8f)
+        if(this.transform.localPosition.x >= -43.93f)
         {
             sounded = false;
         }

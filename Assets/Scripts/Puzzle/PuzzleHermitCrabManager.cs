@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PuzzleHermitCrabManager : MonoBehaviour
 {
-    public bool[] check = new bool[5];
+    public bool[] check = new bool[9];
 
     CameraFollow camfollow;
 
@@ -29,7 +29,7 @@ public class PuzzleHermitCrabManager : MonoBehaviour
     public void CheckEnd()
     {
         //클리어 조건
-        if(check[0] && check[1] && check[2] && check[3] && check[4] && !is_clear)
+        if((check[0] && check[1] && check[2] && check[3] && check[4] && !is_clear) || (check[5] && check[6] && check[2] && check[7] && check[8] && !is_clear))
         {
 			ClearHermitCrabPuzzle ();
 		}

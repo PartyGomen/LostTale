@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GameTutorial : MonoBehaviour
 {
@@ -16,38 +18,57 @@ public class GameTutorial : MonoBehaviour
 
     public Player[] player = new Player[4];
 
+    public GameObject[] page_button = new GameObject[2];
     public GameObject[] hand_image = new GameObject[4];
     public GameObject[] tutorial_object = new GameObject[3];
     public GameObject drag_image;
+    public GameObject start_button;
+
+    public Image[] next_imgae;
 
     public Image panel;
 
     private int four_way = 0;
     private int tutorial_idx = 0;
 
+    private float alpha;
     private float[] time_check = new float[4];
     public float fade_time;
 
     private bool[] change = new bool[4];
+    private bool finish = false;
+    private bool add;
+    private bool stop = true;
 
     private void Start()
     {
         StartCoroutine(Fade(true, 0f));
+        Invoke("StopToFalse", 1f);
     }
 
     // Update is called once per frame
     void Update ()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            StartFade();
-            tutorial_idx++;
-            Invoke("SetActiveObject", 1f);
+        alpha = Mathf.Clamp(alpha, 0.2f, 1.0f);
 
-            if(tutorial_idx > 2)
-            {
-                Debug.Log("끝");
-            }
+        for(int i = 0; i < next_imgae.Length; i++)
+        {
+            next_imgae[i].color = new Color(1, 1, 1, alpha);
+        }
+
+        if (add)
+        {
+            alpha += Time.deltaTime;
+
+            if (alpha >= 1.0f)
+                add = false;
+        }
+        else
+        {
+            alpha -= Time.deltaTime;
+
+            if (alpha <= 0.2f)
+                add = true;
         }
 
         switch (tutorial_idx)
@@ -232,6 +253,12 @@ public class GameTutorial : MonoBehaviour
         drag_image.transform.eulerAngles = _angle;
     }
 
+    public void TutorialEnd()
+    {
+        StartCoroutine(Fade(false, 0f));
+        Invoke("StartStage", 1f);
+    }
+
     void ChangeHandImage(int _idx, bool _true)
     {
         if (_true)
@@ -257,6 +284,65 @@ public class GameTutorial : MonoBehaviour
             else
                 tutorial_object[i].SetActive(false);
         }
+
+        switch (tutorial_idx)
+        {
+            case 0:
+                {
+                    page_button[0].SetActive(false);
+                }
+                break;
+
+            case 1:
+                {
+                    page_button[0].SetActive(true);
+                    page_button[1].SetActive(true);
+                    start_button.SetActive(false);
+                }
+                break;
+
+            case 2:
+                {
+                    start_button.SetActive(true);
+                    page_button[1].SetActive(false);
+
+                    for (int i = 2; i < 4; i++)
+                        player[i].is_dead = false;
+
+                    player[2].gameObject.transform.position = new Vector3(-6, 2, 0);
+                    player[3].gameObject.transform.position = new Vector3(-6, -2, 0);
+                }
+                break;
+        }
+    }
+
+    void StartStage()
+    {
+        SceneManager.LoadScene(4);
+    }
+
+    public void PageMove(bool _next)
+    {
+        if (stop)
+            return;
+
+        stop = true;
+
+        if (_next)
+            tutorial_idx++;
+
+        else
+            tutorial_idx--;
+
+        StartFade();
+        
+        Invoke("SetActiveObject", 1f);
+        Invoke("StopToFalse", 2f);
+    }
+
+    void StopToFalse()
+    {
+        stop = false;
     }
 
     IEnumerator Fade(bool is_in, float delay)
@@ -294,5 +380,20 @@ public class GameTutorial : MonoBehaviour
                 yield return null;
             }
         }
+    }
+
+    bool IsPointerOverUIObject()
+    {
+        // Referencing this code for GraphicRaycaster 
+        // https://gist.github.com/stramit/ead7ca1f432f3c0f181f
+        // the ray cast appears to require only eventData.position.
+        PointerEventData eventDataCurrentPosition
+            = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position
+            = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 }

@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     private Vector3 my_sprite_originalscale;
     //public AudioSource groundAudio;
     public AudioSource jump_audio;
+    public AudioSource death_audio;
 
     public Transform[] save_zone;
 
@@ -181,6 +182,7 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy") && !is_dead)
         {
             is_dead = true;
+            death_audio.Play();
             anim.SetTrigger("Die");
             StartCoroutine(PlayerDied());
         }
@@ -191,6 +193,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") && !is_dead)
         {
             is_dead = true;
+            death_audio.Play();
             anim.SetTrigger("Die");
             StartCoroutine(PlayerDied());
         }

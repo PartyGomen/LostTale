@@ -16,7 +16,8 @@ public class PuzzleHermitCrab : MonoBehaviour
 
     bool isDragging;
 
-    public int boolIndex;
+    public int[] bool_index;
+    private int for_index = 0;
     int posIdx;
 
     float sanpDistance = 1f;
@@ -26,7 +27,7 @@ public class PuzzleHermitCrab : MonoBehaviour
     Vector3 mousePos;
     Vector3 offset;
 
-    public GameObject finishedPos;
+    public GameObject[] finish_pos;
     public GameObject[] checkPos = new GameObject[5];
 
     RaycastHit2D hit;
@@ -86,7 +87,7 @@ public class PuzzleHermitCrab : MonoBehaviour
 
             case STEP.DRAGGING:
                 {
-                    puzzleMgr.check[boolIndex] = false;
+                    puzzleMgr.check[bool_index[for_index]] = false;
 
                     if (isDragging)
                     {
@@ -140,7 +141,7 @@ public class PuzzleHermitCrab : MonoBehaviour
 
                         if(IsFinish())
                         {
-                            puzzleMgr.check[boolIndex] = true;
+                            puzzleMgr.check[bool_index[for_index]] = true;
                             puzzleMgr.CheckEnd();
                         }
                     }
@@ -185,9 +186,13 @@ public class PuzzleHermitCrab : MonoBehaviour
     {
         bool result = false;
 
-        if(Vector3.Distance(this.transform.position, finishedPos.transform.position) < 1f)
+        for(int i = 0; i < finish_pos.Length; i++)
         {
-            result = true;
+            if(Vector3.Distance(this.transform.position, finish_pos[i].transform.position) < 1f)
+            {
+                for_index = i;
+                result = true;
+            }
         }
 
         return result;
