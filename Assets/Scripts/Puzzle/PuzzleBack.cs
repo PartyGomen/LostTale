@@ -13,6 +13,7 @@ public class PuzzleBack : MonoBehaviour
 
     public void Back()
     {
+		GameObject.Find("BackButtonSound").GetComponent<AudioSource> ().Play ();
         camfollow.CheckPlayer();
     }
 }

@@ -16,7 +16,8 @@ public class Tide : MonoBehaviour
 
         if (z > 360)
             z -= 360;
-
+		
+		this.GetComponent<AudioSource> ().Play ();
         StartCoroutine(RotateObj());
     }
 
@@ -26,7 +27,8 @@ public class Tide : MonoBehaviour
 
         if (z < -180)
             z += 360;
-
+		
+		this.GetComponent<AudioSource> ().Play ();
         StartCoroutine(RotateObj());
     }
 

@@ -38,6 +38,7 @@ public class PaperPuzzle : MonoBehaviour
                 {
                     if (hit.collider.gameObject == this.gameObject)
                     {
+						GameObject.Find ("PaperImage").GetComponent<AudioSource> ().Play ();
                         idx++;
 
                         if (idx >= sprites.Length)

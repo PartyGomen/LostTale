@@ -18,6 +18,9 @@ public class Chandelier : MonoBehaviour
 
     int count;
 
+	public AudioClip[] ChandelierSound;
+
+
     void Start ()
     {
         drop_audio = GetComponent<AudioSource>();
@@ -36,6 +39,8 @@ public class Chandelier : MonoBehaviour
             {
                 if (hit.collider.gameObject == this.gameObject)
                 {
+					this.GetComponent<AudioSource> ().clip = ChandelierSound [1];
+					this.GetComponent<AudioSource> ().Play ();
                     count++;
                 }
             }
@@ -43,10 +48,12 @@ public class Chandelier : MonoBehaviour
 
         if(count == 2)
         {
+			Debug.Log ("Hi");
             rb2d.bodyType = RigidbodyType2D.Dynamic;
-
+			this.GetComponent<AudioSource> ().Play ();
             if(particle != null)
                 particle.SetActive(false);
+			count++;
         }
     }
 
@@ -54,6 +61,7 @@ public class Chandelier : MonoBehaviour
     {
         if(!collision.gameObject.CompareTag("Player"))
         {
+			this.GetComponent<AudioSource> ().clip = ChandelierSound [0];
             drop_audio.Play();
             rb2d.bodyType = RigidbodyType2D.Static;
             anim.SetBool("IsBroken", true);

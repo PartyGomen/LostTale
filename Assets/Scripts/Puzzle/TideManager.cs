@@ -89,7 +89,6 @@ public class TideManager : MonoBehaviour
         while (0.01f <= Mathf.Abs(moon.waterObj[0].transform.position.y - moon.waterYPos[0]))
         {
             yield return null;
-
             moon.waterObj[0].transform.position = Vector3.Lerp(moon.waterObj[0].transform.position, new Vector2(moon.waterObj[0].transform.position.x, moon.waterYPos[0]), 0.7f * Time.deltaTime);
         }
     }
@@ -99,7 +98,7 @@ public class TideManager : MonoBehaviour
         while (0.01f <= Mathf.Abs(moon.waterObj[1].transform.position.y - moon.waterYPos[1]))
         {
             yield return null;
-
+			//this.GetComponent<AudioSource> ().Play ();
             moon.waterObj[1].transform.position = Vector3.Lerp(moon.waterObj[1].transform.position, new Vector2(moon.waterObj[1].transform.position.x, moon.waterYPos[1]), 0.7f * Time.deltaTime);
         }
     }
@@ -113,6 +112,7 @@ public class TideManager : MonoBehaviour
                 for(int i = 0; i < moon.waterObj.Length; i++)
                 {
                     moon.waterObj[i].GetComponent<BoxCollider2D>().isTrigger = true;
+					this.GetComponent<AudioSource> ().Play ();
                 }
             }
 
@@ -121,6 +121,7 @@ public class TideManager : MonoBehaviour
                 for (int i = 0; i < moon.waterObj.Length; i++)
                 {
                     moon.waterObj[i].GetComponent<BoxCollider2D>().isTrigger = false;
+					this.GetComponent<AudioSource> ().Play ();
                 }
             }
 

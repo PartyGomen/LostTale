@@ -39,6 +39,7 @@ public class ChessManager : MonoBehaviour {
 			}
 
 			if (Turn == 2 && target.name == "MovePossible7") {
+				this.GetComponent<AudioSource> ().Play ();
 				WhiteChess [2].transform.localPosition = new Vector3 (50f, -50f, 0);
 				BlackChess [0].transform.localPosition = new Vector3 (32.5f, -33.5f, 0);
 				DeleteMovePossible (7);
@@ -47,7 +48,6 @@ public class ChessManager : MonoBehaviour {
 				StartCoroutine (ShowGameText());
 				StartCoroutine (MoveRook());
 			} else if(Turn == 2 && target.name != "MovePossible7" && target.name != "Null") {
-				//Debug.Log (target.name);
 				Reset ();
 			}
 
@@ -61,6 +61,7 @@ public class ChessManager : MonoBehaviour {
 			}
 
 			if (Turn == 4 && target.name == "MovePossible4") {
+				this.GetComponent<AudioSource> ().Play ();
 				DeleteMovePossible (7);
 				BlackChess [2].transform.localPosition = new Vector3 (31.5f, -32.5f, 0);
 				GameText.SetActive (true);
@@ -176,6 +177,7 @@ public class ChessManager : MonoBehaviour {
 
 	IEnumerator MoveRook(){
 		yield return new WaitForSeconds(3.5f);
+		this.GetComponent<AudioSource> ().Play ();
 		WhiteChess [3].transform.localPosition = new Vector3 (32.5f, -33.5f, 0); 	
 		BlackChess [0].transform.localPosition = new Vector3 (50f, -55f, 0);
 		yield return new WaitForSeconds(1.5f);

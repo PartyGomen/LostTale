@@ -39,7 +39,7 @@ public class Mirror : MonoBehaviour
                     if (hit2d.collider.gameObject == this.gameObject)
                     {
                         check_number++;
-
+						this.GetComponent<AudioSource> ().Play ();
                         if (check_number > 4)
                             check_number = 1;
 

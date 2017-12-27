@@ -104,6 +104,7 @@ public class PelicanObj : MonoBehaviour
     {
         if(coll.gameObject.name == "Pelican1")
         {
+			GameObject.Find("Pel").GetComponent<AudioSource> ().Play ();
             Animator anim = coll.gameObject.GetComponent<Animator>();
             anim.SetTrigger("Eat");
             pelmgr.Object1AddWeight(weight);
@@ -112,6 +113,7 @@ public class PelicanObj : MonoBehaviour
 
         else if(coll.gameObject.name == "Pelican2")
         {
+			GameObject.Find("Pel").GetComponent<AudioSource> ().Play ();
             Animator anim = coll.gameObject.GetComponent<Animator>();
             anim.SetTrigger("Eat");
             pelmgr.Object2AddWeight(weight);;

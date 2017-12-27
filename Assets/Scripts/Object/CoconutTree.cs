@@ -47,10 +47,13 @@ public class CoconutTree : MonoBehaviour
                 objPos.z = 0;
 
                 this.transform.position = objPos;
+				this.GetComponent<AudioSource> ().Play ();
             }
 
-            if (Input.GetMouseButtonUp(0))
-                isDragging = false;
+			if (Input.GetMouseButtonUp (0)) 
+			{
+				isDragging = false;
+			}
         }
     }
 
