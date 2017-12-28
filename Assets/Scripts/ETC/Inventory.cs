@@ -25,12 +25,7 @@ public class Inventory : MonoBehaviour
 	private int count = 0;
 
     private string save_puzzle_string = "";
-
-    private void Start()
-    {
-        if (PlayerPrefs.HasKey("PuzzlePiece"))
-            PuzzleLoad();
-    }
+    private bool is_checked;
 
     public void OffInven()
     {
@@ -60,9 +55,18 @@ public class Inventory : MonoBehaviour
 		this.GetComponent<ScrollRect> ().enabled = true;
 	}
 
-	public void CheckInventory(){
-		for (int i = 0; i < PuzzleGet.Length; i++) {
-			if (PuzzleGet [i] == true) {
+	public void CheckInventory()
+    {
+        if (PlayerPrefs.HasKey("PuzzlePiece") && !is_checked)
+        {
+            is_checked = true;
+            PuzzleLoad();
+        }
+
+        for (int i = 0; i < PuzzleGet.Length; i++)
+        {
+			if (PuzzleGet [i] == true)
+            {
 				piece [count].SetActive (true);
 				piece [count].GetComponent<Image> ().sprite = InventoryPuzzleDetail [i];
 				PuzzleGetNumber [count] = i;
@@ -70,9 +74,12 @@ public class Inventory : MonoBehaviour
 				count++;
 			}
 		}
-		for(int j = count ; j < 9 ; j++){
+
+		for(int j = count ; j < 9 ; j++)
+        {
 			piece [j].SetActive (false);
 		}
+
 		count = 0;
 	}
 
@@ -86,9 +93,11 @@ public class Inventory : MonoBehaviour
         }
 
         PlayerPrefs.SetString("PuzzlePiece", save_puzzle_string);
+
+        Debug.Log(save_puzzle_string);
     }
 
-    void PuzzleLoad()
+    public void PuzzleLoad()
     {
         string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
 

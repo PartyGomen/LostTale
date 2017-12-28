@@ -25,14 +25,11 @@ public class PuzzleHint : MonoBehaviour
     public AudioSource click_sound;
 
     private bool[] is_hinted = new bool[9];
-    private bool is_unlock;
 
     private string save_hint_string = "";
 
 	void Start ()
     {
-        PlayerPrefs.DeleteAll();
-
         cam_follow = Camera.main.GetComponent<CameraFollow>();
 
         if (PlayerPrefs.HasKey("Hint"))

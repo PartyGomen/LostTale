@@ -36,7 +36,6 @@ public class GameTutorial : MonoBehaviour
     public float fade_time;
 
     private bool[] change = new bool[4];
-    private bool finish = false;
     private bool add;
     private bool stop = true;
 

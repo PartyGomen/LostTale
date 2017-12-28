@@ -16,6 +16,8 @@ public class OpenPuzzleEnding : MonoBehaviour {
 	private GameObject target = null;
 	private Vector2 pos;
 
+    public Inventory inven;
+
 	CameraFollow cam;
 	Vector3 camPosition;
 	// Use this for initialization
@@ -38,6 +40,7 @@ public class OpenPuzzleEnding : MonoBehaviour {
 					Player.SetActive (false);
 					PuzzleEnd.SetActive (true);
 					MoblieControl.SetActive (false);
+                    inven.PuzzleSave();
 					if (EndingStoryTuto.Is_FirstEndingTuto == true) {
 						PuzzleEndTuto.SetActive (true);
 					}

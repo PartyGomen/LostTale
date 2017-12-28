@@ -14,11 +14,14 @@ public class Clear : MonoBehaviour
 
     public GameObject mobile_control;
 
+    public Inventory inven;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
             mobile_control.SetActive(false);
+            inven.PuzzleSave();
             panel.gameObject.SetActive(true);
             GameObject.Find("HintManager").GetComponent<PuzzleHint>().StageClear();
             StartCoroutine(Fade());
