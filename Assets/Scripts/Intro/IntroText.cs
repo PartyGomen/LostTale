@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class IntroText : MonoBehaviour
 {
@@ -23,43 +24,40 @@ public class IntroText : MonoBehaviour
         stridx++;
         imgidx++;
     }
-	
-	void Update ()
+
+    public void NextPage()
     {
-	    if(Input.GetMouseButtonDown(0))
+        if (dialogue.isTyping == true)   //타이핑 중이라면 스킵
         {
-            if(dialogue.isTyping == true)   //타이핑 중이라면 스킵
+            dialogue.SkipTyping();
+        }
+
+        else  //아니라면 다음 거 출력
+        {
+            if (imgidx == 7)
+                SceneManager.LoadScene(3);
+
+            if (dialogue.librayImg.gameObject.activeSelf == true) //도서관 씬 켜져있으면 끄기
+                dialogue.librayImg.gameObject.SetActive(false);
+
+            if (dialogue.fairyPanel.activeSelf == true) //동화 파넬 켜져있으면 끄기
+                dialogue.fairyPanel.SetActive(false);
+
+            dialogue.StartSay(str[stridx], img[imgidx]);
+            stridx++;
+            imgidx++;
+
+            if (imgidx == 3) //통화씬에서 동화 캐릭터 담은 판 출력
             {
-                dialogue.SkipTyping();
+                dialogue.fairyPanel.SetActive(true);
+                dialogue.StartCoroutine(dialogue.FadeFairy());
             }
-            
-            else  //아니라면 다음 거 출력
+
+            if (imgidx == 4) //도서관씬에서 도서관 이미지 출력(도서관 이미지는 크므로 따로 사용)
             {
-                if (imgidx == 7)
-                    SceneManager.LoadScene(3);
-
-                if (dialogue.librayImg.gameObject.activeSelf == true) //도서관 씬 켜져있으면 끄기
-                    dialogue.librayImg.gameObject.SetActive(false);
-
-                if (dialogue.fairyPanel.activeSelf == true) //동화 파넬 켜져있으면 끄기
-                    dialogue.fairyPanel.SetActive(false);
-
-                dialogue.StartSay(str[stridx], img[imgidx]);
-                stridx++;
-                imgidx++;
-
-                if(imgidx == 3) //통화씬에서 동화 캐릭터 담은 판 출력
-                {
-                    dialogue.fairyPanel.SetActive(true);
-                    dialogue.StartCoroutine(dialogue.FadeFairy());
-                }
-
-                if(imgidx == 4) //도서관씬에서 도서관 이미지 출력(도서관 이미지는 크므로 따로 사용)
-                {
-                    dialogue.librayImg.gameObject.SetActive(true);
-                    dialogue.StartCoroutine(dialogue.LibaryCamera());
-                }
+                dialogue.librayImg.gameObject.SetActive(true);
+                dialogue.StartCoroutine(dialogue.LibaryCamera());
             }
         }
-	}
+    }
 }

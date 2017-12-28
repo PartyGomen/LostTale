@@ -14,6 +14,8 @@ public class Password : MonoBehaviour {
     public GameObject password_object;
     private CameraFollow cam_follow;
 
+    public AudioSource click_sound;
+
 	void Start ()
     {
         cam_follow = Camera.main.GetComponent<CameraFollow>();
@@ -51,6 +53,11 @@ public class Password : MonoBehaviour {
         Go.SetActive(false);
     }
 
+    void SoundPlay()
+    {
+        click_sound.Play();
+    }
+
     public void Off()
     {
         GameObject go = GameObject.Find("PassWordPanel");
@@ -64,6 +71,8 @@ public class Password : MonoBehaviour {
 
     public void AddOne ()
     {
+        SoundPlay();
+
         one++;
         if (one > 9)
             one = 0;
@@ -73,6 +82,8 @@ public class Password : MonoBehaviour {
 
     public void SubOne()
     {
+        SoundPlay();
+
         one--;
         if (one < 0)
             one = 9;
@@ -82,6 +93,8 @@ public class Password : MonoBehaviour {
 
     public void AddTwo()
     {
+        SoundPlay();
+
         two++;
         if (two > 9)
             two = 0;
@@ -91,6 +104,8 @@ public class Password : MonoBehaviour {
 
     public void SubTwo()
     {
+        SoundPlay();
+
         two--;
         if (two < 0)
             two = 9;
@@ -100,6 +115,8 @@ public class Password : MonoBehaviour {
 
     public void AddThree()
     {
+        SoundPlay();
+
         three++;
         if (three > 9)
             three = 0;
@@ -109,6 +126,8 @@ public class Password : MonoBehaviour {
 
     public void SubThree()
     {
+        SoundPlay();
+
         three--;
         if (three < 0)
             three = 9;
@@ -118,6 +137,8 @@ public class Password : MonoBehaviour {
 
     public void AddFour()
     {
+        SoundPlay();
+
         four++;
         if (four > 9)
             four = 0;
@@ -127,6 +148,8 @@ public class Password : MonoBehaviour {
 
     public void SubFour()
     {
+        SoundPlay();
+
         four--;
         if (four < 0)
             four = 9;

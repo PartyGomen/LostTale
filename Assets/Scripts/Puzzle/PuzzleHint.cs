@@ -22,6 +22,8 @@ public class PuzzleHint : MonoBehaviour
 
     public RectTransform sub_bulb_text;
 
+    public AudioSource click_sound;
+
     private bool[] is_hinted = new bool[9];
     private bool is_unlock;
 
@@ -86,6 +88,7 @@ public class PuzzleHint : MonoBehaviour
 
         else
         {
+            click_sound.Play();
             ShowCharacter(true);
             StartCoroutine(ShowBulbSub());
             show_hint_btn.SetActive(false);
@@ -124,6 +127,8 @@ public class PuzzleHint : MonoBehaviour
 
     public void ClickBulb()     //전구를 눌렀을때 구매를 보여주냐, 힌트를 보여주냐를 구분
     {
+        click_sound.Play();
+
         if(is_hinted[hint_index] == false)  //Puzzle Show에서 힌트 인덱스를 넘겨받고 그게 풀렸는지 안풀렸는지를 판단!
         {
             ShowCharacter(false);
