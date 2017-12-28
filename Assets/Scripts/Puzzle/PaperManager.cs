@@ -8,6 +8,16 @@ public class PaperManager : MonoBehaviour
 
     private bool is_clear;
 
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey(("PuzzlePiece")))
+        {
+            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
+
+            is_clear = bool.Parse(puzzle_string[4]);
+        }
+    }
+
     public void CheckClear()
     {
         if(paper_puzzle[0].idx == 3 && paper_puzzle[1].idx == 1 && paper_puzzle[2].idx == 2 && !is_clear)

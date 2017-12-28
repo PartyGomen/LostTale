@@ -16,6 +16,16 @@ public class JiksawMgr : MonoBehaviour
     Vector3 pos;
     RaycastHit2D hit;
 
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey(("PuzzlePiece")))
+        {
+            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
+
+            is_clear = bool.Parse(puzzle_string[9]);
+        }
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -84,7 +94,7 @@ public class JiksawMgr : MonoBehaviour
 
             else
             {
-                if(i == bool_clear.Length - 1)
+                if(i == bool_clear.Length - 1 && !is_clear)
                 {
                     is_clear = true;
 

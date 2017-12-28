@@ -13,11 +13,14 @@ public class TideManager : MonoBehaviour
 
     private Tide tide;
 
+    public int mmon_check;
+    private int check_before_same = 1;
     public int starspot;
 
     private bool get_puzzle_piece;
+    private bool is_clear;
     [HideInInspector]
-    public bool is_clear;
+    public bool rising;
     [HideInInspector]
     public bool get_puzzle;
     [HideInInspector]
@@ -82,7 +85,14 @@ public class TideManager : MonoBehaviour
 
         tide.z = (int)moon.transform.eulerAngles.z;
         tide.gameObject.SetActive(false);
-	}
+
+        if (PlayerPrefs.HasKey(("PuzzlePiece")))
+        {
+            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
+
+            is_clear = bool.Parse(puzzle_string[2]);
+        }
+    }
 
     IEnumerator FirstWaterPosChange()
     {
@@ -112,7 +122,6 @@ public class TideManager : MonoBehaviour
                 for(int i = 0; i < moon.waterObj.Length; i++)
                 {
                     moon.waterObj[i].GetComponent<BoxCollider2D>().isTrigger = true;
-					this.GetComponent<AudioSource> ().Play ();
                 }
             }
 
@@ -121,8 +130,14 @@ public class TideManager : MonoBehaviour
                 for (int i = 0; i < moon.waterObj.Length; i++)
                 {
                     moon.waterObj[i].GetComponent<BoxCollider2D>().isTrigger = false;
-					this.GetComponent<AudioSource> ().Play ();
                 }
+            }
+
+            if (check_before_same != mmon_check)
+            {
+                this.GetComponent<AudioSource>().Play();
+
+                check_before_same = mmon_check;
             }
 
             StartCoroutine(FirstWaterPosChange());
@@ -130,7 +145,7 @@ public class TideManager : MonoBehaviour
 
             GameObject.Find("TideBtn").SetActive(false);
 
-            if(get_puzzle_piece == false && get_puzzle && is_clear)
+            if(get_puzzle_piece == false && get_puzzle && !is_clear && rising)
             {
                 get_puzzle_piece = true;
                 GetComponent<PuzzleClear>().Clear();

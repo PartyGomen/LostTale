@@ -22,6 +22,8 @@ public class PuzzlePiece : MonoBehaviour
 
     private Player player;
 
+    public Inventory inven;
+
     public GameObject pos;
 
     public UI ui_panel;
@@ -67,6 +69,7 @@ public class PuzzlePiece : MonoBehaviour
                 else
                 {
                     Inventory.PuzzleGet[piece_number] = true;
+                    inven.PuzzleSave();
                     this.gameObject.SetActive(false);
                 }
             }

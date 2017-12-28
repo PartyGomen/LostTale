@@ -20,6 +20,13 @@ public class Laser : MonoBehaviour
 
         line.SetPosition(0, this.transform.position);
         line.SetPosition(1, mirror[0].transform.position);
+
+        if (PlayerPrefs.HasKey(("PuzzlePiece")))
+        {
+            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
+
+            is_clear = bool.Parse(puzzle_string[5]);
+        }
     }
 
     void Update()

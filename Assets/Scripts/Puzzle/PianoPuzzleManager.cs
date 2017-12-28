@@ -11,6 +11,16 @@ public class PianoPuzzleManager : MonoBehaviour
 
     private bool is_clear = false;
 
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey(("PuzzlePiece")))
+        {
+            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
+
+            is_clear = bool.Parse(puzzle_string[6]);
+        }
+    }
+
     public void EnterKey(string str)
     {
         answer[index_number] = str;

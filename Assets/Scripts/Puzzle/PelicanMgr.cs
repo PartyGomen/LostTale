@@ -26,6 +26,13 @@ public class PelicanMgr : MonoBehaviour
         startGo2Pos = go2.transform.position;
 
         fishes = GameObject.FindGameObjectsWithTag("Fish");
+
+        if (PlayerPrefs.HasKey(("PuzzlePiece")))
+        {
+            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
+
+            is_clear = bool.Parse(puzzle_string[3]);
+        }
     }
 	
 	void Update ()

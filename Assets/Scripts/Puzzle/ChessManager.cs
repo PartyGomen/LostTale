@@ -20,8 +20,20 @@ public class ChessManager : MonoBehaviour {
 	public Sprite[] GameTextImage;
 	private int Turn = 1;
 
-	// Use this for initialization
-	void OnEnable () {
+    private bool is_clear;
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey(("PuzzlePiece")))
+        {
+            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
+
+            is_clear = bool.Parse(puzzle_string[7]);
+        }
+    }
+
+    // Use this for initialization
+    void OnEnable () {
 		StartCoroutine (ShowGameText());
 	}
 	
@@ -60,7 +72,8 @@ public class ChessManager : MonoBehaviour {
 				Reset ();
 			}
 
-			if (Turn == 4 && target.name == "MovePossible4") {
+			if (Turn == 4 && target.name == "MovePossible4" && !is_clear) {
+                is_clear = true;
 				this.GetComponent<AudioSource> ().Play ();
 				DeleteMovePossible (7);
 				BlackChess [2].transform.localPosition = new Vector3 (31.5f, -32.5f, 0);

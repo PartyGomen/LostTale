@@ -16,6 +16,8 @@ public class Password : MonoBehaviour {
 
     public AudioSource click_sound;
 
+    private bool is_clear;
+
 	void Start ()
     {
         cam_follow = Camera.main.GetComponent<CameraFollow>();
@@ -23,7 +25,14 @@ public class Password : MonoBehaviour {
         two = 0;
         three = 0;
         four = 0;
-	}
+
+        if(PlayerPrefs.HasKey(("PuzzlePiece")))
+        {
+            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
+
+            is_clear = bool.Parse(puzzle_string[1]);
+        }
+    }
 	
 	void Update ()
     {
@@ -35,7 +44,7 @@ public class Password : MonoBehaviour {
 
     void CheckCorret()
     {
-        if (one == answer[0] && two == answer[1] && three == answer[2] && four == answer[3])
+        if (one == answer[0] && two == answer[1] && three == answer[2] && four == answer[3] && !is_clear)
         {
             cam_follow.FadeCoroutine(false, 0f);
             cam_follow.FadeCoroutine(true, 1f);

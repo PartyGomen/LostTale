@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
 	public GameObject PuzzleImageShow;
-	public static bool[] PuzzleGet = new bool[9] {true, true, true, true, true, true, true, true, true};
+	public static bool[] PuzzleGet = new bool[9] { false, false, false, false, false, false, false, false, false };
 	//{true, true, true, true, true, true, true, true, true}
 	//{false, false, false, false, false, false, false, false, false}
 	public static int[] PuzzleGetNumber = new int[9] {0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -23,6 +23,14 @@ public class Inventory : MonoBehaviour
 	public GameObject MobileControl;
 
 	private int count = 0;
+
+    private string save_puzzle_string = "";
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("PuzzlePiece"))
+            PuzzleLoad();
+    }
 
     public void OffInven()
     {
@@ -68,4 +76,25 @@ public class Inventory : MonoBehaviour
 		count = 0;
 	}
 
+    public void PuzzleSave()
+    {
+        save_puzzle_string = "";
+
+        for (int i = 0; i < PuzzleGet.Length; i++)
+        {
+            save_puzzle_string = save_puzzle_string + PuzzleGet[i] + ",";
+        }
+
+        PlayerPrefs.SetString("PuzzlePiece", save_puzzle_string);
+    }
+
+    void PuzzleLoad()
+    {
+        string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
+
+        for (int i = 0; i < PuzzleGet.Length; i++)
+        {
+            PuzzleGet[i] = bool.Parse(puzzle_string[i]);
+        }
+    }
 }
