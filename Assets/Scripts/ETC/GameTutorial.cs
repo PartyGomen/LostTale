@@ -235,6 +235,7 @@ public class GameTutorial : MonoBehaviour
                     {
                         player[i].Button_Right_press();
                         player[i].transform.localScale = new Vector3(1.5f, 1.5f, 1);
+
                     }
                 }
                 break;
@@ -297,14 +298,14 @@ public class GameTutorial : MonoBehaviour
                 {
                     page_button[0].SetActive(true);
                     page_button[1].SetActive(true);
-                    start_button.SetActive(false);
+                    start_button.SetActive(true);
                 }
                 break;
 
             case 2:
                 {
-                    start_button.SetActive(true);
-                    page_button[1].SetActive(false);
+                    start_button.SetActive(false);
+               //     page_button[1].SetActive(false);
 
                     for (int i = 2; i < 4; i++)
                         player[i].is_dead = false;
@@ -323,6 +324,7 @@ public class GameTutorial : MonoBehaviour
 
     public void PageMove(bool _next)
     {
+
         if (stop)
             return;
 
@@ -334,6 +336,9 @@ public class GameTutorial : MonoBehaviour
         else
             tutorial_idx--;
 
+		if (tutorial_idx == 3) {
+			TutorialEnd ();
+		}
         StartFade();
         
         Invoke("SetActiveObject", 1f);

@@ -15,6 +15,7 @@ public class Exit : MonoBehaviour {
 	public GameObject Stage2;
 	public GameObject Stage3;
 
+	public GameObject ExitBackGround;
 	// Use this for initialization
 	void Start () {
 		
@@ -38,6 +39,7 @@ public class Exit : MonoBehaviour {
 		Stage1.GetComponent<Button> ().interactable = false;
 		Stage2.GetComponent<Button> ().interactable = false;
 		Stage3.GetComponent<Button> ().interactable = false;
+		ExitBackGround.SetActive (true);
 	}
 
 	public void OFFExitPopup(){
@@ -52,6 +54,7 @@ public class Exit : MonoBehaviour {
 		Stage1.GetComponent<Button> ().interactable = true;
 		Stage2.GetComponent<Button> ().interactable = true;
 		Stage3.GetComponent<Button> ().interactable = true;
+		ExitBackGround.SetActive (false);
 	}
 	public void OnExitGame(){
 		Debug.Log ("Finish");
