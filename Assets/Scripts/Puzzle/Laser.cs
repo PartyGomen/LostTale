@@ -14,6 +14,8 @@ public class Laser : MonoBehaviour
 
     private int linecount = 2;
 
+    private Player player;
+
 	void Start ()
     {
         line = GetComponent<LineRenderer>();
@@ -21,15 +23,7 @@ public class Laser : MonoBehaviour
         line.SetPosition(0, this.transform.position);
         line.SetPosition(1, mirror[0].transform.position);
 
-        if (PlayerPrefs.HasKey(("PuzzlePiece")))
-        {
-            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
-
-            is_clear = bool.Parse(puzzle_string[5]);
-
-            if (is_clear)
-                laser_obj.SetActive(false);
-        }
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     void Update()
@@ -107,13 +101,16 @@ public class Laser : MonoBehaviour
 
             laser_obj.SetActive(false);
 
-            GetComponent<PuzzleClear>().Clear();
+            player.saveZoneidx = 1;
 
             CameraFollow cam_follow = Camera.main.GetComponent<CameraFollow>();
 
             cam_follow.FadeCoroutine(false, 0f);
             cam_follow.FadeCoroutine(true, 1f);
             cam_follow.CheckPuzzleOrPlayer(false);
+
+            if (Inventory.PuzzleGet[5] == false)
+                GetComponent<PuzzleClear>().Clear();
         }
     }
 }

@@ -15,24 +15,17 @@ public class PuzzleHermitCrabManager : MonoBehaviour
     [HideInInspector]
     public bool is_clear = false;
 
+    private Player player;
+
 	void Start ()
     {
         camfollow = Camera.main.GetComponent<CameraFollow>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         //소라게 위치 저장
         for(int i = 0; i < crabs.Length; i ++)
         {
             crab_pos[i] = crabs[i].transform.position;
-        }
-
-        if(PlayerPrefs.HasKey("PuzzlePiece"))
-        {
-            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
-
-            is_clear = bool.Parse(puzzle_string[0]);
-
-            if (is_clear)
-                bridge.SetActive(true);
         }
     }
 
@@ -45,14 +38,18 @@ public class PuzzleHermitCrabManager : MonoBehaviour
 		}
     }
 
-	public void ClearHermitCrabPuzzle(){
+	public void ClearHermitCrabPuzzle()
+    {
 		is_clear = true;
 		camfollow.FadeCoroutine(false, 0f);
 		camfollow.FadeCoroutine(true, 1f);
 		camfollow.CheckPuzzleOrPlayer(false);
 		bridge.SetActive(true);
-		GetComponent<PuzzleClear>().Clear();
-	}
+        player.saveZoneidx = 1;
+
+        if (Inventory.PuzzleGet[0] == false)
+            GetComponent<PuzzleClear>().Clear();
+    }
 
     public void Crab_Reset()
     {

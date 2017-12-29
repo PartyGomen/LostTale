@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class PuzzlePiece : MonoBehaviour
 {
-    public int change_index;
     public int piece_number;
 
     private float RotateSpeed = 5f;
@@ -89,7 +88,6 @@ public class PuzzlePiece : MonoBehaviour
                     }
 
                     isclicked = true;
-                    player.saveZoneidx = change_index;
                 }
             }
         }

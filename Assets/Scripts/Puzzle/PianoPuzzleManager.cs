@@ -11,14 +11,11 @@ public class PianoPuzzleManager : MonoBehaviour
 
     private bool is_clear = false;
 
+    private Player player;
+
     private void Start()
     {
-        if (PlayerPrefs.HasKey(("PuzzlePiece")))
-        {
-            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
-
-            is_clear = bool.Parse(puzzle_string[6]);
-        }
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     public void EnterKey(string str)
@@ -43,7 +40,10 @@ public class PianoPuzzleManager : MonoBehaviour
             cam_follow.FadeCoroutine(false, 0f);
             cam_follow.FadeCoroutine(true, 1f);
             cam_follow.CheckPuzzleOrPlayer(false);
-            GetComponent<PuzzleClear>().Clear();
+            player.saveZoneidx = 2;
+
+            if (Inventory.PuzzleGet[6] == false)
+                GetComponent<PuzzleClear>().Clear();
         }
     }
 

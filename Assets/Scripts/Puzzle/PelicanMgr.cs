@@ -18,6 +18,8 @@ public class PelicanMgr : MonoBehaviour
     public GameObject siso;
     private GameObject[] fishes;
 
+    private Player player;
+
     private bool is_clear;
 
     void Start ()
@@ -27,12 +29,7 @@ public class PelicanMgr : MonoBehaviour
 
         fishes = GameObject.FindGameObjectsWithTag("Fish");
 
-        if (PlayerPrefs.HasKey(("PuzzlePiece")))
-        {
-            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
-
-            is_clear = bool.Parse(puzzle_string[3]);
-        }
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 	
 	void Update ()
@@ -87,8 +84,10 @@ public class PelicanMgr : MonoBehaviour
                 cam_follow.FadeCoroutine(false, 0f);
                 cam_follow.FadeCoroutine(true, 1f);
                 cam_follow.CheckPuzzleOrPlayer(false);
+                player.saveZoneidx = 2;
 
-                GetComponent<PuzzleClear>().Clear();
+                if (Inventory.PuzzleGet[3] == false)
+                    GetComponent<PuzzleClear>().Clear();
             }
         }
     }

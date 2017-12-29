@@ -16,6 +16,8 @@ public class Password : MonoBehaviour {
 
     public AudioSource click_sound;
 
+    private Player player;
+
     private bool is_clear;
 
 	void Start ()
@@ -26,12 +28,7 @@ public class Password : MonoBehaviour {
         three = 0;
         four = 0;
 
-        if(PlayerPrefs.HasKey(("PuzzlePiece")))
-        {
-            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
-
-            is_clear = bool.Parse(puzzle_string[1]);
-        }
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 	
 	void Update ()
@@ -52,7 +49,10 @@ public class Password : MonoBehaviour {
             Invoke("AfterClear", 1f);
             password_object.GetComponent<SpriteRenderer>().sprite = unlock_sprite;
             obj.SetActive(true);
-            GetComponent<PuzzleClear>().Clear();
+            player.saveZoneidx = 2;
+
+            if (Inventory.PuzzleGet[1] == false)
+                GetComponent<PuzzleClear>().Clear();
         }
     }
 

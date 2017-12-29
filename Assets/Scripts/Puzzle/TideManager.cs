@@ -25,7 +25,9 @@ public class TideManager : MonoBehaviour
     public bool get_puzzle;
     [HideInInspector]
     public bool is_trigger_on;
-    
+
+    private Player player;
+
     void Start ()
     {
         starspot = Random.Range(1, 9);
@@ -85,13 +87,6 @@ public class TideManager : MonoBehaviour
 
         tide.z = (int)moon.transform.eulerAngles.z;
         tide.gameObject.SetActive(false);
-
-        if (PlayerPrefs.HasKey(("PuzzlePiece")))
-        {
-            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
-
-            is_clear = bool.Parse(puzzle_string[2]);
-        }
     }
 
     IEnumerator FirstWaterPosChange()
@@ -147,8 +142,12 @@ public class TideManager : MonoBehaviour
 
             if(get_puzzle_piece == false && get_puzzle && !is_clear && rising)
             {
+                is_clear = true;
                 get_puzzle_piece = true;
-                GetComponent<PuzzleClear>().Clear();
+                player.saveZoneidx = 1;
+
+                if (Inventory.PuzzleGet[2] == false)
+                    GetComponent<PuzzleClear>().Clear();
             }
         }
     }

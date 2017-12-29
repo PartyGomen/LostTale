@@ -22,14 +22,11 @@ public class ChessManager : MonoBehaviour {
 
     private bool is_clear;
 
+    private Player player;
+
     private void Start()
     {
-        if (PlayerPrefs.HasKey(("PuzzlePiece")))
-        {
-            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
-
-            is_clear = bool.Parse(puzzle_string[7]);
-        }
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     // Use this for initialization
@@ -87,7 +84,10 @@ public class ChessManager : MonoBehaviour {
                 cam_follow.FadeCoroutine(true, 1f);
                 cam_follow.CheckPuzzleOrPlayer(false);
 
-                GetComponent<PuzzleClear>().Clear();
+                player.saveZoneidx = 3;
+
+                if (Inventory.PuzzleGet[7] == false)
+                    GetComponent<PuzzleClear>().Clear();
 
                 Destroy(this);
 			}	else if(Turn == 4 && target.name != "MovePossible4" && target.name != "Null") {

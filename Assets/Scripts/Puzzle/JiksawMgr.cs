@@ -16,14 +16,11 @@ public class JiksawMgr : MonoBehaviour
     Vector3 pos;
     RaycastHit2D hit;
 
+    private Player player;
+
     private void Start()
     {
-        if (PlayerPrefs.HasKey(("PuzzlePiece")))
-        {
-            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
-
-            is_clear = bool.Parse(puzzle_string[9]);
-        }
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     private void Update()
@@ -104,7 +101,10 @@ public class JiksawMgr : MonoBehaviour
                     cam_follow.FadeCoroutine(true, 1f);
                     cam_follow.CheckPuzzleOrPlayer(false);
 
-                    GetComponent<PuzzleClear>().Clear();
+                    player.saveZoneidx = 4;
+
+                    if (Inventory.PuzzleGet[8] == false)
+                        GetComponent<PuzzleClear>().Clear();
                 }
             }
         }

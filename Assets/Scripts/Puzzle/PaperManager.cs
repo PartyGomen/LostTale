@@ -8,14 +8,11 @@ public class PaperManager : MonoBehaviour
 
     private bool is_clear;
 
+    private Player player;
+
     private void Start()
     {
-        if (PlayerPrefs.HasKey(("PuzzlePiece")))
-        {
-            string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
-
-            is_clear = bool.Parse(puzzle_string[4]);
-        }
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     public void CheckClear()
@@ -30,7 +27,10 @@ public class PaperManager : MonoBehaviour
             cam_follow.FadeCoroutine(true, 1f);
             cam_follow.CheckPuzzleOrPlayer(false);
 
-            GetComponent<PuzzleClear>().Clear();
+            player.saveZoneidx = 3;
+
+            if (Inventory.PuzzleGet[4] == false)
+                GetComponent<PuzzleClear>().Clear();
         }
     }
 }
