@@ -87,6 +87,8 @@ public class TideManager : MonoBehaviour
 
         tide.z = (int)moon.transform.eulerAngles.z;
         tide.gameObject.SetActive(false);
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     IEnumerator FirstWaterPosChange()
