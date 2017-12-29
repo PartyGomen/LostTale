@@ -31,7 +31,7 @@ public class PuzzleHint : MonoBehaviour
 	void Start ()
     {
         cam_follow = Camera.main.GetComponent<CameraFollow>();
-	//	PlayerPrefs.DeleteAll ();
+		//PlayerPrefs.DeleteAll ();
         if (PlayerPrefs.HasKey("Hint"))
             CountLoad();
 

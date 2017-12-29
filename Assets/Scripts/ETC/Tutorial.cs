@@ -160,7 +160,7 @@ public class Tutorial : MonoBehaviour
 
             case TUTORIAL_TYPE.TOUCH:
                 {
-                    if (crab_manager.is_clear == false)
+                    if (crab_manager.is_clear == false && Inventory.PuzzleGet[0] == false)
                     {
                         distance = Vector3.Distance(player.gameObject.transform.position, this.gameObject.transform.position);
 
@@ -231,7 +231,7 @@ public class Tutorial : MonoBehaviour
 
             case TUTORIAL_TYPE.PUZZLE_PIECE:
                 {
-                    if (puzzle_piece.isclicked == false && crab_manager.is_clear == true)
+                    if (puzzle_piece.isclicked == false && crab_manager.is_clear == true && Inventory.PuzzleGet[0] == false)
                     {
                         distance = Vector3.Distance(player.gameObject.transform.position, this.gameObject.transform.position);
 

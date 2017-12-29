@@ -26,6 +26,9 @@ public class Laser : MonoBehaviour
             string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
 
             is_clear = bool.Parse(puzzle_string[5]);
+
+            if (is_clear)
+                laser_obj.SetActive(false);
         }
     }
 

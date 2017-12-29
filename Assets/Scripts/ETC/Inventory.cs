@@ -93,8 +93,6 @@ public class Inventory : MonoBehaviour
         }
 
         PlayerPrefs.SetString("PuzzlePiece", save_puzzle_string);
-
-        Debug.Log(save_puzzle_string);
     }
 
     public void PuzzleLoad()
