@@ -30,6 +30,9 @@ public class PuzzleHermitCrabManager : MonoBehaviour
             string[] puzzle_string = PlayerPrefs.GetString("PuzzlePiece").Split(',');
 
             is_clear = bool.Parse(puzzle_string[0]);
+
+            if (is_clear)
+                bridge.SetActive(true);
         }
     }
 
