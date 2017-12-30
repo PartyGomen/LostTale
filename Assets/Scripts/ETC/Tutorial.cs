@@ -72,6 +72,9 @@ public class Tutorial : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+        if (Inventory.PuzzleGet[0])
+            Destroy(this.gameObject);
+
         alpha = Mathf.Clamp(alpha, 0.0f, 1.0f);
 
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
@@ -160,7 +163,7 @@ public class Tutorial : MonoBehaviour
 
             case TUTORIAL_TYPE.TOUCH:
                 {
-                    if (crab_manager.is_clear == false && Inventory.PuzzleGet[0] == false)
+                    if (crab_manager.is_clear == false)
                     {
                         distance = Vector3.Distance(player.gameObject.transform.position, this.gameObject.transform.position);
 
@@ -231,11 +234,11 @@ public class Tutorial : MonoBehaviour
 
             case TUTORIAL_TYPE.PUZZLE_PIECE:
                 {
-                    if (puzzle_piece.isclicked == false && crab_manager.is_clear == true && Inventory.PuzzleGet[0] == false)
+                    if (puzzle_piece.isclicked == false && crab_manager.is_clear == true)
                     {
                         distance = Vector3.Distance(player.gameObject.transform.position, this.gameObject.transform.position);
 
-                        if (distance < 5f)
+                        if (distance < 10f)
                         {
                             if (!is_first)
                             {
