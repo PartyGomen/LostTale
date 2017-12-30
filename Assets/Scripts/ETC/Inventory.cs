@@ -27,6 +27,14 @@ public class Inventory : MonoBehaviour
     private string save_puzzle_string = "";
     private bool is_checked;
 
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("PuzzlePiece"))
+            PuzzleLoad();
+
+        this.gameObject.SetActive(false);
+    }
+
     public void OffInven()
     {
         go.SetActive(false);
@@ -57,12 +65,6 @@ public class Inventory : MonoBehaviour
 
 	public void CheckInventory()
     {
-        if (PlayerPrefs.HasKey("PuzzlePiece") && !is_checked)
-        {
-            is_checked = true;
-            PuzzleLoad();
-        }
-
         for (int i = 0; i < PuzzleGet.Length; i++)
         {
 			if (PuzzleGet [i] == true)
