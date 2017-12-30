@@ -8,6 +8,8 @@ public class SFXSound : MonoBehaviour
 
     GameObject player;
 
+	public float VolumeMax;
+
     private float time;
     private float distance;
     public float sound_min_distance;
@@ -40,7 +42,7 @@ public class SFXSound : MonoBehaviour
             {
                 time = 0.0f;
 
-                sfx_sound.volume = Mathf.Clamp(sfx_sound.volume, 0.0f, 0.7f);
+				sfx_sound.volume = Mathf.Clamp(sfx_sound.volume, 0.0f, VolumeMax);
 
                 sfx_sound.volume = 0.7f;
                 sfx_sound.volume -= distance / division_value;
