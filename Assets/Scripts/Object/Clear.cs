@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Clear : MonoBehaviour
 {
+	public int PuzzleLevel;
+
     public float fadeT;
 
     public Image panel;
@@ -26,8 +28,16 @@ public class Clear : MonoBehaviour
             GameObject.Find("HintManager").GetComponent<PuzzleHint>().StageClear();
             StartCoroutine(Fade());
             screenEffect = Camera.main.GetComponent<ScreenTransitionImageEffect>();
-
+			Debug.Log ("HI");
             //screenEffect.maskInvert = true;
+			if (PuzzleLevel == 1) {
+				StageManager.IsClear_Stage1 = true;
+				StageManager.IsFirstClear_Stage1++;
+			} else if(PuzzleLevel == 2){
+				StageManager.IsClear_Stage2 = true;
+				StageManager.IsFirstClear_Stage2++;
+			}
+
 
             StartCoroutine(ScreenEffectStart());
 

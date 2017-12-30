@@ -22,6 +22,9 @@ public class TitleTest : MonoBehaviour
 	public GameObject Stage2;
 	public GameObject Stage3;
 
+	public GameObject Stage2Disable;
+	public GameObject Stage3Disable;
+
 	public GameObject Gallery;
 	public GameObject GalleryMg;
 
@@ -41,6 +44,9 @@ public class TitleTest : MonoBehaviour
 
     private void Start()
     {
+
+		Debug.Log (StageManager.IsFirstClear_Stage1);
+		Debug.Log (StageManager.IsFirstClear_Stage2);
 		ExitButton.SetActive (true);
 		BlackBackGround.SetActive (true);
 		StartCoroutine(GrowPanel());
@@ -92,6 +98,12 @@ public class TitleTest : MonoBehaviour
 			Stage1.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
 			Stage2.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
 			Stage3.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
+			if(StageManager.IsClear_Stage1 == false || StageManager.IsFirstClear_Stage1 <= 2){
+				Stage2Disable.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
+			}
+			if(StageManager.IsClear_Stage2 == false || StageManager.IsFirstClear_Stage2 <= 2){
+				Stage3Disable.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
+			}
 			yield return new WaitForSeconds(0.001f);
 			xScale += 0.03f;
 		} 
@@ -100,11 +112,26 @@ public class TitleTest : MonoBehaviour
 		RightHotSpot.SetActive(true);
 		LeftHotSpot.SetActive (true);
 		GameObject.Find ("GalleryOpen").GetComponent<Button>().interactable = true;
+
+
+		// 스테이지 해금 이미지 컨트롤 
 		Stage1.GetComponent<Button>().interactable = true;
-		Stage2.GetComponent<Button>().interactable = true;
-		Stage3.GetComponent<Button>().interactable = true;
+		if(StageManager.IsClear_Stage1 == true){
+			Stage2.GetComponent<Button>().interactable = true;
+		}
+		if(StageManager.IsClear_Stage2 == true){
+			Stage2.GetComponent<Button>().interactable = true;
+		}
+
+		if(StageManager.IsFirstClear_Stage1 == 2 || StageManager.IsFirstClear_Stage2 ==2){
+			StartCoroutine (FadeInStageDisable());
+		}
+
+
+		// 갤러리 튜토리얼 기능
 		CheckGalleryTuto ();	
 
+		// 갤러리 해금기능 
 		if(EndingStoryManager.IsGetEnding == true && IsFirstTuto == false ){
 			Gallery.SetActive (true);
 			GalleryMg.SetActive (true);
@@ -113,6 +140,30 @@ public class TitleTest : MonoBehaviour
 		gameObject.GetComponent<TitleTest> ().enabled = false;
 	}
 		
+	IEnumerator FadeInStageDisable()
+	{
+		while (xScale > 0) {  
+			Debug.Log ("sibal");
+			if(StageManager.IsClear_Stage1 == true && StageManager.IsFirstClear_Stage1 == 2){
+				Stage2Disable.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
+			}
+			if(StageManager.IsClear_Stage2 == true && StageManager.IsFirstClear_Stage2 == 2){
+				Stage2Disable.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
+			}
+			yield return new WaitForSeconds(0.001f);
+			xScale -= 0.05f;
+		} 
+		if (StageManager.IsClear_Stage1 == true && StageManager.IsFirstClear_Stage1 == 2) {
+			StageManager.IsFirstClear_Stage1 = 3;
+		}
+		if(StageManager.IsClear_Stage2 == true && StageManager.IsFirstClear_Stage2 == 2){
+			StageManager.IsFirstClear_Stage2 = 3;
+		}
+			xScale = 0.0f;
+
+	}
+
+
     void PlayScene()
     {
         SceneManager.LoadScene(0);

@@ -10,14 +10,27 @@ public class StageManager : MonoBehaviour {
 	public Button Stage1;
     public Button[] stages = new Button[3];
 	private int CurrentPage;
+	/*
+	public static bool IsClear_Stage1 = false;
+	public static bool IsClear_Stage2 = false;
 
-    private bool isOk; //이거 사용하지 않는 변수
+	public static int IsFirstClear_Stage1 = 0;
+	public static int IsFirstClear_Stage2 = 0;
+	*/
+
+	public static bool IsClear_Stage1 = true;
+	public static bool IsClear_Stage2 = true;
+
+	public static int IsFirstClear_Stage1 = 3;
+	public static int IsFirstClear_Stage2 = 3;
+
 	// Use this for initialization
 
 
 	void Start () {
 		CurrentPage = Book.GetComponent<Book> ().currentPage;
         Invoke("StageCheck", 0.3f);
+
         //Stage1.onClick.AddListener (Scene1_1);
         //Debug.Log (CurrentPage);
     }
