@@ -14,6 +14,9 @@ public class MoveObject : MonoBehaviour {
 
     public float startPos;
     public float endPos;
+    public float multiply;
+
+    private float diff;
 
     AudioSource rockAudio;
 
@@ -24,7 +27,7 @@ public class MoveObject : MonoBehaviour {
         rockAudio = GetComponent<AudioSource>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!IsPointerOverUIObject())
         {
@@ -45,27 +48,37 @@ public class MoveObject : MonoBehaviour {
             {
                 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                pos.x += offset.x;
-                pos.x = Mathf.Clamp(pos.x, MinPosition, MaxPosition);
-                pos.y = this.transform.position.y;
-                pos.z = 0;
+                pos = new Vector3(Mathf.Clamp(pos.x, MinPosition, MaxPosition), pos.y, 0);
+
+                diff = this.transform.position.x - pos.x;
+
+                transform.Translate(Vector2.left * diff * multiply * Time.deltaTime);
+
+                this.transform.position = new Vector3(Mathf.Clamp(this.transform.position.x, MinPosition, MaxPosition), this.transform.position.y, this.transform.position.z);
+
+                //pos.x += offset.x;
+                //pos.x = Mathf.Clamp(pos.x, MinPosition, MaxPosition);
+                //pos.y = this.transform.position.y;
+                //pos.z = 0;
                 //	pos = new Vector2(Mathf.Clamp ( MinPosition.transform.position.x, MaxPosition.transform.position.x), MinPosition.transform.position.y);
-                this.gameObject.transform.position = pos;
+
+                //this.gameObject.transform.position = pos;
 
                 //돌 소리 부분
                 endPos = this.transform.position.x;
 
-                if (0.2f < Mathf.Abs(startPos - endPos))
+                if (0.3f < Mathf.Abs(startPos - endPos))
                 {
+                    //Debug.Log(Mathf.Abs(startPos - endPos));
+
                     if (rockAudio)
                     {
                         if (!rockAudio.isPlaying)
                         {
+                            startPos = this.transform.position.x;
                             rockAudio.Play();
                         }
                     }
-
-                    startPos = this.transform.position.x;
                 }
 
                 //돌 소리 부분
