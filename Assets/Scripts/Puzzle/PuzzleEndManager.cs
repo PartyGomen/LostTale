@@ -41,6 +41,8 @@ public class PuzzleEndManager : MonoBehaviour {
 	public GameObject ClearSound;
 	public GameObject FailSound;
 
+	public GameObject BackButton;
+
 
 	void Start(){
 		Camposition = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Transform> ().position;
@@ -152,28 +154,28 @@ public class PuzzleEndManager : MonoBehaviour {
 			GameObject.Find ("Puzzle1").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (500, -710, 0);
 		}  
 		if (Inventory.PuzzleGet [1] == true) {
-			GameObject.Find ("Puzzle2").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (800, -734, 0);
+			GameObject.Find ("Puzzle2").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (800, -716, 0);
 		}
 		if (Inventory.PuzzleGet [2] == true) {
-			GameObject.Find ("Puzzle3").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1100, -695, 0);
+			GameObject.Find ("Puzzle3").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1100, -704, 0);
 		}
 		if (Inventory.PuzzleGet [3] == true) {
-			GameObject.Find ("Puzzle4").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1420, -692, 0);
+			GameObject.Find ("Puzzle4").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1420, -704, 0);
 		} 
 		if (Inventory.PuzzleGet [4] == true) {
 			GameObject.Find ("Puzzle5").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (344, -920, 0);
 		} 
 		if (Inventory.PuzzleGet [5] == true) {
-			GameObject.Find ("Puzzle6").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (644, -935, 0);
+			GameObject.Find ("Puzzle6").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (644, -922, 0);
 		}
 		if (Inventory.PuzzleGet [6] == true) {
-			GameObject.Find ("Puzzle7").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (944, -899, 0);
+			GameObject.Find ("Puzzle7").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (944, -913, 0);
 		}
 		if (Inventory.PuzzleGet [7] == true) {
 			GameObject.Find ("Puzzle8").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1244, -920, 0);
 		}
 		if (Inventory.PuzzleGet [8] == true) {
-			GameObject.Find ("Puzzle9").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1544, -935, 0);
+			GameObject.Find ("Puzzle9").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (1544, -924, 0);
 		}
 		count = 0;  // 기본 변수 초기화 
 		count1 = 0;
@@ -187,6 +189,7 @@ public class PuzzleEndManager : MonoBehaviour {
 		EndingCheck = true;
 		HintPanel.SetActive (true);
 		FailSound.SetActive (true);
+		BackButton.SetActive (false);
 		for(int i = 0 ; i < 5 ; i ++){
 			if (Puzzle [i] == "Puzzle1" || Puzzle [i] == "Puzzle2" || Puzzle [i] == "Puzzle3" || Puzzle [i] == "Puzzle4" || Puzzle [i] == "Puzzle5") {
 				KindHint = true;
@@ -206,6 +209,7 @@ public class PuzzleEndManager : MonoBehaviour {
 	}
 
 	public void HintOff(){
+		BackButton.SetActive (true);
 		FailSound.SetActive (false);
 		this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = true;
 		HintPanel.SetActive (false);

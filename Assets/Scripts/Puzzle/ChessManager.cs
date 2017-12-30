@@ -65,8 +65,7 @@ public class ChessManager : MonoBehaviour {
 				MovePossibleSeting ();
 				StartCoroutine (ChangeTurn (4));
 			}	else if(Turn == 3 && target.name != "Black_Knight" && target.name != "Null") {
-				//Debug.Log (target.name);
-				Reset ();
+				Reset2();
 			}
 
 			if (Turn == 4 && target.name == "MovePossible4" && !is_clear) {
@@ -91,9 +90,7 @@ public class ChessManager : MonoBehaviour {
 
                 Destroy(this);
 			}	else if(Turn == 4 && target.name != "MovePossible4" && target.name != "Null") {
-				//Debug.Log ("four");
-				//Debug.Log (target.name);
-				Reset ();
+				Reset2();
 			}
 
 
@@ -129,6 +126,15 @@ public class ChessManager : MonoBehaviour {
 		StartCoroutine (ShowGameText());
 	}
 
+	public void Reset2(){
+		WhiteChess [3].transform.localPosition = new Vector3 (32.5f, -33.5f, 0); 	
+		BlackChess [0].transform.localPosition = new Vector3 (50f, -55f, 0);
+		DeleteMovePossible (7);
+		GameText.SetActive (true);
+		GameText.GetComponent<SpriteRenderer> ().sprite = GameTextImage [0];
+		StartCoroutine (ShowGameText());
+		Turn = 3;
+	}
 	public void ShowMovePossible(int number){
 		for (int i = 0; i < number; i++) {
 			MovePossible [i].SetActive (true);
