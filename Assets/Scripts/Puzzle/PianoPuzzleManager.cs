@@ -13,7 +13,7 @@ public class PianoPuzzleManager : MonoBehaviour
 
     private Player player;
 
-    private void Start()
+    private void Start() 
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
