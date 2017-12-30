@@ -120,7 +120,7 @@ public class TitleTest : MonoBehaviour
 			Stage2.GetComponent<Button>().interactable = true;
 		}
 		if(StageManager.IsClear_Stage2 == true){
-			Stage2.GetComponent<Button>().interactable = true;
+			Stage3.GetComponent<Button>().interactable = true;
 		}
 
 		if(StageManager.IsFirstClear_Stage1 == 2 || StageManager.IsFirstClear_Stage2 ==2){
