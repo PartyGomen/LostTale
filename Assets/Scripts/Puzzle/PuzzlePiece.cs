@@ -66,6 +66,7 @@ public class PuzzlePiece : MonoBehaviour
                 else
                 {
                     Inventory.PuzzleGet[piece_number] = true;
+
                     this.gameObject.SetActive(false);
                 }
             }
