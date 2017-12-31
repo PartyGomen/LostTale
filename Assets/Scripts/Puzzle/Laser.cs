@@ -12,8 +12,6 @@ public class Laser : MonoBehaviour
     public bool[] reflected;
     private bool is_clear;
 
-    private int linecount = 2;
-
     private Player player;
 
 	void Start ()
@@ -28,68 +26,66 @@ public class Laser : MonoBehaviour
 
     void Update()
     {
-        line.positionCount = linecount;
-
         if (reflected[0])
         {
-            linecount = 3;
+            line.positionCount = 3;
             line.SetPosition(2, mirror[1].transform.position);
 
             if (reflected[1])
             {
-                linecount = 4;
+                line.positionCount = 4;
                 line.SetPosition(3, mirror[2].transform.position);
 
                 if (reflected[3])
                 {
-                    linecount = 5;
+                    line.positionCount = 5;
                     line.SetPosition(4, mirror[4].transform.position);
                 }
 
                 else if (reflected[5])
                 {
-                    linecount = 5;
+                    line.positionCount = 5;
                     line.SetPosition(4, mirror[6].transform.position);
                 }
 
                 else
                 {
-                    linecount = 4;
+                    line.positionCount = 4;
                 }
             }
 
             else if (reflected[2])
             {
-                linecount = 4;
+                line.positionCount = 4;
                 line.SetPosition(3, mirror[3].transform.position);
 
                 if (reflected[4])
                 {
-                    linecount = 5;
+                    line.positionCount = 5;
                     line.SetPosition(4, mirror[5].transform.position);
                 }
 
                 else if (reflected[6])
                 {
-                    linecount = 5;
+                    line.positionCount = 5;
                     line.SetPosition(4, mirror[7].transform.position);
                 }
 
                 else
                 {
-                    linecount = 4;
+                    line.positionCount = 4;
                 }
             }
 
             else
             {
-                linecount = 3;
+                line.positionCount = 3;
             }
         }
 
         else
         {
-            linecount = 2;
+            line.positionCount = 2;
         }
 	}
 
