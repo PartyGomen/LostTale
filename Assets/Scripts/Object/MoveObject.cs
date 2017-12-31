@@ -10,7 +10,6 @@ public class MoveObject : MonoBehaviour {
 
 	private GameObject target;
 	public Vector3 pos;
-    Vector3 offset;
 
     public float startPos;
     public float endPos;
@@ -40,7 +39,6 @@ public class MoveObject : MonoBehaviour {
                 if(target == this.gameObject)
                 {
                     isDragging = true;
-                    offset = this.transform.position - pos;
                 }
             }
 

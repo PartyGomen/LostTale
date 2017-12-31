@@ -17,14 +17,6 @@ public class OpenPuzzleEnding : MonoBehaviour {
 	private Vector2 pos;
 
     public Inventory inven;
-
-	CameraFollow cam;
-	Vector3 camPosition;
-	// Use this for initialization
-	void Start () {
-		cam = Camera.main.GetComponent<CameraFollow>();
-		camPosition = cam.transform.position;
-	}
 	
 	// Update is called once per frame
 	void Update () {

@@ -67,6 +67,8 @@ public class Book : MonoBehaviour {
 	public GameObject LeftHotSpot;
 	public GameObject RightHotSpot;
 
+    //Coroutine currentCoroutine;
+
     void Start()
     {
         float scaleFactor = 1;
@@ -336,7 +338,7 @@ public class Book : MonoBehaviour {
                 TweenForward();
         }
     }
-    Coroutine currentCoroutine;
+
     void UpdateSprites()
     {
 		LeftNext.sprite= (currentPage > 0 && currentPage <= bookPages.Length) ? bookPages[currentPage-1] : Leftbackground;
@@ -345,9 +347,15 @@ public class Book : MonoBehaviour {
     public void TweenForward()
     {
         if(mode== FlipMode.RightToLeft)
-        currentCoroutine = StartCoroutine(TweenTo(ebl, 0.15f, () => { Flip(); }));
+        {
+            //currentCoroutine = 
+            StartCoroutine(TweenTo(ebl, 0.15f, () => { Flip(); }));
+        }
         else
-        currentCoroutine = StartCoroutine(TweenTo(ebr, 0.15f, () => { Flip(); }));
+        {
+            //currentCoroutine = 
+            StartCoroutine(TweenTo(ebr, 0.15f, () => { Flip(); }));
+        }
     }
     void Flip()
     {
@@ -372,7 +380,8 @@ public class Book : MonoBehaviour {
     {
         if (mode == FlipMode.RightToLeft)
         {
-            currentCoroutine = StartCoroutine(TweenTo(ebr,0.15f,
+            //currentCoroutine = 
+            StartCoroutine(TweenTo(ebr,0.15f,
                 () =>
                 {
                     UpdateSprites();
@@ -387,7 +396,8 @@ public class Book : MonoBehaviour {
         }
         else
         {
-            currentCoroutine = StartCoroutine(TweenTo(ebl, 0.15f,
+            //currentCoroutine = 
+            StartCoroutine(TweenTo(ebl, 0.15f,
                 () =>
                 {
                     UpdateSprites();

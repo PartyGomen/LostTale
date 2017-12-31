@@ -6,7 +6,6 @@ public class MoveBackGroundFish : MonoBehaviour {
 	public float MinX;
 	public float MaxX;
 	private float FishSpeed = 0.02f;
-	private float PosX =0;
 	private bool trun = true;
 
 	// Update is called once per frame

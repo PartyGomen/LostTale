@@ -6,8 +6,6 @@ public class ShakeTest : MonoBehaviour {
 	//public void []Vector3 StartPosition;
 //	public static bool IsShake = true;
 	public GameObject []PuzzleBox;
-	private float ShakeTime = 3.0f;
-	private float Switch = 1.0f;
 	private float count = 0.0f;
 	// Use this for initialization
 

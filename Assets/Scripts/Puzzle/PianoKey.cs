@@ -18,17 +18,15 @@ public class PianoKey : MonoBehaviour
     float random_x;
     float random_y;
 
-    public bool is_reset;
-
     RaycastHit2D hit;
 
     Vector3 mouse_pos;
 
     public PianoPuzzleManager piano_manager;
-	public AudioClip[] PianoSound;
+	//public AudioClip[] PianoSound;
 
 
-	public static bool IsOpenPuzzle = false;
+	//public static bool IsOpenPuzzle = false;
 
     void Start ()
     {
@@ -38,15 +36,18 @@ public class PianoKey : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		if (GameObject.Find ("Main Camera").GetComponent<Transform> ().transform.localPosition.x == 30.0f && IsOpenPuzzle == false) {
-			GameObject.Find ("Main Camera").GetComponent<AudioSource> ().volume = 0.25f;
-			IsOpenPuzzle = true;
-		}else if(GameObject.Find ("Main Camera").GetComponent<Transform> ().transform.localPosition.x != 30.0f &&IsOpenPuzzle == true){
-			GameObject.Find ("Main Camera").GetComponent<AudioSource> ().volume = 0.5f;
-			IsOpenPuzzle = false;
-		}
+        //if (GameObject.Find("Main Camera").GetComponent<Transform>().transform.localPosition.x == 30.0f && IsOpenPuzzle == false)
+        //{
+        //    GameObject.Find("Main Camera").GetComponent<AudioSource>().volume = 0.25f;
+        //    IsOpenPuzzle = true;
+        //}
+        //else if (GameObject.Find("Main Camera").GetComponent<Transform>().transform.localPosition.x != 30.0f && IsOpenPuzzle == true)
+        //{
+        //    GameObject.Find("Main Camera").GetComponent<AudioSource>().volume = 0.5f;
+        //    IsOpenPuzzle = false;
+        //}
 
-	    if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -56,38 +57,38 @@ public class PianoKey : MonoBehaviour
             {
                 if(hit.collider.gameObject == this.gameObject)
                 {
-                    if (is_reset)
-                        piano_manager.ResetKey();
-					if (key == "C") {
-						PianoManager.GetComponent<AudioSource> ().clip = PianoSound [0];
-						PianoManager.GetComponent<AudioSource> ().volume = 1.0f;
-						PianoManager.GetComponent<AudioSource> ().Play ();
-					}else if(key == "D"){
-						PianoManager.GetComponent<AudioSource> ().clip = PianoSound [1];
-						PianoManager.GetComponent<AudioSource> ().volume = 1.0f;
-						PianoManager.GetComponent<AudioSource> ().Play ();
-					}else if(key == "E"){
-						PianoManager.GetComponent<AudioSource> ().clip = PianoSound [2];
-						PianoManager.GetComponent<AudioSource> ().volume = 1.0f;
-						PianoManager.GetComponent<AudioSource> ().Play ();
-					}else if(key == "F"){
-						PianoManager.GetComponent<AudioSource> ().clip = PianoSound [3];
-						PianoManager.GetComponent<AudioSource> ().volume = 1.0f;
-						PianoManager.GetComponent<AudioSource> ().Play ();
+                    GetComponent<AudioSource>().Play();
 
-					}else if(key == "G"){
-						PianoManager.GetComponent<AudioSource> ().clip = PianoSound [4];
-						PianoManager.GetComponent<AudioSource> ().volume = 1.0f;
-						PianoManager.GetComponent<AudioSource> ().Play ();
-					}else if(key == "A"){
-						PianoManager.GetComponent<AudioSource> ().clip = PianoSound [5];
-						PianoManager.GetComponent<AudioSource> ().volume = 1.0f;
-						PianoManager.GetComponent<AudioSource> ().Play ();
-					}else if(key == "B"){
-						PianoManager.GetComponent<AudioSource> ().clip = PianoSound [6];
-						PianoManager.GetComponent<AudioSource> ().volume = 0.2f;
-						PianoManager.GetComponent<AudioSource> ().Play ();
-					}
+					//if (key == "C") {
+					//	PianoManager.GetComponent<AudioSource> ().clip = PianoSound [0];
+					//	PianoManager.GetComponent<AudioSource> ().volume = 1.0f;
+					//	PianoManager.GetComponent<AudioSource> ().Play ();
+					//}else if(key == "D"){
+					//	PianoManager.GetComponent<AudioSource> ().clip = PianoSound [1];
+					//	PianoManager.GetComponent<AudioSource> ().volume = 1.0f;
+					//	PianoManager.GetComponent<AudioSource> ().Play ();
+					//}else if(key == "E"){
+					//	PianoManager.GetComponent<AudioSource> ().clip = PianoSound [2];
+					//	PianoManager.GetComponent<AudioSource> ().volume = 1.0f;
+					//	PianoManager.GetComponent<AudioSource> ().Play ();
+					//}else if(key == "F"){
+					//	PianoManager.GetComponent<AudioSource> ().clip = PianoSound [3];
+					//	PianoManager.GetComponent<AudioSource> ().volume = 1.0f;
+					//	PianoManager.GetComponent<AudioSource> ().Play ();
+
+					//}else if(key == "G"){
+					//	PianoManager.GetComponent<AudioSource> ().clip = PianoSound [4];
+					//	PianoManager.GetComponent<AudioSource> ().volume = 1.0f;
+					//	PianoManager.GetComponent<AudioSource> ().Play ();
+					//}else if(key == "A"){
+					//	PianoManager.GetComponent<AudioSource> ().clip = PianoSound [5];
+					//	PianoManager.GetComponent<AudioSource> ().volume = 1.0f;
+					//	PianoManager.GetComponent<AudioSource> ().Play ();
+					//}else if(key == "B"){
+					//	PianoManager.GetComponent<AudioSource> ().clip = PianoSound [6];
+					//	PianoManager.GetComponent<AudioSource> ().volume = 0.2f;
+					//	PianoManager.GetComponent<AudioSource> ().Play ();
+					//}
 
 
                     sprite.color = new Color32(200, 200, 200, 255);

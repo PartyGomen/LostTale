@@ -19,8 +19,6 @@ public class PuzzlePiece : MonoBehaviour
 
     private RaycastHit2D hit;
 
-    private Player player;
-
     public GameObject pos;
 
     public UI ui_panel;
@@ -31,7 +29,6 @@ public class PuzzlePiece : MonoBehaviour
     private void Start()
     {
         _centre = transform.position;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     private void Update()

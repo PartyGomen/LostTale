@@ -28,7 +28,6 @@ public class EndingStoryManager : MonoBehaviour {
 
 	// Use this for initialization
 	private bool IsTyping = true;
-	private bool IsFadeIn = true;
 	private bool IsGallery = false;
 
 	public static bool IsGetEnding = false;
