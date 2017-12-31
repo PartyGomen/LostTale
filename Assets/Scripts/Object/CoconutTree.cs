@@ -12,13 +12,20 @@ public class CoconutTree : MonoBehaviour
     public float multiply;
 
     private float diff;
-    private float end_pos;
-    private float start_pos;
+    //private float end_pos;
+    //private float start_pos;
 
     bool isDragging;
-	
-	// Update is called once per frame
-	void Update ()
+
+    AudioSource audio_sound;
+
+    private void Start()
+    {
+        audio_sound = GetComponent<AudioSource>();      
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         if (!IsPointerOverUIObject())
         {
@@ -34,7 +41,15 @@ public class CoconutTree : MonoBehaviour
                     {
                         isDragging = true;
 
-                        start_pos = this.transform.position.y;
+                        //start_pos = this.transform.position.y;
+
+                        if (audio_sound != null)
+                        {
+                            if (audio_sound.isPlaying == false)
+                            {
+                                audio_sound.Play();
+                            }
+                        }
                     }
                 }
             }
@@ -51,17 +66,17 @@ public class CoconutTree : MonoBehaviour
 
                 this.transform.position = new Vector3(this.transform.position.x, Mathf.Clamp(this.transform.position.y, minY, maxY), this.transform.position.z);
 
-                end_pos = this.transform.position.y;
+                //end_pos = this.transform.position.y;
 
-                if (0.5f < Mathf.Abs(start_pos - end_pos))
-                {
-                    if (GetComponent<AudioSource>().isPlaying == false)
-                    {
-                        GetComponent<AudioSource>().Play();
+                //if (0.5f < Mathf.Abs(start_pos - end_pos))
+                //{
+                //    if (GetComponent<AudioSource>().isPlaying == false)
+                //    {
+                //        GetComponent<AudioSource>().Play();
 
-                        start_pos = this.transform.position.y;
-                    }
-                }
+                //        start_pos = this.transform.position.y;
+                //    }
+                //}
             }
 
 			if (Input.GetMouseButtonUp (0)) 
