@@ -28,10 +28,10 @@ public class OpenPuzzleEnding : MonoBehaviour {
 				CastRay ();
 				if (target.name == "PuzzleEnd") {
 					GameObject.Find ("Main Camera").GetComponent<AudioSource> ().Pause ();
-					Player.transform.position = new Vector3 (185, -10, 0);
+					Player.transform.position = new Vector3 (185, -5, 0);
 					Player.SetActive (false);
-					PuzzleEnd.SetActive (true);
 					MoblieControl.SetActive (false);
+					PuzzleEnd.SetActive (true);
                     inven.PuzzleSave();
 					if (EndingStoryTuto.Is_FirstEndingTuto == true) {
 						PuzzleEndTuto.SetActive (true);
