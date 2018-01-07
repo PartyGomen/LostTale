@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-		PlayerPrefs.DeleteAll ();
+	//	PlayerPrefs.DeleteAll ();	
         if (PlayerPrefs.HasKey("PuzzlePiece"))
             PuzzleLoad();
 

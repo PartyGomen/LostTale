@@ -50,10 +50,8 @@ public class Clear : MonoBehaviour
 
             GameObject.Find("HintManager").GetComponent<PuzzleHint>().StageClear();
          //   StartCoroutine(Fade());
-            screenEffect = Camera.main.GetComponent<ScreenTransitionImageEffect>();
+         //   screenEffect = Camera.main.GetComponent<ScreenTransitionImageEffect>();
 			Debug.Log ("HI");
-
-
 			StartCoroutine (StageClearEffect(Stage));
 
 
@@ -71,7 +69,7 @@ public class Clear : MonoBehaviour
     }
 
 
-    IEnumerator ScreenEffectStart()
+ /*   IEnumerator ScreenEffectStart()
     {
         float t = 0.0f;
 
@@ -97,35 +95,35 @@ public class Clear : MonoBehaviour
 
             yield return null;
         }
-    }
+    }*/
 
     void BackToTitle()
     {
         SceneManager.LoadScene(3);
     }
 
-	IEnumerator  CheckStageClearEffect(int Stage){
-		if (Stage == 1) {
-			for(int i = 0 ; i <= Stage ; i++){
-				if (Inventory.PuzzleGet [i] == true) {
-					PuzzleParticle [i].SetActive (true);
-					yield return new WaitForSeconds (1f);
-					PuzzleImage [i].SetActive (true);
-					PuzzleImage [i].GetComponent<Transform> ().localScale = new Vector3 (1, 1, 1);
-					PuzzleImage [i].GetComponent<SpriteRenderer> ().sprite = GetPuzzleImage [i];
-					yield return new WaitForSeconds (0.5f);
-					RightParticle [i].GetComponent<ParticleSystem> ().Pause ();
-				} else if(Inventory.PuzzleGet [i] == false){
-					PuzzleImage [i].SetActive (true);
-					PuzzleParticle [i].SetActive (false);
-					yield return new WaitForSeconds (0.5f);
-				}
+	public void ClickButton(){
+		Debug.Log ("Finish");
+
+	}
+
+	IEnumerator  CheckStageClearEffect(int Stage, int Value){
+		for (int i = 0; i <= Stage; i++) {
+			if (Inventory.PuzzleGet [Value + i] == true) {
+				PuzzleParticle [i].SetActive (true);
+				yield return new WaitForSeconds (1f);
+				PuzzleImage [i].SetActive (true);
+				PuzzleImage [i].GetComponent<Transform> ().localScale = new Vector3 (1, 1, 1);
+				PuzzleImage [i].GetComponent<SpriteRenderer> ().sprite = GetPuzzleImage [i];
+				yield return new WaitForSeconds (0.5f);
+				RightParticle [i].GetComponent<ParticleSystem> ().Pause ();
+			} else if (Inventory.PuzzleGet [Value + i] == false) {
+				PuzzleImage [i].SetActive (true);
+				PuzzleParticle [i].SetActive (false);
+				yield return new WaitForSeconds (0.5f);
 			}
-		} else if (Stage == 2) {
-
-		} else if (Stage == 3) {
-
 		}
+		ClearImage.GetComponent<BoxCollider2D> ().enabled = true;
 	}
 		
 	IEnumerator StageClearEffect(int Stage){
@@ -135,11 +133,11 @@ public class Clear : MonoBehaviour
 		yield return new WaitForSeconds (0.5f);
 
 		if (Stage == 1) {
-			StartCoroutine (CheckStageClearEffect (1));
+			StartCoroutine (CheckStageClearEffect (1, 0));
 		} else if (Stage == 2) {
-		
+			StartCoroutine (CheckStageClearEffect (2, 2));
 		} else if (Stage == 3) {
-		
+			StartCoroutine (CheckStageClearEffect (3, 5));
 		}
 
 	}
