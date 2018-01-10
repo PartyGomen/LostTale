@@ -57,7 +57,7 @@ public class MoveObject : MonoBehaviour {
                 //돌 소리 부분
                 endPos = this.transform.position.x;
 
-                if (0.5f < Mathf.Abs(startPos - endPos))
+                if (0.46f < Mathf.Abs(startPos - endPos))
                 {
                     if (rockAudio && !rockAudio.isPlaying)
                     {
