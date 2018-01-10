@@ -15,6 +15,8 @@ public class StageClear : MonoBehaviour {
 	public GameObject ClearImage;
 	public GameObject ClearPoint;
 
+	public GameObject FadePanel;
+
 	public int Stage;
 
 	// Use this for initialization
@@ -34,6 +36,7 @@ public class StageClear : MonoBehaviour {
 			if (target.name == "ClearImage" && Stage != 3) {
 				Invoke ("BackToTitle", fadeT);
 			} else if (target.name == "ClearImage" && Stage == 3) {
+				FadePanel.SetActive (false);
 				EndingPuzzle.SetActive (true);
 				Control.SetActive (true);
 				ClearPoint.SetActive (false);
