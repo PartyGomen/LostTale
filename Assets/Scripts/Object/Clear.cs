@@ -18,6 +18,7 @@ public class Clear : MonoBehaviour
 
     public GameObject mobile_control;
 	public GameObject ClearImage;
+	public GameObject Player;
 
 	public GameObject Character;
 	public GameObject[] PuzzleImage;
@@ -131,6 +132,7 @@ public class Clear : MonoBehaviour
 		yield return new WaitForSeconds (0.7f);
 		Character.GetComponent<SpriteRenderer> ().sprite = CharacterImage [0];
 		yield return new WaitForSeconds (0.5f);
+		Player.SetActive (false);
 
 		if (Stage == 1) {
 			StartCoroutine (CheckStageClearEffect (1, 0));

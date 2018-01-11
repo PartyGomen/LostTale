@@ -16,6 +16,7 @@ public class StageClear : MonoBehaviour {
 	public GameObject ClearPoint;
 
 	public GameObject FadePanel;
+	public GameObject Player;
 
 	public int Stage;
 
@@ -39,6 +40,7 @@ public class StageClear : MonoBehaviour {
 				FadePanel.SetActive (false);
 				EndingPuzzle.SetActive (true);
 				Control.SetActive (true);
+				Player.SetActive (true);
 				ClearPoint.SetActive (false);
 				ClearImage.SetActive (false);
 			}
