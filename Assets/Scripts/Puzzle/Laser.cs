@@ -83,6 +83,12 @@ public class Laser : MonoBehaviour
             }
         }
 
+        else if (reflected[7])
+        {
+            line.positionCount = 3;
+            line.SetPosition(2, mirror[8].transform.position);
+        }
+
         else
         {
             line.positionCount = 2;
