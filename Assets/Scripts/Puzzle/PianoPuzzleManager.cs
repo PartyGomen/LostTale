@@ -6,8 +6,8 @@ public class PianoPuzzleManager : MonoBehaviour
 {
     [HideInInspector]
     public string[] answer = new string[4];
-
-    private int index_number = 0;
+    [HideInInspector]
+    public int index_number = 0;
 
     private bool is_clear = false;
 
