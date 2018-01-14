@@ -51,20 +51,6 @@ public class EndingMovePuzzle : MonoBehaviour {
 			CastRay ();	
 			offset = new Vector2 (target.transform.position.x - pos.x, target.transform.position.y - pos.y);
 			DownPos = pos;
-
-		/*	for (int i = 0; i < 9; i++) {
-				PuzzlePosition = puzzles [i].GetComponent<RectTransform> ().transform.position;
-				Debug.Log (PuzzlePosition);
-				if (PuzzlePosition.x < 175) {
-					PuzzlePosition.x = -175;
-				} else if (PuzzlePosition.x > 190) {
-					PuzzlePosition.x = 190;
-				} else if (PuzzlePosition.y > -3.5f) {
-					PuzzlePosition.y = -3.5f;
-				} else if (PuzzlePosition.y < -6) {
-					PuzzlePosition.y = -6;
-				}
-			}*/
 		}
 
 		if (Input.GetMouseButtonUp(0)) {

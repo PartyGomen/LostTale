@@ -30,6 +30,7 @@ public class Clear : MonoBehaviour
 	public Sprite[] GetPuzzleImage;
 
     public Inventory inven;
+	public Camera GameCamera;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -128,11 +129,27 @@ public class Clear : MonoBehaviour
 	}
 		
 	IEnumerator StageClearEffect(int Stage){
+		if (Stage == 1) {
+			GameCamera.GetComponent<CameraFollow> ().enabled = false;
+			Player.SetActive (false);
+			GameCamera.transform.localPosition = new Vector3 (129f, -0.2393f, -10f);
+		} else if (Stage == 2) {
+			GameCamera.GetComponent<CameraFollow> ().enabled = false;
+			Player.SetActive (false);
+			GameCamera.transform.localPosition = new Vector3 (166.3f, -1f, -10f);
+		} else if (Stage == 3) {
+			Player.SetActive (false);
+			Player.transform.localPosition = new Vector3 (Player.transform.localPosition.x, 8.770699f, 0f);
+			GameCamera.transform.localPosition = new Vector3 (183f, 8.770699f, -10f);
+		}
+
 		ClearImage.SetActive (true);
+		//PuzzleParticle [0].SetActive (true);
+		//PuzzleParticle [1].SetActive (true);
 		yield return new WaitForSeconds (0.7f);
 		Character.GetComponent<SpriteRenderer> ().sprite = CharacterImage [0];
-		yield return new WaitForSeconds (0.5f);
-		Player.SetActive (false);
+	//	yield return new WaitForSeconds (0.5f);
+
 
 		if (Stage == 1) {
 			StartCoroutine (CheckStageClearEffect (1, 0));
