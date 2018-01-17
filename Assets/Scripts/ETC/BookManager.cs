@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class BookManager : MonoBehaviour {
-
+	public GameObject Book;
 	private float timeControl = 0;
 	private float timeControl2 = 0;
 	private GameObject target;
@@ -15,6 +15,10 @@ public class BookManager : MonoBehaviour {
 	public GameObject Stage1;
 	public GameObject Stage2;
 	public GameObject Stage3;
+
+	public GameObject Disable1;
+	public GameObject Disable2;
+	public GameObject Disable3;
 
 	public GameObject Gallery;
 
@@ -29,6 +33,7 @@ public class BookManager : MonoBehaviour {
 
 	public GameObject Null;
 
+	private int CurrentPage;
 
 
 	public void FadeDisappearStart(){
@@ -47,10 +52,20 @@ public class BookManager : MonoBehaviour {
 		Stage3.GetComponent<Button> ().interactable = false;
 		timeControl = 2;
 		while (timeControl > -1) {  // 책 내용물  Fade Out 시킴 
+//			Debug.Log(CurrentPage);
 			Stage1.GetComponent<Image> ().color =  new Color(1, 1, 1, timeControl);
 			Stage2.GetComponent<Image> ().color =  new Color(1, 1, 1, timeControl);
 			Stage3.GetComponent<Image> ().color =  new Color(1, 1, 1, timeControl);
-
+			CurrentPage = Book.GetComponent<Book>().currentPage;
+			if (CurrentPage != 0) {
+				Disable1.GetComponent<Image> ().color = new Color (1, 1, 1, timeControl);
+			}
+			if (StageManager.IsClear_Stage1 == false || StageManager.IsFirstClear_Stage1 >= 3 && CurrentPage !=0 ) {
+				Disable2.GetComponent<Image> ().color = new Color (1, 1, 1, timeControl);
+			}
+			if (StageManager.IsClear_Stage2 == false || StageManager.IsFirstClear_Stage2 >= 3 && CurrentPage !=0) {
+				Disable3.GetComponent<Image> ().color = new Color (1, 1, 1, timeControl);
+			}
 			yield return new WaitForSeconds(0.001f);
 			timeControl -= 0.2f;
 		} 
@@ -66,7 +81,16 @@ public class BookManager : MonoBehaviour {
 			Stage1.GetComponent<Image> ().color =  new Color(1, 1, 1, timeControl2);
 			Stage2.GetComponent<Image> ().color =  new Color(1, 1, 1, timeControl2);
 			Stage3.GetComponent<Image> ().color =  new Color(1, 1, 1, timeControl2);
-
+			CurrentPage = Book.GetComponent<Book>().currentPage;	
+			if (CurrentPage != 0) {
+				//Disable1.GetComponent<Image> ().color = new Color (1, 1, 1, timeControl2);
+			}
+			if (StageManager.IsClear_Stage1 == false && StageManager.IsFirstClear_Stage1 <= 2 && CurrentPage == 0) {
+				Disable2.GetComponent<Image> ().color = new Color (1, 1, 1, timeControl2);
+			}
+			if (StageManager.IsClear_Stage2 == false && StageManager.IsFirstClear_Stage2 <= 2 && CurrentPage == 0) {
+				Disable3.GetComponent<Image> ().color = new Color (1, 1, 1, timeControl2);
+			}
 			yield return new WaitForSeconds(0.001f);
 			timeControl2 += 0.2f;
 		} 

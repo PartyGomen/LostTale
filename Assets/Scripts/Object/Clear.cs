@@ -44,9 +44,12 @@ public class Clear : MonoBehaviour
 			if (PuzzleLevel == 1) {
 				StageManager.IsClear_Stage1 = true;
 				StageManager.IsFirstClear_Stage1++;
+				Debug.Log (StageManager.IsFirstClear_Stage1);
 			} else if(PuzzleLevel == 2){
 				StageManager.IsClear_Stage2 = true;
-				StageManager.IsFirstClear_Stage2++;
+				StageManager.IsFirstClear_Stage2 ++;
+				StageManager.IsFirstClear_Stage2 ++;
+				Debug.Log (StageManager.IsFirstClear_Stage2);
 			}
 
 

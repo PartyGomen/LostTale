@@ -143,12 +143,11 @@ public class TitleTest : MonoBehaviour
 	IEnumerator FadeInStageDisable()
 	{
 		while (xScale > 0) {  
-			Debug.Log ("sibal");
 			if(StageManager.IsClear_Stage1 == true && StageManager.IsFirstClear_Stage1 == 2){
 				Stage2Disable.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
 			}
 			if(StageManager.IsClear_Stage2 == true && StageManager.IsFirstClear_Stage2 == 2){
-				Stage2Disable.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
+				Stage3Disable.GetComponent<Image> ().color =  new Color(1, 1, 1, xScale);
 			}
 			yield return new WaitForSeconds(0.001f);
 			xScale -= 0.05f;
