@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
 	public GameObject PuzzleImageShow;
-    public static bool[] PuzzleGet = new bool[9] { false, false, false, false, false, false, false, false, false };
     //{true, true, true, true, true, true, true, true, true}
     //{false, false, false, false, false, false, false, false, false}
     public static int[] PuzzleGetNumber = new int[9] {0, 0, 0, 0, 0, 0, 0, 0, 0};
