@@ -35,8 +35,6 @@ public class StageManager : MonoBehaviour {
 
 	void Start () {
 		CurrentPage = Book.GetComponent<Book> ().currentPage;
-      //  Invoke("StageCheck", 0.3f);
-
 		stages[0].onClick.AddListener(delegate { LoadStage(7); });
 		stages[1].onClick.AddListener(delegate { LoadStage(5); });
 		stages[2].onClick.AddListener(delegate { LoadStage(6); });

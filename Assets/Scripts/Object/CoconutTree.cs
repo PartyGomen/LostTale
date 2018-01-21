@@ -65,20 +65,8 @@ public class CoconutTree : MonoBehaviour
                 transform.Translate(Vector2.down * diff * multiply * Time.deltaTime);
 
                 this.transform.position = new Vector3(this.transform.position.x, Mathf.Clamp(this.transform.position.y, minY, maxY), this.transform.position.z);
-
-                //end_pos = this.transform.position.y;
-
-                //if (0.5f < Mathf.Abs(start_pos - end_pos))
-                //{
-                //    if (GetComponent<AudioSource>().isPlaying == false)
-                //    {
-                //        GetComponent<AudioSource>().Play();
-
-                //        start_pos = this.transform.position.y;
-                //    }
-                //}
             }
-
+	
 			if (Input.GetMouseButtonUp (0)) 
 			{
 				isDragging = false;

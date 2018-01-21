@@ -110,7 +110,6 @@ public class PuzzleEndManager : MonoBehaviour {
 			this.GetComponent<AudioSource> ().Play ();
 			StartCoroutine (ClearEffect());
 		} else {	
-		//	StartCoroutine (ShakePuzzle (PuzzleEnd, 2.0f));
 			StopAllCoroutines ();
 			HintOn (PuzzleEnd);
 
@@ -135,8 +134,8 @@ public class PuzzleEndManager : MonoBehaviour {
 		} 
 		yield return new WaitForSeconds(1.0f);
 		ClearSound.SetActive (false);
-		//StopAllCoroutines ();
 		EndingCheck = true;
+
 		if (ShowHint == true) {
 			HintOn (PuzzleEnd);
 			ShowHint = false;
@@ -211,9 +210,9 @@ public class PuzzleEndManager : MonoBehaviour {
 	public void HintOff(){
 		BackButton.SetActive (true);
 		FailSound.SetActive (false);
+		RelocatePuzzle ();
 		this.gameObject.GetComponent<EndingMovePuzzle> ().enabled = true;
 		HintPanel.SetActive (false);
-		RelocatePuzzle ();
 	}
 
 	public void EndingStoryOn(){

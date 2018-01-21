@@ -35,7 +35,6 @@ public class SFXSound : MonoBehaviour
     {
         distance = Vector2.Distance(player.transform.position, this.transform.position);
         time += Time.deltaTime;
-
         if (distance < sound_min_distance && time >= sound_cycle_time)
         {
             if(!CheckIsPuzzle())

@@ -120,19 +120,16 @@ public class PuzzleHermitCrab : MonoBehaviour
 
                     // 다음 장소＝현재 장소와 목표위치의 중간지점.
                     distance *= 0.25f * (60.0f * Time.deltaTime);
+					move = distance;
 
                     next_position = this.transform.position + distance;
-
-                    move = next_position - this.transform.position;
+					
 
                     float snap_speed_min = 0.01f * 60.0f * Time.deltaTime;
                     float snap_speed_max = 0.8f * 60.0f * Time.deltaTime;
 
                     if (move.magnitude < snap_speed_min)
                     {
-                        // 이동량이 일정 이하가 되면 종료.
-                        // 목표위치로 이동시킨다. 
-                        // 종료판정은 상태변화 점검에서 실행되므로 여기에서는 위치 조정만 실행한다.
                         this.transform.position = checkPos[posIdx].transform.position;
 
                         step = STEP.IDLE;

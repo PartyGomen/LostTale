@@ -67,7 +67,7 @@ public class Chandelier : MonoBehaviour
             anim.SetBool("IsBroken", true);
             CameraShake shake = Camera.main.GetComponent<CameraShake>();
             shake.ShakeCamera(0.1f, 0.2f);
-            Destroy(this);
+			this.GetComponent<Chandelier> ().enabled = false;
         }
     }
 }
