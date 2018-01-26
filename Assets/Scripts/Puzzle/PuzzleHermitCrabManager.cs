@@ -46,8 +46,8 @@ public class PuzzleHermitCrabManager : MonoBehaviour
 		camfollow.CheckPuzzleOrPlayer(false);
 		bridge.SetActive(true);
         player.saveZoneidx = 1;
-
-        if (Inventory.PuzzleGet[0] == false)
+		// 퍼즐 획득 저장 기능 (Inventory.PuzzleGet[0] == false)
+        if (Inventory.PuzzleGet[0] == true)
             GetComponent<PuzzleClear>().Clear();
     }
 

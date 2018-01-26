@@ -266,7 +266,8 @@ public class NewChessManager : MonoBehaviour {
 			cam_follow.FadeCoroutine(true, 1f);
 			cam_follow.CheckPuzzleOrPlayer(false);
 
-			if (Inventory.PuzzleGet[7] == false){
+			// 퍼즐 저장기능 해제  (Inventory.PuzzleGet[7] == false)
+			if (Inventory.PuzzleGet[7] == true){
 				GetComponent<PuzzleClear>().Clear();
 			}
 			player.saveZoneidx = 3;

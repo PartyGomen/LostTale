@@ -148,7 +148,8 @@ public class TideManager : MonoBehaviour
                 get_puzzle_piece = true;
                 player.saveZoneidx = 1;
 
-                if (Inventory.PuzzleGet[2] == false)
+				// 퍼즐 저장기능 해제  (Inventory.PuzzleGet[2] == false)
+                if (Inventory.PuzzleGet[2] == true)
                     GetComponent<PuzzleClear>().Clear();
             }
         }

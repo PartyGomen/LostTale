@@ -111,7 +111,8 @@ public class Laser : MonoBehaviour
             cam_follow.FadeCoroutine(true, 1f);
             cam_follow.CheckPuzzleOrPlayer(false);
 
-            if (Inventory.PuzzleGet[5] == false)
+			// 퍼즐 저장기능 해제  (Inventory.PuzzleGet[5] == false)
+            if (Inventory.PuzzleGet[5] == true)
                 GetComponent<PuzzleClear>().Clear();
         }
     }

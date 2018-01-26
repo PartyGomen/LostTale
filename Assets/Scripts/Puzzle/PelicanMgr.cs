@@ -86,7 +86,8 @@ public class PelicanMgr : MonoBehaviour
                 cam_follow.CheckPuzzleOrPlayer(false);
                 player.saveZoneidx = 2;
 
-                if (Inventory.PuzzleGet[3] == false)
+				// 퍼즐 저장기능 해제  (Inventory.PuzzleGet[3] == false)
+                if (Inventory.PuzzleGet[3] == true)
                     GetComponent<PuzzleClear>().Clear();
             }
         }

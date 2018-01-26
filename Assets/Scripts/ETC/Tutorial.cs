@@ -72,8 +72,8 @@ public class Tutorial : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-        if (Inventory.PuzzleGet[0])
-            Destroy(this.gameObject);
+       // if (Inventory.PuzzleGet[0])
+           // Destroy(this.gameObject);
 
         alpha = Mathf.Clamp(alpha, 0.0f, 1.0f);
 

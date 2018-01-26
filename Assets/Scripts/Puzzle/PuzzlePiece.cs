@@ -55,8 +55,7 @@ public class PuzzlePiece : MonoBehaviour
                 scale_and_alpha -= Time.deltaTime / 1.5f;
 
                 if (scale_and_alpha >= 0)
-                {
-                    //this.transform.localScale = new Vector3(scale_and_alpha, scale_and_alpha, 1);
+                { 
                     this.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, scale_and_alpha);
                 }
 
