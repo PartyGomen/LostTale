@@ -5,7 +5,8 @@ using UnityEngine;
 public class PaddleObject : MonoBehaviour
 {
     public AudioSource paddleAudio;
-
+	public GameObject BakcGround;
+	public GameObject Control;
     bool sounded;
 	
 	void Update ()
@@ -14,6 +15,9 @@ public class PaddleObject : MonoBehaviour
         {
             sounded = true;
             paddleAudio.Play();
+			BakcGround.SetActive (false);
+			Control.SetActive (true);
+			Debug.Log ("Down");
         }
 
         if(this.transform.localPosition.x >= -43.93f)

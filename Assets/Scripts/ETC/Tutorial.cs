@@ -92,7 +92,7 @@ public class Tutorial : MonoBehaviour
                     {
                         distance = Vector3.Distance(player.gameObject.transform.position, bridge.gameObject.transform.position);
 
-                        if (distance < 8)
+                        if (distance < 10)
                         {
                             if(!is_first)
                             {

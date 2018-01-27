@@ -23,6 +23,10 @@ public class PuzzlePiece : MonoBehaviour
 
     public UI ui_panel;
 
+	public GameObject BackGround;
+	public GameObject Control;
+
+
     [HideInInspector]
     public bool isclicked;
 
@@ -63,9 +67,8 @@ public class PuzzlePiece : MonoBehaviour
                 {
                     Inventory.PuzzleGet[piece_number] = true;
 
-                    for (int i = 0; i < Inventory.PuzzleGet.Length; i++)
+                   for (int i = 0; i < Inventory.PuzzleGet.Length; i++)
                         Debug.Log(Inventory.PuzzleGet[i]);
-
                     this.gameObject.SetActive(false);
                 }
             }

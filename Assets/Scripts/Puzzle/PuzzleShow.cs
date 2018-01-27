@@ -24,6 +24,9 @@ public class PuzzleShow : MonoBehaviour
 
     public PuzzleHint puzzle_hint;
 
+	public GameObject BackGround;
+	public GameObject Control;
+
     void Start()
     {
         cam = Camera.main.GetComponent<CameraFollow>();
@@ -54,7 +57,7 @@ public class PuzzleShow : MonoBehaviour
                         is_clicked = true;
                     }
                 }
-            }
+			}
         }
     }
 

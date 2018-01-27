@@ -24,6 +24,8 @@ public class CameraFollow : MonoBehaviour
 
     public Image panel;
 
+	public int Stage;
+
     private void Start()
     {
         control.SetActive(false);
@@ -85,7 +87,9 @@ public class CameraFollow : MonoBehaviour
         }
 
         //Destroy(screeneffect);
-        control.SetActive(true);
+		if (Stage !=1){
+       		control.SetActive(true);
+		}
     }
 
     void FixedUpdate()
@@ -146,7 +150,7 @@ public class CameraFollow : MonoBehaviour
 
         this.transform.position = new Vector3(tr.position.x, tr.position.y, -10);
 
-        control.SetActive(true);
+		control.SetActive (true);
         backBtn.SetActive(false);
         bulb_object.SetActive(false);
 

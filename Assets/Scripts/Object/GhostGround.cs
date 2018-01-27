@@ -40,7 +40,7 @@ public class GhostGround : MonoBehaviour {
         if(nextGround != null && coll.gameObject.CompareTag("Player") && coll.contacts[0].normal.x > -1f && coll.contacts[0].normal.x < 1f && coll.contacts[0].normal.y < -0.35f)
         {
             nextGround.SetActive(true);
-            nextGround.GetComponent<GhostGround>().t = 1.5f;
+            nextGround.GetComponent<GhostGround>().t = 2.5f;
         }
     }
 }

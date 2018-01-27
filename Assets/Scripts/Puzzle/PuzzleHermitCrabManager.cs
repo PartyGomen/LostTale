@@ -17,6 +17,8 @@ public class PuzzleHermitCrabManager : MonoBehaviour
 
     private Player player;
 
+
+
 	void Start ()
     {
         camfollow = Camera.main.GetComponent<CameraFollow>();
