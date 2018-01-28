@@ -24,6 +24,8 @@ public class CameraFollow : MonoBehaviour
 
     public Image panel;
 
+    public GameObject clearImage;
+
 	public int Stage;
 
     private void Start()
@@ -42,6 +44,11 @@ public class CameraFollow : MonoBehaviour
 
         if(is_in)
         {
+            if(clearImage.activeSelf)
+            {
+                clearImage.SetActive(false);
+            }
+
             float t = 1.0f;
 
             while (t >= 0)

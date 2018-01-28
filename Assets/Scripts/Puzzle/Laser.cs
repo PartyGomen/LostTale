@@ -8,6 +8,7 @@ public class Laser : MonoBehaviour
 
     public GameObject[] mirror;
     public GameObject laser_obj;
+    public GameObject clearImage;
 
     public bool[] reflected;
     private bool is_clear;
@@ -100,6 +101,7 @@ public class Laser : MonoBehaviour
         if(reflected[0] && reflected[1] && reflected[3] && !is_clear)
         {
             is_clear = true;
+            clearImage.SetActive(true);
 
             laser_obj.SetActive(false);
 

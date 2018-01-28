@@ -12,6 +12,7 @@ public class Password : MonoBehaviour {
     public GameObject obj;
     public Sprite unlock_sprite;
     public GameObject password_object;
+    public GameObject clearImage;
     private CameraFollow cam_follow;
 
     public AudioSource click_sound;
@@ -44,6 +45,7 @@ public class Password : MonoBehaviour {
         if (one == answer[0] && two == answer[1] && three == answer[2] && four == answer[3] && !is_clear)
         {
             is_clear = true;
+            clearImage.SetActive(true);
             cam_follow.FadeCoroutine(false, 0f);
             cam_follow.FadeCoroutine(true, 1f);
             cam_follow.CheckPuzzleOrPlayer(false);

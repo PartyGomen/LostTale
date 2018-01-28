@@ -26,6 +26,8 @@ public class NewChessManager : MonoBehaviour {
 
 	private Player player;
 
+    public GameObject clearImage;
+
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -260,6 +262,8 @@ public class NewChessManager : MonoBehaviour {
 		if(SettingX == 29.32f && SettingY == -27.99f){
 			CheckMateImage.SetActive (true);
 			Black_Knight.GetComponent<BoxCollider2D> ().enabled = false;
+
+            clearImage.SetActive(true);
 			CameraFollow cam_follow = Camera.main.GetComponent<CameraFollow>();
 
 			cam_follow.FadeCoroutine(false, 0f);

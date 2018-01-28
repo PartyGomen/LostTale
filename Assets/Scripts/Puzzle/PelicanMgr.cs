@@ -17,6 +17,7 @@ public class PelicanMgr : MonoBehaviour
     public GameObject go2;
     public GameObject siso;
     private GameObject[] fishes;
+    public GameObject clearImage;
 
     private Player player;
 
@@ -78,7 +79,7 @@ public class PelicanMgr : MonoBehaviour
             if(distance < 0.1f && (weight1 + weight2 == 12) && !is_clear)
             {
                 is_clear = true;
-
+                clearImage.SetActive(true);
                 CameraFollow cam_follow =  Camera.main.GetComponent<CameraFollow>();
 
                 cam_follow.FadeCoroutine(false, 0f);

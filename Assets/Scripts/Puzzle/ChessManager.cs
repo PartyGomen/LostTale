@@ -16,7 +16,6 @@ public class ChessManager : MonoBehaviour {
 	public GameObject GameText;
 	public GameObject Null;
 
-
 	public Sprite[] GameTextImage;
 	private int Turn = 1;
 

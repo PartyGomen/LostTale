@@ -17,6 +17,7 @@ public class JiksawMgr : MonoBehaviour
     RaycastHit2D hit;
 
     private Player player;
+    public GameObject clearImage;
 
     private void Start()
     {
@@ -94,6 +95,7 @@ public class JiksawMgr : MonoBehaviour
                 if(i == bool_clear.Length - 1 && !is_clear)
                 {
                     is_clear = true;
+                    clearImage.SetActive(true);
 
                     CameraFollow cam_follow = Camera.main.GetComponent<CameraFollow>();
 

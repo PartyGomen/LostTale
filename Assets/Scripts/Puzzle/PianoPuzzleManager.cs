@@ -12,6 +12,7 @@ public class PianoPuzzleManager : MonoBehaviour
     private bool is_clear = false;
 
     private Player player;
+    public GameObject clearImage;
 
     private void Start() 
     {
@@ -36,6 +37,7 @@ public class PianoPuzzleManager : MonoBehaviour
         if(answer[0] == "C" && answer[1] == "A" && answer[2] == "G" && answer[3] == "E" && !is_clear)
         {
             is_clear = true;
+            clearImage.SetActive(true);
             CameraFollow cam_follow = Camera.main.GetComponent<CameraFollow>();
             cam_follow.FadeCoroutine(false, 0f);
             cam_follow.FadeCoroutine(true, 1f);

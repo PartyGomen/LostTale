@@ -32,6 +32,10 @@ public class Dialogue : MonoBehaviour
 
     public bool isTyping;   //타이핑 중인가?
 
+    public IntroHand introHand;
+    private delegate IEnumerator handDelegate();
+    private handDelegate handDelegateHandler;
+
     public void StartSay(string str, Sprite img)    //텍스트 출력 시작
     {
         saystring = str;    //넘겨 받은거 다 넣어줌
@@ -45,6 +49,10 @@ public class Dialogue : MonoBehaviour
 
     public IEnumerator Say()    //텍스트 출력하는 코루틴
     {
+        handDelegateHandler = introHand.Touch;
+        StopCoroutine(handDelegateHandler());
+        introHand.gameObject.SetActive(false);
+
         isTyping = true;
 
         txt.text = string.Empty;
@@ -57,6 +65,9 @@ public class Dialogue : MonoBehaviour
         }
 
         isTyping = false;
+
+        introHand.gameObject.SetActive(true);
+        StartCoroutine(handDelegateHandler());
     }
 
     public void SkipTyping()    //텍스트 다 나오기 전 스킵 함수
@@ -64,6 +75,9 @@ public class Dialogue : MonoBehaviour
         StopAllCoroutines();
 
         txt.text = saystring;
+
+        introHand.gameObject.SetActive(true);
+        StartCoroutine(handDelegateHandler());
 
         fadeImage.color = new Color(0, 0, 0, 0);
 

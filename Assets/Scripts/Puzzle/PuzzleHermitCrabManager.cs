@@ -9,6 +9,7 @@ public class PuzzleHermitCrabManager : MonoBehaviour
     CameraFollow camfollow;
 
     public GameObject bridge;
+    public GameObject clearImage;
     public GameObject[] crabs = new GameObject[5];
     private Vector3[] crab_pos = new Vector3[5];
 
@@ -43,7 +44,8 @@ public class PuzzleHermitCrabManager : MonoBehaviour
 	public void ClearHermitCrabPuzzle()
     {
 		is_clear = true;
-		camfollow.FadeCoroutine(false, 0f);
+        clearImage.SetActive(true);
+        camfollow.FadeCoroutine(false, 0f);
 		camfollow.FadeCoroutine(true, 1f);
 		camfollow.CheckPuzzleOrPlayer(false);
 		bridge.SetActive(true);
