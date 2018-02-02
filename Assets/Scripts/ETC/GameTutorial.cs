@@ -23,6 +23,7 @@ public class GameTutorial : MonoBehaviour
     public GameObject[] tutorial_object = new GameObject[3];
     public GameObject drag_image;
     public GameObject start_button;
+    public GameObject pull;
 
     public Image[] next_imgae;
 
@@ -172,18 +173,22 @@ public class GameTutorial : MonoBehaviour
                             {
                                 case 0:
                                     hand_image[3].transform.Translate(Vector2.right * 2 * Time.deltaTime);
+                                    pull.transform.Translate(Vector2.right * 2 * Time.deltaTime);
                                     break;
 
                                 case 1:
                                     hand_image[3].transform.Translate(Vector2.down * 2 * Time.deltaTime);
+                                    pull.transform.Translate(Vector2.down * 2 * Time.deltaTime);
                                     break;
 
                                 case 2:
                                     hand_image[3].transform.Translate(Vector2.left * 2 * Time.deltaTime);
+                                    pull.transform.Translate(Vector2.left * 2 * Time.deltaTime);
                                     break;
 
                                 case 3:
                                     hand_image[3].transform.Translate(Vector2.up * 2 * Time.deltaTime);
+                                    pull.transform.Translate(Vector2.up * 2 * Time.deltaTime);
                                     break;
 
                             }
@@ -195,6 +200,7 @@ public class GameTutorial : MonoBehaviour
                             change[3] = false;
                             ChangeHandImage(3, false);
                             hand_image[3].transform.position = new Vector3(3.6f, -3, 0);
+                            pull.transform.position = new Vector3(3.5f, 1, 0);
 
                             four_way++;
 
