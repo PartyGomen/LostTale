@@ -36,6 +36,10 @@ public class EndingStoryManager : MonoBehaviour {
 	public AudioClip HappyEnding;
 	public AudioClip AnotehrEnding;
 
+	public EndingHand EndingHand;
+	private delegate IEnumerator handDelegate();
+	private handDelegate handDelegateHandler;
+
 	void OnEnable () {
 		EndingImag.SetActive (true);
 		EndingBackGround.SetActive (true);
@@ -145,6 +149,11 @@ public class EndingStoryManager : MonoBehaviour {
 	}
 
 	public IEnumerator ShowText(int number){
+		
+		handDelegateHandler = EndingHand.Touch;
+		StopCoroutine(handDelegateHandler());
+		EndingHand.gameObject.SetActive(false); 
+
 		while (Textcount <= EndingText[number].Length) {
 			EndText.text = EndingText [number].Substring (0, Textcount);
 			Textcount++;
@@ -152,12 +161,17 @@ public class EndingStoryManager : MonoBehaviour {
 		}
 		IsTyping = false;
 		Textcount = 0;
+
+		EndingHand.gameObject.SetActive(true);
+		StartCoroutine(handDelegateHandler());
 	}
 
 	public void SkipEnding(int number){
 		colorcount = 255;
 		Textcount = 0;
 		StopAllCoroutines ();
+		EndingHand.gameObject.SetActive(true);
+		StartCoroutine(handDelegateHandler());
 		EndText.text = EndingText [number];
 		Ending.GetComponent<Image>().color  = new Color(255, 255, 255, 255);
 		EndText.GetComponent<Text>().color  = new Color(255, 255, 255, 255);

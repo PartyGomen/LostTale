@@ -20,6 +20,7 @@ public class IntroHand : MonoBehaviour
 
     private IEnumerator Fade()
     {
+		Debug.Log ("FD");
         float alpha = 0;
         handImage.eulerAngles = new Vector3(0, 0, -30);
         hands[1].gameObject.SetActive(false);
