@@ -20,7 +20,7 @@ public class Elevator : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	}
 	
-	void Update ()
+	void FixedUpdate ()
     {
 		if(isUp)
         {
