@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PianoPuzzleManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class PianoPuzzleManager : MonoBehaviour
     private bool is_clear = false;
 
     private Player player;
-    public GameObject clearImage;
+    public Image[] clearImage = new Image[2];
 
     private void Start() 
     {
@@ -37,10 +38,10 @@ public class PianoPuzzleManager : MonoBehaviour
         if(answer[0] == "C" && answer[1] == "A" && answer[2] == "G" && answer[3] == "E" && !is_clear)
         {
             is_clear = true;
-            clearImage.SetActive(true);
+            StartCoroutine(ClearFade());
             CameraFollow cam_follow = Camera.main.GetComponent<CameraFollow>();
-            cam_follow.FadeCoroutine(false, 0f);
-            cam_follow.FadeCoroutine(true, 1f);
+            cam_follow.FadeCoroutine(false, 1f);
+            cam_follow.FadeCoroutine(true, 2f);
             cam_follow.CheckPuzzleOrPlayer(false);
             player.saveZoneidx = 2;
 
@@ -56,5 +57,23 @@ public class PianoPuzzleManager : MonoBehaviour
             return;
 
         index_number = 0;
+    }
+
+    IEnumerator ClearFade()
+    {
+        float t = 0.0f;
+
+        clearImage[0].gameObject.SetActive(true);
+        clearImage[1].gameObject.SetActive(true);
+
+        while (t < 1)
+        {
+            t += Time.deltaTime;
+
+            clearImage[0].color = new Color(1, 1, 1, t);
+            clearImage[1].color = new Color(1, 1, 1, t);
+
+            yield return null;
+        }
     }
 }

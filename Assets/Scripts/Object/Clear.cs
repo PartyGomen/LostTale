@@ -17,6 +17,7 @@ public class Clear : MonoBehaviour
     ScreenTransitionImageEffect screenEffect;
 
     public GameObject mobile_control;
+    public GameObject arrowController;
 	public GameObject ClearImage;
 	public GameObject Player;
 
@@ -37,6 +38,7 @@ public class Clear : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             mobile_control.SetActive(false);
+            arrowController.SetActive(false);
             inven.PuzzleSave();
             panel.gameObject.SetActive(true);
 

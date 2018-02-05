@@ -12,7 +12,8 @@ public class Password : MonoBehaviour {
     public GameObject obj;
     public Sprite unlock_sprite;
     public GameObject password_object;
-    public GameObject clearImage;
+    //public GameObject clearImage;
+    public Image[] clearImage = new Image[2];
     private CameraFollow cam_follow;
 
     public AudioSource click_sound;
@@ -45,11 +46,11 @@ public class Password : MonoBehaviour {
         if (one == answer[0] && two == answer[1] && three == answer[2] && four == answer[3] && !is_clear)
         {
             is_clear = true;
-            clearImage.SetActive(true);
-            cam_follow.FadeCoroutine(false, 0f);
-            cam_follow.FadeCoroutine(true, 1f);
+            StartCoroutine(ClearFade());
+            cam_follow.FadeCoroutine(false, 1f);
+            cam_follow.FadeCoroutine(true, 2f);
             cam_follow.CheckPuzzleOrPlayer(false);
-            Invoke("AfterClear", 1f);
+            Invoke("AfterClear", 2f);
             password_object.GetComponent<SpriteRenderer>().sprite = unlock_sprite;
             obj.SetActive(true);
             player.saveZoneidx = 2;
@@ -57,6 +58,24 @@ public class Password : MonoBehaviour {
 			// 퍼즐 저장기능 해제  (Inventory.PuzzleGet[1] == false)
             if (Inventory.PuzzleGet[1] == true)
                 GetComponent<PuzzleClear>().Clear();
+        }
+    }
+
+    IEnumerator ClearFade()
+    {
+        float t = 0.0f;
+
+        clearImage[0].gameObject.SetActive(true);
+        clearImage[1].gameObject.SetActive(true);
+
+        while (t < 1)
+        {
+            t += Time.deltaTime;
+
+            clearImage[0].color = new Color(1, 1, 1, t);
+            clearImage[1].color = new Color(1, 1, 1, t);
+
+            yield return null;
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Laser : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Laser : MonoBehaviour
 
     public GameObject[] mirror;
     public GameObject laser_obj;
-    public GameObject clearImage;
+    public Image[] clearImage = new Image[2];
 
     public bool[] reflected;
     private bool is_clear;
@@ -101,7 +102,7 @@ public class Laser : MonoBehaviour
         if(reflected[0] && reflected[1] && reflected[3] && !is_clear)
         {
             is_clear = true;
-            clearImage.SetActive(true);
+            StartCoroutine(ClearFade());
 
             laser_obj.SetActive(false);
 
@@ -109,13 +110,31 @@ public class Laser : MonoBehaviour
 
             CameraFollow cam_follow = Camera.main.GetComponent<CameraFollow>();
 
-            cam_follow.FadeCoroutine(false, 0f);
-            cam_follow.FadeCoroutine(true, 1f);
+            cam_follow.FadeCoroutine(false, 1f);
+            cam_follow.FadeCoroutine(true, 2f);
             cam_follow.CheckPuzzleOrPlayer(false);
 
 			// 퍼즐 저장기능 해제  (Inventory.PuzzleGet[5] == false)
             if (Inventory.PuzzleGet[5] == true)
                 GetComponent<PuzzleClear>().Clear();
+        }
+    }
+
+    IEnumerator ClearFade()
+    {
+        float t = 0.0f;
+
+        clearImage[0].gameObject.SetActive(true);
+        clearImage[1].gameObject.SetActive(true);
+
+        while (t < 1)
+        {
+            t += Time.deltaTime;
+
+            clearImage[0].color = new Color(1, 1, 1, t);
+            clearImage[1].color = new Color(1, 1, 1, t);
+
+            yield return null;
         }
     }
 }

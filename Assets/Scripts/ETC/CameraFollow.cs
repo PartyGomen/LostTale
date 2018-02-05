@@ -8,9 +8,11 @@ public class CameraFollow : MonoBehaviour
 
     public GameObject followTargetOBJ;
     public GameObject control;
+    public GameObject arrowController;
     public GameObject backBtn;
     public GameObject bulb_object;
     public GameObject[] block_btn = new GameObject[2];
+    public Image[] success = new Image[2];
 
     public float fadeTime;
     public float followSpeed;
@@ -23,14 +25,13 @@ public class CameraFollow : MonoBehaviour
     public Vector3[] puzzlePos;
 
     public Image panel;
-
-    public GameObject clearImage;
-
+   
 	public int Stage;
 
     private void Start()
     {
         control.SetActive(false);
+        arrowController.SetActive(false);
 
         screeneffect = GetComponent<ScreenTransitionImageEffect>();
 
@@ -44,11 +45,6 @@ public class CameraFollow : MonoBehaviour
 
         if(is_in)
         {
-            if(clearImage.activeSelf)
-            {
-                clearImage.SetActive(false);
-            }
-
             float t = 1.0f;
 
             while (t >= 0)
@@ -95,8 +91,9 @@ public class CameraFollow : MonoBehaviour
 
         //Destroy(screeneffect);
 		if (Stage !=1){
-       		control.SetActive(true);
-		}
+            arrowController.SetActive(true);
+            control.SetActive(true);
+        }
     }
 
     void FixedUpdate()
@@ -117,16 +114,18 @@ public class CameraFollow : MonoBehaviour
         if (is_puzzle)
         {
             control.SetActive(false);
+            arrowController.SetActive(false);
             Invoke("CheckPuzzle", 1f);
         }
         else
-            Invoke("CheckPlayer", 1f);
+            Invoke("CheckPlayer", 2f);
     }
 
     public void CheckPuzzle()
     {
         isPuzzle = true;
         control.SetActive(false);
+        arrowController.SetActive(false);
         backBtn.SetActive(true);
 		bulb_object.SetActive(true);
 
@@ -158,8 +157,14 @@ public class CameraFollow : MonoBehaviour
         this.transform.position = new Vector3(tr.position.x, tr.position.y, -10);
 
 		control.SetActive (true);
+        arrowController.SetActive(true);
         backBtn.SetActive(false);
         bulb_object.SetActive(false);
+
+        for (int i = 0; i < success.Length; i++)
+        {
+            success[i].gameObject.SetActive(false);
+        }
 
         for (int i = 0; i < block_btn.Length; i++)
         {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PelicanMgr : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class PelicanMgr : MonoBehaviour
     public GameObject go2;
     public GameObject siso;
     private GameObject[] fishes;
-    public GameObject clearImage;
+    public Image[] clearImage = new Image[2];
 
     private Player player;
 
@@ -79,11 +80,11 @@ public class PelicanMgr : MonoBehaviour
             if(distance < 0.1f && (weight1 + weight2 == 12) && !is_clear)
             {
                 is_clear = true;
-                clearImage.SetActive(true);
+                StartCoroutine(ClearFade());
                 CameraFollow cam_follow =  Camera.main.GetComponent<CameraFollow>();
 
-                cam_follow.FadeCoroutine(false, 0f);
-                cam_follow.FadeCoroutine(true, 1f);
+                cam_follow.FadeCoroutine(false, 1f);
+                cam_follow.FadeCoroutine(true, 2f);
                 cam_follow.CheckPuzzleOrPlayer(false);
                 player.saveZoneidx = 2;
 
@@ -129,6 +130,24 @@ public class PelicanMgr : MonoBehaviour
         {
             Animator anim = pelicans[1].GetComponent<Animator>();
             anim.SetTrigger("Eat");
+        }
+    }
+
+    IEnumerator ClearFade()
+    {
+        float t = 0.0f;
+
+        clearImage[0].gameObject.SetActive(true);
+        clearImage[1].gameObject.SetActive(true);
+
+        while (t < 1)
+        {
+            t += Time.deltaTime;
+
+            clearImage[0].color = new Color(1, 1, 1, t);
+            clearImage[1].color = new Color(1, 1, 1, t);
+
+            yield return null;
         }
     }
 }

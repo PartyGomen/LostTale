@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PuzzleHermitCrabManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class PuzzleHermitCrabManager : MonoBehaviour
     CameraFollow camfollow;
 
     public GameObject bridge;
-    public GameObject clearImage;
+    public Image[] clearImage = new Image[2];
     public GameObject[] crabs = new GameObject[5];
     private Vector3[] crab_pos = new Vector3[5];
 
@@ -44,9 +45,10 @@ public class PuzzleHermitCrabManager : MonoBehaviour
 	public void ClearHermitCrabPuzzle()
     {
 		is_clear = true;
-        clearImage.SetActive(true);
-        camfollow.FadeCoroutine(false, 0f);
-		camfollow.FadeCoroutine(true, 1f);
+        //clearImage.SetActive(true);
+        StartCoroutine(ClearFade());
+        camfollow.FadeCoroutine(false, 1f);
+		camfollow.FadeCoroutine(true, 2f);
 		camfollow.CheckPuzzleOrPlayer(false);
 		bridge.SetActive(true);
         player.saveZoneidx = 1;
@@ -64,6 +66,24 @@ public class PuzzleHermitCrabManager : MonoBehaviour
         {
             check[i] = false;
             crabs[i].transform.position = crab_pos[i];
+        }
+    }
+
+    IEnumerator ClearFade()
+    {
+        float t = 0.0f;
+
+        clearImage[0].gameObject.SetActive(true);
+        clearImage[1].gameObject.SetActive(true);
+
+        while (t < 1)
+        {
+            t += Time.deltaTime;
+
+            clearImage[0].color = new Color(1, 1, 1, t);
+            clearImage[1].color = new Color(1, 1, 1, t);
+
+            yield return null;
         }
     }
 }
