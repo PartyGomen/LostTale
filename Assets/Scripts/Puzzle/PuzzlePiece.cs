@@ -25,6 +25,9 @@ public class PuzzlePiece : MonoBehaviour
 
 	public GameObject BackGround;
 	public GameObject Control;
+	public GameObject InventoryTuto;
+	public GameObject JoyStick;
+	public GameObject JumpButton;
 
 
     [HideInInspector]
@@ -88,7 +91,13 @@ public class PuzzlePiece : MonoBehaviour
                     {
                         ui_panel.OnCoroutine();
                         ui_panel.isOn = true;
-                    }
+						if(piece_number == 0){
+							Debug.Log ("Start Tuto");
+							InventoryTuto.SetActive (true);
+							JoyStick.SetActive (false);
+							JumpButton.SetActive (false);
+						}
+					}
 
                     isclicked = true;
                 }

@@ -21,6 +21,7 @@ public class Inventory : MonoBehaviour
     public GameObject go;
 	public GameObject InventoryShadow;
 	public GameObject MobileControl;
+	public GameObject MobileControl2;
 
 	private int count = 0;
 
@@ -42,6 +43,7 @@ public class Inventory : MonoBehaviour
 		PuzzleImageShow.SetActive (false);
 		InventoryShadow.SetActive (false);
 		MobileControl.SetActive (true);
+		MobileControl2.SetActive (true);
     }
 
 	public static void GetPuzzle1(){
