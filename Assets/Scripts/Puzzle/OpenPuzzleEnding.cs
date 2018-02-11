@@ -35,9 +35,10 @@ public class OpenPuzzleEnding : MonoBehaviour {
 					Control2.SetActive (false);
 					PuzzleEnd.SetActive (true);
                     inven.PuzzleSave();
-					if (EndingStoryTuto.Is_FirstEndingTuto == true) {
+					PuzzleEndTuto.SetActive (true); // 라인 공모전 이 후 삭제
+					/*if (EndingStoryTuto.Is_FirstEndingTuto == true) { // 라인 공모전 이 후 활성화
 						PuzzleEndTuto.SetActive (true);
-					}
+					}*/
 				}
 			}
 		}
