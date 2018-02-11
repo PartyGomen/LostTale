@@ -34,7 +34,7 @@ public class TitleTest : MonoBehaviour
 //	private bool AppearBook = false;
 //	public Sprite BackGroundSprite;
 
-	private bool IsFirstTuto = true;
+	public static bool IsFirstTuto = false;
 
     float xScale = 0;
     //float yScale = 0;
@@ -123,7 +123,7 @@ public class TitleTest : MonoBehaviour
 
 		// 갤러리 튜토리얼 기능
 		CheckGalleryTuto ();	
-
+		Debug.Log (IsFirstTuto);
 		// 갤러리 해금기능 
 		if(EndingStoryManager.IsGetEnding == true && IsFirstTuto == false ){
 			Gallery.SetActive (true);
@@ -163,23 +163,33 @@ public class TitleTest : MonoBehaviour
 
 	public void CheckGalleryTuto(){
 
-		if (GalleryManager.HappyEnding == true && GalleryManager.SadEnding == false && GalleryManager.SpecialEnding == false && GalleryManager.TrueEnding == false && IsFirstTuto == true) {
+	/*	if (GalleryManager.HappyEnding == true && GalleryManager.SadEnding == false && GalleryManager.SpecialEnding == false && GalleryManager.TrueEnding == false && IsFirstTuto == true) {
+			//IsFirstTuto = false;
 			GalleryTuto.SetActive (true);
 			GalleryOpen.SetActive (false);
 			Debug.Log ("1");
 		}else if(GalleryManager.HappyEnding == false && GalleryManager.SadEnding == true && GalleryManager.SpecialEnding == false && GalleryManager.TrueEnding == false && IsFirstTuto == true){
+			//IsFirstTuto = false;
 			GalleryTuto.SetActive (true);
 			GalleryOpen.SetActive (false);
 			Debug.Log ("2");
 		}else if(GalleryManager.HappyEnding == false && GalleryManager.SadEnding == false && GalleryManager.SpecialEnding == true && GalleryManager.TrueEnding == false && IsFirstTuto == true){
+		//	IsFirstTuto = false;
 			GalleryTuto.SetActive (true);
 			GalleryOpen.SetActive (false);
 			Debug.Log ("3");
 		}else if(GalleryManager.HappyEnding == false && GalleryManager.SadEnding == false && GalleryManager.SpecialEnding == false && GalleryManager.TrueEnding == true && IsFirstTuto == true){
+		//	IsFirstTuto = false;
 			GalleryTuto.SetActive (true);
 			GalleryOpen.SetActive (false);
 			Debug.Log ("4");
+		}*/
+		if(IsFirstTuto == true){
+			//	IsFirstTuto = false;
+			GalleryTuto.SetActive (true);
+			GalleryOpen.SetActive (false);
 		}
+
 	}
 
 	public void StartGalleryTuto(){

@@ -10,6 +10,7 @@ public class StageClear : MonoBehaviour {
 	public GameObject Null;
 
 	public GameObject Control;
+	public GameObject Control2;
 	public GameObject EndingPuzzle;
 
 	public GameObject ClearImage;
@@ -28,7 +29,7 @@ public class StageClear : MonoBehaviour {
 	ScreenTransitionImageEffect screenEffect;
 
 	void Start () {
-		
+		this.GetComponent<AudioSource> ().Play ();
 	}
 	
 	// Update is called once per frame
@@ -38,9 +39,11 @@ public class StageClear : MonoBehaviour {
 			if (target.name == "ClearImage" && Stage != 3) {
 				Invoke ("BackToTitle", fadeT);
 			}else if (target.name == "ClearImage" && Stage == 3) {
+				Debug.Log ("sdadsad");
 				FadePanel.SetActive (false);
 				EndingPuzzle.SetActive (true);
 				Control.SetActive (true);
+				Control2.SetActive (true);
 				Player.SetActive (true);
 				ClearPoint.SetActive (false);
 				ClearImage.SetActive (false);

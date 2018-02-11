@@ -60,7 +60,7 @@ public class PuzzleEndManager : MonoBehaviour {
 		
 	IEnumerator ClearEndPuzzle(){
 		yield return new WaitForSeconds (1.5f);
-		if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" && PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle5" && GalleryManager.TrueEnding == true) {
+		/*if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" && PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle5" && GalleryManager.TrueEnding == true) {
 			StartCoroutine (ClearEffect());
 		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle6" && PuzzleEnd[4] == "Puzzle7" && GalleryManager.HappyEnding == true && GalleryManager.TrueEnding == false) {
 			ShowHint = true;
@@ -77,32 +77,37 @@ public class PuzzleEndManager : MonoBehaviour {
 			StartCoroutine (ClearEffect());
 		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle9" && GalleryManager.SpecialEnding == true && GalleryManager.TrueEnding == true) {
 			StartCoroutine (ClearEffect());
-		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" && PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle5" && GalleryManager.TrueEnding == false) {
+		} else */
+		if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" && PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle5" /* && GalleryManager.TrueEnding == false*/) { 
 			Debug.Log ("진앤딩");
+			TitleTest.IsFirstTuto = true;
 			ShowEnding = true;
 			EndingStoryNumber = 1;
 			this.GetComponent<AudioSource> ().Stop ();
 			this.GetComponent<AudioSource> ().clip = AnotherEnding;
 			this.GetComponent<AudioSource> ().Play ();
 			StartCoroutine (ClearEffect());
-		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle8" && GalleryManager.SadEnding == false) {
+		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle8" /*&& GalleryManager.SadEnding == false*/) {
 			Debug.Log ("새드앤딩");
+			TitleTest.IsFirstTuto = true;
 			ShowEnding = true;
 			EndingStoryNumber = 2;
 			this.GetComponent<AudioSource> ().Stop ();
 			this.GetComponent<AudioSource> ().clip = AnotherEnding;
 			this.GetComponent<AudioSource> ().Play ();
 			StartCoroutine (ClearEffect());
-		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle6" && PuzzleEnd[4] == "Puzzle7" && GalleryManager.HappyEnding == false) {
+		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle6" && PuzzleEnd[4] == "Puzzle7" /*&& GalleryManager.HappyEnding == false*/) {
 			Debug.Log ("해피앤딩");
+			TitleTest.IsFirstTuto = true;
 			ShowEnding = true;
 			EndingStoryNumber = 3;
 			this.GetComponent<AudioSource> ().Stop ();
 			this.GetComponent<AudioSource> ().clip = HappyEnding;
 			this.GetComponent<AudioSource> ().Play ();
 			StartCoroutine (ClearEffect());
-		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle9" && GalleryManager.SpecialEnding == false) {
+		} else if (PuzzleEnd[0] == "Puzzle1" && PuzzleEnd[1] == "Puzzle2" &&  PuzzleEnd[2] == "Puzzle3" && PuzzleEnd[3] == "Puzzle4" && PuzzleEnd[4] == "Puzzle9" /*&& GalleryManager.SpecialEnding == false*/) {
 			Debug.Log ("특전앤딩");
+			TitleTest.IsFirstTuto = true;
 			EndingStoryNumber = 4;
 			ShowEnding = true;
 			this.GetComponent<AudioSource> ().Stop ();

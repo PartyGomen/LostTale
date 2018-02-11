@@ -27,6 +27,7 @@ public class BookManager : MonoBehaviour {
 
 	public GameObject ExitButton;
 	public GameObject GalleryManager;
+	public GameObject GalleryOpen;
 
 	public AudioSource BookSkip;
 	public AudioSource BookGrid;
@@ -109,8 +110,8 @@ public class BookManager : MonoBehaviour {
 		Stage2.GetComponent<Button> ().interactable = false;
 		Stage3.GetComponent<Button> ().interactable = false;
 		ExitButton.GetComponent<Button>().interactable = false; // 종료 버튼 비활성화
-		GameObject.Find ("GalleryOpen").GetComponent<Image>().raycastTarget = false;
-		GameObject.Find ("GalleryOpen").GetComponent<Button>().interactable = false;  // 책에 갤러리 보이는 버튼 비활성화
+		GalleryOpen.GetComponent<Image>().raycastTarget = false;
+		GalleryOpen.GetComponent<Button>().interactable = false;  // 책에 갤러리 보이는 버튼 비활성화
 	}
 
 	public void DisappearGallery(){
@@ -122,8 +123,8 @@ public class BookManager : MonoBehaviour {
 		Stage2.GetComponent<Button> ().interactable = true;
 		Stage3.GetComponent<Button> ().interactable = true;
 		ExitButton.GetComponent<Button>().interactable = true;
-		GameObject.Find ("GalleryOpen").GetComponent<Image>().raycastTarget = true;
-		GameObject.Find ("GalleryOpen").GetComponent<Button>().interactable = true;
+		GalleryOpen.GetComponent<Image>().raycastTarget = true;
+		GalleryOpen.GetComponent<Button>().interactable = true;
 	}
 
 	public void PlayBookGridAudio(){

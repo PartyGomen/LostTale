@@ -7,7 +7,8 @@ public class OpenPuzzleEnding : MonoBehaviour {
 	public GameObject Cam;
 	public GameObject Player;
 	public GameObject PuzzleEnd;
-	public GameObject MoblieControl;
+	public GameObject Control;
+	public GameObject Control2;
 	public float Distance;
 
 	public GameObject PuzzleEndTuto;
@@ -30,7 +31,8 @@ public class OpenPuzzleEnding : MonoBehaviour {
 					GameObject.Find ("Main Camera").GetComponent<AudioSource> ().Pause ();
 					Player.transform.position = new Vector3 (185, -5, 0);
 					Player.SetActive (false);
-					MoblieControl.SetActive (false);
+					Control.SetActive (false);
+					Control2.SetActive (false);
 					PuzzleEnd.SetActive (true);
                     inven.PuzzleSave();
 					if (EndingStoryTuto.Is_FirstEndingTuto == true) {
@@ -72,7 +74,8 @@ public class OpenPuzzleEnding : MonoBehaviour {
 		}
 		GameObject.Find ("Main Camera").GetComponent<AudioSource> ().Play ();
 		PuzzleEnd.SetActive (false);
-		MoblieControl.SetActive (true);
+		Control.SetActive (true);
+		Control2.SetActive (true);
 		Player.SetActive (true);
 	}
 

@@ -33,6 +33,11 @@ public class Clear : MonoBehaviour
     public Inventory inven;
 	public Camera GameCamera;
 
+	void Start () {
+		TitleTest.IsFirstTuto = false;
+	}
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
@@ -46,11 +51,13 @@ public class Clear : MonoBehaviour
 			if (PuzzleLevel == 1) {
 				StageManager.IsClear_Stage1 = true;
 				StageManager.IsFirstClear_Stage1++;
+				TitleTest.IsFirstTuto = false;
 				Debug.Log (StageManager.IsFirstClear_Stage1);
 			} else if(PuzzleLevel == 2){
 				StageManager.IsClear_Stage2 = true;
 				StageManager.IsFirstClear_Stage2 ++;
 				StageManager.IsFirstClear_Stage2 ++;
+				TitleTest.IsFirstTuto = false;
 				Debug.Log (StageManager.IsFirstClear_Stage2);
 			}
 
@@ -117,17 +124,22 @@ public class Clear : MonoBehaviour
 	IEnumerator  CheckStageClearEffect(int Stage, int Value){
 		for (int i = 0; i <= Stage; i++) {
 			if (Inventory.PuzzleGet [Value + i] == true) {
+				Debug.Log ("sOUND");
 				PuzzleParticle [i].SetActive (true);
 				yield return new WaitForSeconds (1f);
+				this.GetComponent<AudioSource> ().Play ();
 				PuzzleImage [i].SetActive (true);
 				PuzzleImage [i].GetComponent<Transform> ().localScale = new Vector3 (1, 1, 1);
 				PuzzleImage [i].GetComponent<SpriteRenderer> ().sprite = GetPuzzleImage [i];
 				yield return new WaitForSeconds (0.5f);
+				this.GetComponent<AudioSource> ().Stop ();
 				RightParticle [i].GetComponent<ParticleSystem> ().Pause ();
 			} else if (Inventory.PuzzleGet [Value + i] == false) {
+				this.GetComponent<AudioSource> ().Play ();
 				PuzzleImage [i].SetActive (true);
 				PuzzleParticle [i].SetActive (false);
 				yield return new WaitForSeconds (0.5f);
+				this.GetComponent<AudioSource> ().Stop ();
 			}
 		}
 		ClearImage.GetComponent<BoxCollider2D> ().enabled = true;
