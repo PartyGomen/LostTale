@@ -20,10 +20,10 @@ public class EndingStoryTuto : MonoBehaviour {
 	// Use this for initialization
 
 	void OnEnable () {
-		if (Is_FirstEndingTuto == true) {
+		//if (Is_FirstEndingTuto == true) { 공모전이 후 활성화
 			Debug.Log ("hi");
 			StartCoroutine (EndingTuto ());
-		} 
+		//} 
 	}
 	
 	// Update is called once per frame
@@ -58,7 +58,6 @@ public class EndingStoryTuto : MonoBehaviour {
 				HandImage.GetComponent<RectTransform> ().localScale = new Vector3 (0.3f, 0.3f, 0.3f);
 				x -= 24;
 				y += 39;
-				Debug.Log ("x :" + x + "y : " + y);
 			} else {
 				x = -450;
 				y = -160;

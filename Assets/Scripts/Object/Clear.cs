@@ -124,7 +124,6 @@ public class Clear : MonoBehaviour
 	IEnumerator  CheckStageClearEffect(int Stage, int Value){
 		for (int i = 0; i <= Stage; i++) {
 			if (Inventory.PuzzleGet [Value + i] == true) {
-				Debug.Log ("sOUND");
 				PuzzleParticle [i].SetActive (true);
 				yield return new WaitForSeconds (1f);
 				this.GetComponent<AudioSource> ().Play ();

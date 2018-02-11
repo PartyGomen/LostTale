@@ -11,6 +11,7 @@ public class EndingMovePuzzle : MonoBehaviour {
 
 	public GameObject BackButton;
 
+	public GameObject GroundColliider;
 
 	public Vector2 pos;
 	public Vector2 firstpos;
@@ -23,6 +24,8 @@ public class EndingMovePuzzle : MonoBehaviour {
     public GameObject[] puzzles = new GameObject[9];
     public bool[] drags = new bool[9];
 
+	public GameObject PuzzleEnding;
+	public int Stage;
 
 	public bool DragOn1 = false;
 	public bool DragOn2 = false;
@@ -38,6 +41,11 @@ public class EndingMovePuzzle : MonoBehaviour {
 
 	Vector3 PuzzlePosition;
 	void OnEnable(){
+		if (Stage == 1) {
+			GroundColliider.SetActive (false);
+			PuzzleEnding.SetActive (false);
+		}
+
 		for(int i =0 ; i < 9 ; i++){
 			if(Inventory.PuzzleGet[i] == true){
 				puzzles [i].SetActive (true);
