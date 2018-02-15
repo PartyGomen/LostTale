@@ -11,6 +11,7 @@ public class Password : MonoBehaviour {
 
     public GameObject obj;
     public Sprite unlock_sprite;
+    public GameObject[] treasureObject = new GameObject[2];
     public GameObject password_object;
     //public GameObject clearImage;
     public Image[] clearImage = new Image[2];
@@ -51,7 +52,9 @@ public class Password : MonoBehaviour {
             cam_follow.FadeCoroutine(true, 2f);
             cam_follow.CheckPuzzleOrPlayer(false);
             Invoke("AfterClear", 2f);
-            password_object.GetComponent<SpriteRenderer>().sprite = unlock_sprite;
+            treasureObject[0].SetActive(false);
+            treasureObject[1].SetActive(true);
+            //password_object.GetComponent<SpriteRenderer>().sprite = unlock_sprite;
             obj.SetActive(true);
             player.saveZoneidx = 2;
 
@@ -103,6 +106,9 @@ public class Password : MonoBehaviour {
 
     public void AddOne ()
     {
+        if (is_clear)
+            return;
+
         SoundPlay();
 
         one++;
@@ -114,6 +120,9 @@ public class Password : MonoBehaviour {
 
     public void SubOne()
     {
+        if (is_clear)
+            return;
+
         SoundPlay();
 
         one--;
@@ -125,6 +134,9 @@ public class Password : MonoBehaviour {
 
     public void AddTwo()
     {
+        if (is_clear)
+            return;
+
         SoundPlay();
 
         two++;
@@ -136,6 +148,9 @@ public class Password : MonoBehaviour {
 
     public void SubTwo()
     {
+        if (is_clear)
+            return;
+
         SoundPlay();
 
         two--;
@@ -147,6 +162,9 @@ public class Password : MonoBehaviour {
 
     public void AddThree()
     {
+        if (is_clear)
+            return;
+
         SoundPlay();
 
         three++;
@@ -158,6 +176,9 @@ public class Password : MonoBehaviour {
 
     public void SubThree()
     {
+        if (is_clear)
+            return;
+
         SoundPlay();
 
         three--;
@@ -169,6 +190,9 @@ public class Password : MonoBehaviour {
 
     public void AddFour()
     {
+        if (is_clear)
+            return;
+
         SoundPlay();
 
         four++;
@@ -180,6 +204,9 @@ public class Password : MonoBehaviour {
 
     public void SubFour()
     {
+        if (is_clear)
+            return;
+
         SoundPlay();
 
         four--;
