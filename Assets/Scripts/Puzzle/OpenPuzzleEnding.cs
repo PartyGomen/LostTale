@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class OpenPuzzleEnding : MonoBehaviour {	
+	public int Stage;
+
 	public GameObject Cam;
 	public GameObject Player;
 	public GameObject PuzzleEnd;
@@ -44,8 +46,14 @@ public class OpenPuzzleEnding : MonoBehaviour {
 		}
 	}
 	public void CloseEndPuzzle(){
-	//	Player.transform.position = new Vector3 (190, 8.7f, 0);
-		Player.transform.position = new Vector3 (130, 1.7f, 0);
+		if (Stage == 3){
+			Player.transform.position = new Vector3 (190, 8.7f, 0);
+		}
+		if (Stage == 1) {
+			Player.transform.position = new Vector3 (130, 1.7f, 0);
+		}
+
+
 		if (Inventory.PuzzleGet [0] == true) {
 			GameObject.Find ("Puzzle1").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (500, -710, 0);
 		}  

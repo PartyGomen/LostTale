@@ -66,9 +66,9 @@ public class StageManager : MonoBehaviour {
 		Debug.Log(CurrentPage);
         if(CurrentPage == 0)
         {
-            stages[0].onClick.AddListener(delegate { LoadStage(4); });
-            stages[1].onClick.AddListener(delegate { LoadStage(6); });
-            stages[2].onClick.AddListener(delegate { LoadStage(7); });
+            stages[0].onClick.AddListener(delegate { LoadStage(6); });
+            stages[1].onClick.AddListener(delegate { LoadStage(7); });
+            stages[2].onClick.AddListener(delegate { LoadStage(8); });
 			stages [0].enabled = true;
 			DisableButton [0].GetComponent<Image> ().color = new Color (1, 1, 1, 0);
 			if (IsClear_Stage1 == true || IsFirstClear_Stage1 >= 3) {

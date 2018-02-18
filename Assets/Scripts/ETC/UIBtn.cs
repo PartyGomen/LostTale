@@ -63,7 +63,7 @@ public class UIBtn : MonoBehaviour
     public void BackToTitleScene()
     {
         SoundPlay();
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 
     public void SoundPlay()

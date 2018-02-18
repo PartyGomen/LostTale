@@ -16,8 +16,11 @@ public class StageClear : MonoBehaviour {
 	public GameObject ClearImage;
 	public GameObject ClearPoint;
 
+	public GameObject Panel;
 	public GameObject FadePanel;
 	public GameObject Player;
+
+	public GameObject Silder;
 
 
 	public int Stage;
@@ -39,7 +42,10 @@ public class StageClear : MonoBehaviour {
 			if (target.name == "ClearImage" && Stage != 3) {
 				Invoke ("BackToTitle", fadeT);
 			}else if (target.name == "ClearImage" && Stage == 3) {
-				Debug.Log ("sdadsad");
+				Player.GetComponent<Player> ().Button_Left_release ();
+				Player.GetComponent<Player> ().Button_Right_release ();
+				Silder.GetComponent<Slider> ().value = 0.5f;
+				Panel.SetActive (false);
 				FadePanel.SetActive (false);
 				EndingPuzzle.SetActive (true);
 				Control.SetActive (true);
