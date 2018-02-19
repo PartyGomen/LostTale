@@ -20,7 +20,8 @@ public class StageClear : MonoBehaviour {
 	public GameObject FadePanel;
 	public GameObject Player;
 
-	public GameObject Silder;
+	public GameObject JoyStick;
+	public GameObject JoyStickButton;
 
 
 	public int Stage;
@@ -44,7 +45,8 @@ public class StageClear : MonoBehaviour {
 			}else if (target.name == "ClearImage" && Stage == 3) {
 				Player.GetComponent<Player> ().Button_Left_release ();
 				Player.GetComponent<Player> ().Button_Right_release ();
-				Silder.GetComponent<Slider> ().value = 0.5f;
+				JoyStick.GetComponent<VirtualJoyStick> ().inputVector.x = 0f;
+				JoyStickButton.GetComponent<RectTransform> ().anchoredPosition = new Vector3 (0, 0, 0);
 				Panel.SetActive (false);
 				FadePanel.SetActive (false);
 				EndingPuzzle.SetActive (true);
@@ -73,6 +75,6 @@ public class StageClear : MonoBehaviour {
 		
 	void BackToTitle()
 	{
-		SceneManager.LoadScene(3);
+		SceneManager.LoadScene(4);
 	}
 }

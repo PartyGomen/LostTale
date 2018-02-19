@@ -325,7 +325,8 @@ public class GameTutorial : MonoBehaviour
 
     void StartStage()
     {
-        SceneManager.LoadScene(6);
+		LoadingScene.IsGameTuto = true;
+        SceneManager.LoadScene(3);
     }
 
     public void PageMove(bool _next)

@@ -8,8 +8,11 @@ public class LoadingScene : MonoBehaviour
 {
     public static string nextScene;
 	public Text ProcessText;
+	public Text TipText;
 	public GameObject RunningImage;
 
+	public string []TipTextArray;
+	private int random;
     [SerializeField]
     Image progressBar;
 	RectTransform RunningPosition;
@@ -17,11 +20,17 @@ public class LoadingScene : MonoBehaviour
 
     private void Start()
     {
+		
+		random = Random.Range (0, 5);
+		Debug.Log (random);
+		TipText.text = TipTextArray [random];
         StartCoroutine(LoadScene());
 //		RunningPosition = RunningImage.GetComponent<RectTransform> ().anchoredPosition;
     }
 
     string nextSceneName;
+	public static bool IsGameTuto = false;
+
     public static void LoadScene(string sceneName)
     {
         nextScene = sceneName;
@@ -43,13 +52,17 @@ public class LoadingScene : MonoBehaviour
 			//ProcessText .text = timer +"%";
 			ProcessText .text = Mathf.Round(progressBar.fillAmount * 100) +"%";
 			X_Position = progressBar.fillAmount * 1850;
-			RunningImage.GetComponent<RectTransform> ().anchoredPosition = new Vector3 ( X_Position, 117, 0);
+			RunningImage.GetComponent<RectTransform> ().anchoredPosition = new Vector3 ( X_Position, 103, 0);
             if (op.progress >= 0.9f)
             {
                 progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount*0.7f, 1f, timer);
 
-                if (progressBar.fillAmount == 1.0f)
-                    op.allowSceneActivation = true;
+				if (progressBar.fillAmount == 1.0f) {
+					if (IsGameTuto == true) {
+						SceneManager.LoadScene ("Scene1-1");
+					}
+					op.allowSceneActivation = true;
+				}
             }
             else
             {
