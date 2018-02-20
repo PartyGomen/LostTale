@@ -66,7 +66,7 @@ public class StageManager : MonoBehaviour {
 		Debug.Log(CurrentPage);
         if(CurrentPage == 0)
         {
-            stages[0].onClick.AddListener(delegate { LoadStage(6); });
+            stages[0].onClick.AddListener(delegate { LoadStage(5); });
             stages[1].onClick.AddListener(delegate { LoadStage(7); });
             stages[2].onClick.AddListener(delegate { LoadStage(8); });
 			stages [0].enabled = true;
