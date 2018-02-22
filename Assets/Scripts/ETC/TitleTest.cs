@@ -41,12 +41,11 @@ public class TitleTest : MonoBehaviour
   //  float a = 1;
 
     //bool addAlpha = false;
-
+	void OnEnable(){
+		
+	}
     private void Start()
     {
-
-		Debug.Log (StageManager.IsFirstClear_Stage1);
-		Debug.Log (StageManager.IsFirstClear_Stage2);
 		ExitButton.SetActive (true);
 		BlackBackGround.SetActive (true);
 		StartCoroutine(FadeOutBackGround());
@@ -104,8 +103,11 @@ public class TitleTest : MonoBehaviour
 		Book.GetComponent<Book> ().enabled = true;  // Swipe 활성
 		RightHotSpot.SetActive(true);
 		LeftHotSpot.SetActive (true);
-		GameObject.Find ("GalleryOpen").GetComponent<Button>().interactable = true;
-
+		if (GalleryManager.HappyEnding == false && GalleryManager.SadEnding == false && GalleryManager.SpecialEnding == false && GalleryManager.TrueEnding == false) {
+			GalleryOpen.GetComponent<Button> ().interactable = false;
+		} else {
+			GameObject.Find ("GalleryOpen").GetComponent<Button> ().interactable = true;
+		}
 
 		// 스테이지 해금 이미지 컨트롤 
 		Stage1.GetComponent<Button>().interactable = true;

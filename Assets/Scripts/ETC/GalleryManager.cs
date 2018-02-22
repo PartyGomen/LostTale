@@ -83,6 +83,11 @@ public class GalleryManager : MonoBehaviour {
 			}
 
 		}
+
+
+
+
+
 	}
 	public void CheckGallery(int number){
 		GalleryButton [number].GetComponent<Button> ().interactable = true;
