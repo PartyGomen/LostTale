@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class GullDieMark : MonoBehaviour
 {
+    public float speed;
+
 	void Update ()
     {
-        this.transform.Rotate(new Vector3(0, 0, 30) * Time.deltaTime);
+        this.transform.Rotate(new Vector3(0, 0, speed) * Time.deltaTime);
     }
 }
