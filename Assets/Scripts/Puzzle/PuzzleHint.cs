@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PuzzleHint : MonoBehaviour
 {
-    private int hint_count = 3;
+    private int hint_count = 9;
     [HideInInspector]
     public int hint_index;
 

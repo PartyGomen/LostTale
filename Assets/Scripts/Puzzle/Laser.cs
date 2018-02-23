@@ -9,6 +9,7 @@ public class Laser : MonoBehaviour
 
     public GameObject[] mirror;
     public GameObject laser_obj;
+    public GameObject deathMark;
     public Image[] clearImage = new Image[2];
 
     public bool[] reflected;
@@ -105,6 +106,7 @@ public class Laser : MonoBehaviour
             StartCoroutine(ClearFade());
 
             laser_obj.SetActive(false);
+            deathMark.SetActive(false);
 
             player.saveZoneidx = 1;
 
