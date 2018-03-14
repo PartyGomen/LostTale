@@ -107,7 +107,7 @@ public class JiksawMgr : MonoBehaviour
                     player.saveZoneidx = 4;
 
 					// 퍼즐 저장기능 해제  (Inventory.PuzzleGet[8] == false)
-                    if (Inventory.PuzzleGet[8] == true)
+					if (Inventory.PuzzleGet[8] == false)
                         GetComponent<PuzzleClear>().Clear();
                 }
             }

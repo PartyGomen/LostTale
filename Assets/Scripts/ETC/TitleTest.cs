@@ -126,6 +126,7 @@ public class TitleTest : MonoBehaviour
 		// 갤러리 튜토리얼 기능
 		CheckGalleryTuto ();	
 		Debug.Log (IsFirstTuto);
+		Debug.Log (EndingStoryManager.IsGetEnding);
 		// 갤러리 해금기능 
 		if(EndingStoryManager.IsGetEnding == true && IsFirstTuto == false ){
 			Gallery.SetActive (true);
@@ -165,7 +166,7 @@ public class TitleTest : MonoBehaviour
 
 	public void CheckGalleryTuto(){
 
-	/*	if (GalleryManager.HappyEnding == true && GalleryManager.SadEnding == false && GalleryManager.SpecialEnding == false && GalleryManager.TrueEnding == false && IsFirstTuto == true) {
+		if (GalleryManager.HappyEnding == true && GalleryManager.SadEnding == false && GalleryManager.SpecialEnding == false && GalleryManager.TrueEnding == false && IsFirstTuto == true) {
 			//IsFirstTuto = false;
 			GalleryTuto.SetActive (true);
 			GalleryOpen.SetActive (false);
@@ -185,13 +186,7 @@ public class TitleTest : MonoBehaviour
 			GalleryTuto.SetActive (true);
 			GalleryOpen.SetActive (false);
 			Debug.Log ("4");
-		}*/
-		if(IsFirstTuto == true){
-			//	IsFirstTuto = false;
-			GalleryTuto.SetActive (true);
-			GalleryOpen.SetActive (false);
 		}
-
 	}
 
 	public void StartGalleryTuto(){

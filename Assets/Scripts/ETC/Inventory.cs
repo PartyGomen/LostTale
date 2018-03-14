@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
 	public GameObject PuzzleImageShow;
-	public static bool[] PuzzleGet = new bool[9] {true, true, true, true, true, true, true, true, true};
+	public static bool[] PuzzleGet = new bool[9] {false, false, false, false, false, false, false, false, false};
     //{true, true, true, true, true, true, true, true, true}
     //{false, false, false, false, false, false, false, false, false}
     public static int[] PuzzleGetNumber = new int[9] {0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -21,7 +21,6 @@ public class Inventory : MonoBehaviour
     public GameObject go;
 	public GameObject InventoryShadow;
 	public GameObject MobileControl;
-	public GameObject MobileControl2;
 
 	private int count = 0;
 
@@ -30,7 +29,6 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-		//PlayerPrefs.DeleteAll ();	
         if (PlayerPrefs.HasKey("PuzzlePiece"))
             PuzzleLoad();
 
@@ -43,7 +41,6 @@ public class Inventory : MonoBehaviour
 		PuzzleImageShow.SetActive (false);
 		InventoryShadow.SetActive (false);
 		MobileControl.SetActive (true);
-		MobileControl2.SetActive (true);
     }
 
 	public static void GetPuzzle1(){

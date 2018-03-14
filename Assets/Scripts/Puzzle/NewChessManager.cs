@@ -274,7 +274,7 @@ public class NewChessManager : MonoBehaviour {
 			cam_follow.CheckPuzzleOrPlayer(false);
 
 			// 퍼즐 저장기능 해제  (Inventory.PuzzleGet[7] == false)
-			if (Inventory.PuzzleGet[7] == true){
+			if (Inventory.PuzzleGet[7] == false){
 				GetComponent<PuzzleClear>().Clear();
 			}
 			player.saveZoneidx = 3;

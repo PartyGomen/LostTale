@@ -10,7 +10,6 @@ public class OpenPuzzleEnding : MonoBehaviour {
 	public GameObject Player;
 	public GameObject PuzzleEnd;
 	public GameObject Control;
-	public GameObject Control2;
 	public float Distance;
 
 	public GameObject PuzzleEndTuto;
@@ -34,13 +33,12 @@ public class OpenPuzzleEnding : MonoBehaviour {
 					Player.transform.position = new Vector3 (185, -5, 0);
 					Player.SetActive (false);
 					Control.SetActive (false);
-					Control2.SetActive (false);
 					PuzzleEnd.SetActive (true);
                     inven.PuzzleSave();
 					PuzzleEndTuto.SetActive (true); // 라인 공모전 이 후 삭제
-					/*if (EndingStoryTuto.Is_FirstEndingTuto == true) { // 라인 공모전 이 후 활성화
+					if (EndingStoryTuto.Is_FirstEndingTuto == true) { // 라인 공모전 이 후 활성화
 						PuzzleEndTuto.SetActive (true);
-					}*/
+					}
 				}
 			}
 		}
@@ -84,7 +82,6 @@ public class OpenPuzzleEnding : MonoBehaviour {
 		GameObject.Find ("Main Camera").GetComponent<AudioSource> ().Play ();
 		PuzzleEnd.SetActive (false);
 		Control.SetActive (true);
-		Control2.SetActive (true);
 		Player.SetActive (true);
 	}
 

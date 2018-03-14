@@ -149,7 +149,7 @@ public class TideManager : MonoBehaviour
                 player.saveZoneidx = 1;
 
 				// 퍼즐 저장기능 해제  (Inventory.PuzzleGet[2] == false)
-                if (Inventory.PuzzleGet[2] == true)
+				if (Inventory.PuzzleGet[2] == false)
                     GetComponent<PuzzleClear>().Clear();
             }
         }

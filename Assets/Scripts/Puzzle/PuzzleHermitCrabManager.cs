@@ -53,7 +53,7 @@ public class PuzzleHermitCrabManager : MonoBehaviour
 		bridge.SetActive(true);
         player.saveZoneidx = 1;
 		// 퍼즐 획득 저장 기능 (Inventory.PuzzleGet[0] == false)
-        if (Inventory.PuzzleGet[0] == true)
+		if (Inventory.PuzzleGet[0] == false)
             GetComponent<PuzzleClear>().Clear();
     }
 

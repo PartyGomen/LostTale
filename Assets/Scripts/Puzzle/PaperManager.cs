@@ -34,7 +34,7 @@ public class PaperManager : MonoBehaviour
             player.saveZoneidx = 3;
 
 			// 퍼즐 저장기능 해제  (Inventory.PuzzleGet[4] == false)
-            if (Inventory.PuzzleGet[4] == true)
+			if (Inventory.PuzzleGet[4] == false)
                 GetComponent<PuzzleClear>().Clear();
         }
     }

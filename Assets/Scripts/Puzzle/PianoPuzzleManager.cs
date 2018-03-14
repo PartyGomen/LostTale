@@ -46,7 +46,7 @@ public class PianoPuzzleManager : MonoBehaviour
             player.saveZoneidx = 2;
 
 			// 퍼즐 저장기능 해제  (Inventory.PuzzleGet[6] == false)
-            if (Inventory.PuzzleGet[6] == true)
+			if (Inventory.PuzzleGet[6] == false)
                 GetComponent<PuzzleClear>().Clear();
         }
     }
