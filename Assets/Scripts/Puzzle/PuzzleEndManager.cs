@@ -45,6 +45,7 @@ public class PuzzleEndManager : MonoBehaviour {
 
 
 	void Start(){
+		GalleryManager.LoadData ();
 		Camposition = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Transform> ().position;
 		Camposition.z = -10f;
 

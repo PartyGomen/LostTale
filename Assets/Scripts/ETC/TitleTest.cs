@@ -46,6 +46,7 @@ public class TitleTest : MonoBehaviour
 	}
     private void Start()
     {
+		GalleryManager.LoadData ();
 		ExitButton.SetActive (true);
 		BlackBackGround.SetActive (true);
 		StartCoroutine(FadeOutBackGround());

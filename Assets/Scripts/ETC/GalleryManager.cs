@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class GalleryManager : MonoBehaviour {
 
-	public static bool HappyEnding = false;
-	public static bool SadEnding = false;
-	public static bool TrueEnding = false;
-	public static bool SpecialEnding = false;
+	public static bool HappyEnding;
+	public static bool SadEnding ;
+	public static bool TrueEnding ;
+	public static bool SpecialEnding ;
 
 	public GameObject[] GalleryButton;
 	public GameObject[] NowTitle;
@@ -18,6 +21,15 @@ public class GalleryManager : MonoBehaviour {
 	// Use this for initialization
 
 	private float count = 1;
+
+
+	[Serializable]
+	public class PlayerData{
+		public bool HappyEnding;
+		public bool SadEnding;
+		public bool TrueEnding;
+		public bool SpecialEnding;
+	}
 
 	void OnEnable(){
 		if(EndingStoryManager.ClearEnding == 1){
@@ -68,7 +80,7 @@ public class GalleryManager : MonoBehaviour {
 			}
 			GameObject.Find ("BookManager").GetComponent<BookManager>().ShowGallery();
 			StartCoroutine (FadeInGallery(4));
-		}else {
+		}else { 
 			if(TrueEnding == true){
 				CheckGallery (0);
 			} 
@@ -81,13 +93,7 @@ public class GalleryManager : MonoBehaviour {
 			if(SpecialEnding == true){
 				CheckGallery (3);
 			}
-
 		}
-
-
-
-
-
 	}
 	public void CheckGallery(int number){
 		GalleryButton [number].GetComponent<Button> ().interactable = true;
@@ -120,5 +126,38 @@ public class GalleryManager : MonoBehaviour {
 		} 
 		GalleryButton [number-1].GetComponent<Button> ().interactable = true;
 		EndingStoryManager.ClearEnding = 0;
+	}
+
+	public static void SaveData(){
+		Debug.Log ("Save");
+		BinaryFormatter bf = new BinaryFormatter ();
+		FileStream file = File.Create (Application.persistentDataPath + "/playerInfo.dat");
+
+		PlayerData data = new PlayerData ();
+
+		data.HappyEnding = HappyEnding;
+		data.SadEnding = SadEnding;
+		data.TrueEnding = TrueEnding;
+		data.SpecialEnding = SpecialEnding;
+
+		bf.Serialize (file, data);
+		file.Close ();
+	}
+
+
+	public static void LoadData(){
+		Debug.Log ("Load");
+		BinaryFormatter bf = new BinaryFormatter ();
+		FileStream file = File.Open (Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
+
+		if (file != null && file.Length > 0) {
+			PlayerData data = (PlayerData)bf.Deserialize (file);
+
+			HappyEnding = data.HappyEnding;
+			SadEnding = data.SadEnding;
+			TrueEnding = data.TrueEnding;
+			SpecialEnding = data.SpecialEnding;
+		}
+		file.Close ();
 	}
 }

@@ -40,6 +40,9 @@ public class EndingStoryManager : MonoBehaviour {
 	private delegate IEnumerator handDelegate();
 	private handDelegate handDelegateHandler;
 
+
+	GalleryManager GalleryManager;
+
 	void OnEnable () {
 		EndingImag.SetActive (true);
 		EndingBackGround.SetActive (true);
@@ -191,15 +194,20 @@ public class EndingStoryManager : MonoBehaviour {
 			if (PuzzleEndManager.EndingStoryNumber == 1) {
 				EndingLetter.GetComponent<Image> ().sprite = TrueEndingletter [Endinglettercount];
 				GalleryManager.TrueEnding = true;
+				GalleryManager.SaveData ();
 			} else if (PuzzleEndManager.EndingStoryNumber == 2) {
 				EndingLetter.GetComponent<Image> ().sprite = SadEndingletter [Endinglettercount];
 				GalleryManager.SadEnding = true;
+				GalleryManager.SaveData ();
 			}else if (PuzzleEndManager.EndingStoryNumber == 3) {
 				EndingLetter.GetComponent<Image> ().sprite = HappyEndingletter [Endinglettercount];	
 				GalleryManager.HappyEnding = true;
+				GalleryManager.SaveData ();
 			}else if (PuzzleEndManager.EndingStoryNumber == 4) {
 				EndingLetter.GetComponent<Image> ().sprite = SpecialEndingletter [Endinglettercount];
 				GalleryManager.SpecialEnding = true;
+				GalleryManager.SaveData ();
+				//GameObject.Find ("GalleryManager").GetComponent<GalleryManager> ().SaveData ();
 			}
 			yield return new WaitForSeconds (0.2f);
 			Endinglettercount++;
