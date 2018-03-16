@@ -151,6 +151,7 @@ public class GalleryManager : MonoBehaviour {
 		FileStream file = File.Open (Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
 
 		if (file != null && file.Length > 0) {
+
 			PlayerData data = (PlayerData)bf.Deserialize (file);
 
 			HappyEnding = data.HappyEnding;

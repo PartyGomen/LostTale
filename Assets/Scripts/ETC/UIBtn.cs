@@ -13,7 +13,6 @@ public class UIBtn : MonoBehaviour
     public GameObject exitPanel;
 
 	public GameObject jumpControl;
-    public GameObject arrowControl;
     public AudioSource clickSound;
 
 	void Start ()
@@ -31,7 +30,6 @@ public class UIBtn : MonoBehaviour
         InventoryShadow.SetActive(true);
         inventory.SetActive(true);
         jumpControl.SetActive(false);
-        arrowControl.SetActive(false);
         SoundPlay();
 		//Inventory.CheckInventory ();
     }
@@ -57,7 +55,6 @@ public class UIBtn : MonoBehaviour
         SoundPlay();
         exitPanel.SetActive(true);
 		jumpControl.SetActive (false);
-        arrowControl.SetActive(false);
     }
 
     public void BackToTitleScene()
@@ -73,7 +70,5 @@ public class UIBtn : MonoBehaviour
 
 	public void HideControl(){
 		jumpControl.SetActive (true);
-        arrowControl.SetActive(true);
-
     }
 }

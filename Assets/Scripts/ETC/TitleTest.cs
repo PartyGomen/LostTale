@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class TitleTest : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class TitleTest : MonoBehaviour
 	public static bool IsFirstTuto = false;
 
     float xScale = 0;
+	string _StrFile = "";
     //float yScale = 0;
   //  float a = 1;
 
@@ -46,7 +48,14 @@ public class TitleTest : MonoBehaviour
 	}
     private void Start()
     {
-		GalleryManager.LoadData ();
+		System.IO.FileInfo Fi = new System.IO.FileInfo (GetSavePath("playerInfo"));
+		if(Fi.Exists){
+			GalleryManager.LoadData ();
+		}else{
+			GalleryManager.SaveData ();
+		}
+		//GalleryManager.SaveData ();
+		Debug.Log ("True" + GalleryManager.TrueEnding);
 		ExitButton.SetActive (true);
 		BlackBackGround.SetActive (true);
 		StartCoroutine(FadeOutBackGround());
@@ -197,5 +206,13 @@ public class TitleTest : MonoBehaviour
 		GalleryMg.SetActive (true);
 		EndingStoryManager.IsGetEnding = false;
 		IsFirstTuto = false;
+	}
+
+	public bool DoesSaveGameExist(){
+		return File.Exists (GetSavePath (name));
+	}
+
+	public string GetSavePath(string name){
+		return Path.Combine(Application.persistentDataPath, name + ".dat");
 	}
 }
