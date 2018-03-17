@@ -177,22 +177,18 @@ public class TitleTest : MonoBehaviour
 	public void CheckGalleryTuto(){
 
 		if (GalleryManager.HappyEnding == true && GalleryManager.SadEnding == false && GalleryManager.SpecialEnding == false && GalleryManager.TrueEnding == false && IsFirstTuto == true) {
-			//IsFirstTuto = false;
 			GalleryTuto.SetActive (true);
 			GalleryOpen.SetActive (false);
 			Debug.Log ("1");
 		}else if(GalleryManager.HappyEnding == false && GalleryManager.SadEnding == true && GalleryManager.SpecialEnding == false && GalleryManager.TrueEnding == false && IsFirstTuto == true){
-			//IsFirstTuto = false;
 			GalleryTuto.SetActive (true);
 			GalleryOpen.SetActive (false);
 			Debug.Log ("2");
 		}else if(GalleryManager.HappyEnding == false && GalleryManager.SadEnding == false && GalleryManager.SpecialEnding == true && GalleryManager.TrueEnding == false && IsFirstTuto == true){
-		//	IsFirstTuto = false;
 			GalleryTuto.SetActive (true);
 			GalleryOpen.SetActive (false);
 			Debug.Log ("3");
 		}else if(GalleryManager.HappyEnding == false && GalleryManager.SadEnding == false && GalleryManager.SpecialEnding == false && GalleryManager.TrueEnding == true && IsFirstTuto == true){
-		//	IsFirstTuto = false;
 			GalleryTuto.SetActive (true);
 			GalleryOpen.SetActive (false);
 			Debug.Log ("4");
